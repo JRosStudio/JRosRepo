@@ -1,10 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using static Unity.Burst.Intrinsics.X86.Avx;
 
 public class Player : MonoBehaviour
 {
+    [SerializeField]
+    StaminaManagement stamina;
+
     private float horizontal;
     private float vertical;
     public float speed = 8f;
@@ -24,6 +28,9 @@ public class Player : MonoBehaviour
     private float wallJumpingCounter;
     private float wallJumpingDuration = 0.2f;
     private Vector2 wallJumpingPower = new Vector2(10f, 16f);
+
+    private float jumpStaminaMaxCounter = 0.6f;
+    private float jumpStaminaCounter;
 
 
     [SerializeField] private Rigidbody2D rb;
@@ -58,6 +65,7 @@ public class Player : MonoBehaviour
         
         if (!isWallJumping && !IsCrouching() && !IsRuning())
         {
+            //Debug.Log("WALKING");
             rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
         }
         if (IsCrouching())
@@ -67,8 +75,18 @@ public class Player : MonoBehaviour
     }
 
     private void Run() {
-        if (IsRuning() && !isWallJumping && !IsCrouching()) {
+        if (IsRuning() && !isWallJumping && !IsCrouching() && stamina.GetCurrentStamina() != 0) {
+            //Debug.Log("RUNING");
             rb.velocity = new Vector2(horizontal * runSpeed, rb.velocity.y);
+
+            if (IsGrounded()) {
+                jumpStaminaCounter = jumpStaminaMaxCounter;
+                stamina.RunningStaminaLoss();
+            }
+            if (!IsGrounded() && jumpStaminaCounter > 0) {
+                jumpStaminaCounter -= Time.deltaTime;
+                stamina.RunningStaminaLoss();
+            }
         }
         if (IsCrouching())
         {
@@ -78,10 +96,11 @@ public class Player : MonoBehaviour
 
     private bool IsRuning()
     {
-        if (Input.GetButtonDown("Fire3") && IsGrounded()) {
+        Debug.Log(Input.GetButtonDown("Fire3") + " " + IsGrounded());
+        if (Input.GetButton("Fire3") && IsGrounded() && stamina.GetCurrentStamina() > 0 && horizontal != 0) {
             isRuning = true;
         }
-        if (!Input.GetButton("Fire3") && IsGrounded())
+        if (!Input.GetButton("Fire3") && IsGrounded() || horizontal == 0 || stamina.GetCurrentStamina() == 0)
         {
             isRuning = false;
         }
@@ -103,8 +122,9 @@ public class Player : MonoBehaviour
     }
 
     private void HighJump() {
-        if (Input.GetButtonDown("Jump")  && IsCrouching())
+        if (Input.GetButtonDown("Jump")  && IsCrouching() && stamina.GetCurrentStamina() >= stamina.GetHighJumpStaminaCost())
         {
+            stamina.HighJumpStaminaLoss();
             rb.velocity = new Vector2(rb.velocity.x, highJumpingPower);
         }
 
@@ -166,8 +186,9 @@ public class Player : MonoBehaviour
             wallJumpingCounter -= Time.deltaTime;
         }
 
-        if (Input.GetButtonDown("Jump") && wallJumpingCounter > 0f)
+        if (Input.GetButtonDown("Jump") && wallJumpingCounter > 0f && stamina.GetCurrentStamina() >= stamina.GetWallJumpStaminaCost())
         {
+            stamina.WallJumpStaminaLoss();
             isWallJumping = true;
             rb.velocity = new Vector2(wallJumpingDirection * wallJumpingPower.x, wallJumpingPower.y);
             wallJumpingCounter = 0f;
