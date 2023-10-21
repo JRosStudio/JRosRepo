@@ -8,9 +8,12 @@ public class Player : MonoBehaviour
     private float horizontal;
     private float vertical;
     public float speed = 8f;
+    public float runSpeed = 16f;
     public float jumpingPower = 16f;
     public float highJumpingPower = 24f;
     private bool isFacingRight = true;
+    private bool isRuning;
+ 
 
     private bool isWallSliding;
     public float wallSlidingSpeed = 2f;
@@ -33,7 +36,7 @@ public class Player : MonoBehaviour
     {
         horizontal = Input.GetAxisRaw("Horizontal");
         vertical = Input.GetAxisRaw("Vertical");
-
+        
         Jump();
         HighJump();
         WallSlide();
@@ -47,12 +50,45 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (!isWallJumping)
+        Walk();
+        Run();
+    }
+
+    private void Walk(){
+        
+        if (!isWallJumping && !IsCrouching() && !IsRuning())
         {
             rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
         }
+        if (IsCrouching())
+        {
+            rb.velocity = new Vector2(0, rb.velocity.y);
+        }
     }
 
+    private void Run() {
+        if (IsRuning() && !isWallJumping && !IsCrouching()) {
+            rb.velocity = new Vector2(horizontal * runSpeed, rb.velocity.y);
+        }
+        if (IsCrouching())
+        {
+            rb.velocity = new Vector2(0, rb.velocity.y);
+        }
+    }
+
+    private bool IsRuning()
+    {
+        if (Input.GetButtonDown("Fire3") && IsGrounded()) {
+            isRuning = true;
+        }
+        if (!Input.GetButton("Fire3") && IsGrounded())
+        {
+            isRuning = false;
+        }
+
+        return isRuning;
+        
+    }
     private void Jump() {
 
         if (Input.GetButtonDown("Jump") && IsGrounded() && !IsCrouching())
