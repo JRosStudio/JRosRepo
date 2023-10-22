@@ -48,6 +48,7 @@ public class Player : MonoBehaviour
         HighJump();
         WallSlide();
         WallJump();
+        ConsumeFood();
 
         if (!isWallJumping)
         {
@@ -65,7 +66,6 @@ public class Player : MonoBehaviour
         
         if (!isWallJumping && !IsCrouching() && !IsRuning())
         {
-            //Debug.Log("WALKING");
             rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
         }
         if (IsCrouching())
@@ -76,7 +76,6 @@ public class Player : MonoBehaviour
 
     private void Run() {
         if (IsRuning() && !isWallJumping && !IsCrouching() && stamina.GetCurrentStamina() != 0) {
-            //Debug.Log("RUNING");
             rb.velocity = new Vector2(horizontal * runSpeed, rb.velocity.y);
 
             if (IsGrounded()) {
@@ -96,7 +95,7 @@ public class Player : MonoBehaviour
 
     private bool IsRuning()
     {
-        Debug.Log(Input.GetButtonDown("Fire3") + " " + IsGrounded());
+        
         if (Input.GetButton("Fire3") && IsGrounded() && stamina.GetCurrentStamina() > 0 && horizontal != 0) {
             isRuning = true;
         }
@@ -119,6 +118,14 @@ public class Player : MonoBehaviour
         {
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
         }
+    }
+
+    private void ConsumeFood() {
+
+        if (Input.GetKeyDown(KeyCode.Z)) {
+            stamina.ConsumeFood();
+        }
+
     }
 
     private void HighJump() {
