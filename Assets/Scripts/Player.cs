@@ -27,7 +27,7 @@ public class Player : MonoBehaviour
     private float wallJumpingTime = 0.2f;
     private float wallJumpingCounter;
     private float wallJumpingDuration = 0.2f;
-    private Vector2 wallJumpingPower = new Vector2(10f, 16f);
+    private Vector2 wallJumpingPower = new Vector2(12f, 16f);
 
     //private float jumpStaminaMaxCounter = 0.6f;
     //private float jumpStaminaCounter;
@@ -47,10 +47,13 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
+
+
         if (isDashing)
         {
             return;
         }
+
         horizontal = Input.GetAxisRaw("Horizontal");
         vertical = Input.GetAxisRaw("Vertical");
         
@@ -101,10 +104,12 @@ public class Player : MonoBehaviour
         
         if (!isWallJumping && !IsCrouching() /*&& !IsRuning()*/)
         {
+            
             rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
         }
         if (IsCrouching())
         {
+            
             rb.velocity = new Vector2(0, rb.velocity.y);
         }
     }
@@ -133,6 +138,7 @@ public class Player : MonoBehaviour
     private void HighJump() {
         if (Input.GetButtonDown("Jump")  && IsCrouching() && stamina.GetCurrentStamina() >= stamina.GetHighJumpStaminaCost())
         {
+            
             stamina.HighJumpStaminaLoss();
             rb.velocity = new Vector2(rb.velocity.x, highJumpingPower);
         }
@@ -147,20 +153,32 @@ public class Player : MonoBehaviour
         return Physics2D.OverlapBox(groundCheck.position, new Vector2(0.98f, 0.1f) ,0f, groundLayer);
     }
 
-    /*
+    
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = new Color(1, 1, 0, 0.75F);
         Gizmos.DrawCube(groundCheck.position, new Vector2(0.98f, 0.1f));
     }
-    */
+    
 
     private bool IsCrouching(){
+
+        Vector3 localScale = transform.localScale;
         if (vertical == -1 && IsGrounded())
         {
+            localScale.y = 0.6f;
+            transform.localScale = localScale;
+            Debug.Log("CROUCHING");
             return true;
         }
-        else return false;
+        else {
+            if (vertical == 0) { 
+                localScale.y = 0.8f;
+                transform.localScale = localScale;
+                Debug.Log("STANDING");
+            }
+            return false;
+        }
     }
 
     private bool IsWalled()

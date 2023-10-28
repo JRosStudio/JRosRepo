@@ -14,7 +14,7 @@ TagManager:
   - Water
   - UI
   - Wall
-  - 
+  - Corner
   - 
   - 
   - 
@@ -42,4 +42,10 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: FRONT
+    uniqueID: 1683285737
+    locked: 0
+  - name: BACKGROUND
+    uniqueID: 755000913
     locked: 0
