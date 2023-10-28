@@ -48,7 +48,6 @@ public class Player : MonoBehaviour
     private void Update()
     {
 
-
         if (isDashing)
         {
             return;
@@ -63,7 +62,7 @@ public class Player : MonoBehaviour
         WallJump();
         ConsumeFood();
 
-        if (Input.GetButtonDown("Fire3") && stamina.GetCurrentStamina() >= stamina.GetDashStaminaCost()) {
+        if (Input.GetButtonDown("Fire2") && stamina.GetCurrentStamina() >= stamina.GetDashStaminaCost()) {
             stamina.DashStaminaLos();
             StartCoroutine(Dash());
         }
@@ -129,7 +128,7 @@ public class Player : MonoBehaviour
 
     private void ConsumeFood() {
 
-        if (Input.GetKeyDown(KeyCode.Z)) {
+        if (Input.GetButtonDown("Fire1")) {
             stamina.ConsumeFood();
         }
 
@@ -168,14 +167,12 @@ public class Player : MonoBehaviour
         {
             localScale.y = 0.6f;
             transform.localScale = localScale;
-            Debug.Log("CROUCHING");
             return true;
         }
         else {
             if (vertical == 0) { 
                 localScale.y = 0.8f;
                 transform.localScale = localScale;
-                Debug.Log("STANDING");
             }
             return false;
         }
