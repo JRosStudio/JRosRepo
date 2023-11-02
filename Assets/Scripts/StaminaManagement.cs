@@ -93,9 +93,7 @@ public class StaminaManagement : MonoBehaviour
 
         if (currentFood > 0) {
             stamina = maxStamina;
-        staminaNumber.text = stamina.ToString("0");
             currentFood--;
-            Debug.Log("CURRENT FOOD: " + currentFood);
 
             if (currentFood == 0)
             {
@@ -116,6 +114,9 @@ public class StaminaManagement : MonoBehaviour
        
     }
 
+    public void DebugFullStamina() {
+        stamina = maxStamina;
+    }
     public int GetCurrentFood() {
 
         return currentFood;

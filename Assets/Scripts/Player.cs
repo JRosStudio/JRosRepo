@@ -48,6 +48,10 @@ public class Player : MonoBehaviour
     private void Update()
     {
 
+        if (Input.GetKeyDown(KeyCode.R)) {
+            Application.LoadLevel(Application.loadedLevel);
+        }
+
         if (isDashing)
         {
             return;
@@ -61,6 +65,7 @@ public class Player : MonoBehaviour
         WallSlide();
         WallJump();
         ConsumeFood();
+        DebugFillStamina();
 
         if (Input.GetButtonDown("Fire2") && stamina.GetCurrentStamina() >= stamina.GetDashStaminaCost()) {
             stamina.DashStaminaLos();
@@ -133,6 +138,14 @@ public class Player : MonoBehaviour
         }
 
     }
+    
+    private void DebugFillStamina() {
+
+        if (Input.GetButtonDown("Fire1")) {
+            stamina.DebugFullStamina();
+        }
+
+    }
 
     private void HighJump() {
         if (Input.GetButtonDown("Jump")  && IsCrouching() && stamina.GetCurrentStamina() >= stamina.GetHighJumpStaminaCost())
@@ -149,14 +162,17 @@ public class Player : MonoBehaviour
     }
     private bool IsGrounded()
     {
-        return Physics2D.OverlapBox(groundCheck.position, new Vector2(0.98f, 0.1f) ,0f, groundLayer);
+        return Physics2D.OverlapBox(groundCheck.position, new Vector2(0.46f, 0.1f) ,0f, groundLayer);
     }
 
     
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = new Color(1, 1, 0, 0.75F);
-        Gizmos.DrawCube(groundCheck.position, new Vector2(0.98f, 0.1f));
+        Gizmos.DrawCube(groundCheck.position, new Vector2(0.46f, 0.1f)); 
+        
+        Gizmos.color = new Color(1, 0, 1, 0.75F);
+        Gizmos.DrawSphere(wallCheck.position, 0.2f);
     }
     
 
@@ -171,7 +187,7 @@ public class Player : MonoBehaviour
         }
         else {
             if (vertical == 0) { 
-                localScale.y = 0.8f;
+                localScale.y = 1f;
                 transform.localScale = localScale;
             }
             return false;
