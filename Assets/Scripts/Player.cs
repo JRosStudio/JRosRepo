@@ -162,14 +162,14 @@ public class Player : MonoBehaviour
     }
     private bool IsGrounded()
     {
-        return Physics2D.OverlapBox(groundCheck.position, new Vector2(0.46f, 0.1f) ,0f, groundLayer);
+        return Physics2D.OverlapBox(groundCheck.position, new Vector2(0.35f, 0.1f) ,0f, groundLayer);
     }
 
     
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = new Color(1, 1, 0, 0.75F);
-        Gizmos.DrawCube(groundCheck.position, new Vector2(0.46f, 0.1f)); 
+        Gizmos.DrawCube(groundCheck.position, new Vector2(0.35f, 0.1f)); 
         
         Gizmos.color = new Color(1, 0, 1, 0.75F);
         Gizmos.DrawSphere(wallCheck.position, 0.2f);
@@ -202,7 +202,7 @@ public class Player : MonoBehaviour
 
     private void WallSlide()
     {
-        if (IsWalled() && !IsGrounded())
+        if (IsWalled() && !IsGrounded() && horizontal != 0)
         {
             isWallSliding = true;
             rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -wallSlidingSpeed, float.MaxValue));
