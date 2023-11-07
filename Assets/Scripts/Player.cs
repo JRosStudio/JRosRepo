@@ -38,12 +38,17 @@ public class Player : MonoBehaviour
     private float dashingTime = 0.2f;
     private float dashingCooldown = 1f;
 
+    [SerializeField]
+    private float radioGolpe;
+    [SerializeField]
+    private int dañoGolpe;
 
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private Transform wallCheck;
     [SerializeField] private LayerMask wallLayer;
+    [SerializeField] private Transform attackPosition;
 
     private void Update()
     {
@@ -66,6 +71,7 @@ public class Player : MonoBehaviour
         WallJump();
         ConsumeFood();
         DebugFillStamina();
+        Golpe();
 
         if (Input.GetButtonDown("Fire2") && stamina.GetCurrentStamina() >= stamina.GetDashStaminaCost()) {
             stamina.DashStaminaLos();
@@ -165,7 +171,28 @@ public class Player : MonoBehaviour
         return Physics2D.OverlapBox(groundCheck.position, new Vector2(0.35f, 0.1f) ,0f, groundLayer);
     }
 
-    
+    private void Golpe()
+    {
+
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            Collider2D[] objetos = Physics2D.OverlapCircleAll(attackPosition.position, radioGolpe);
+
+            foreach (Collider2D colisionador in objetos)
+            {
+
+                if (colisionador.CompareTag("Enemy"))
+                {
+                    colisionador.transform.GetComponent<Enemigo>().takeDamage(dañoGolpe);
+                }
+
+
+            }
+        }
+
+
+    }
+
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = new Color(1, 1, 0, 0.75F);
@@ -173,6 +200,9 @@ public class Player : MonoBehaviour
         
         Gizmos.color = new Color(1, 0, 1, 0.75F);
         Gizmos.DrawSphere(wallCheck.position, 0.2f);
+
+        Gizmos.color = new Color(1, 1, 1, 0.75F);
+        Gizmos.DrawSphere(attackPosition.position, radioGolpe);
     }
     
 
