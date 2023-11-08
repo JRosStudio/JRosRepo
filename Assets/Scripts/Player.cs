@@ -50,6 +50,8 @@ public class Player : MonoBehaviour
     [SerializeField] private LayerMask wallLayer;
     [SerializeField] private Transform attackPosition;
 
+    [SerializeField] GameObject circulo;
+
     private void Update()
     {
 
@@ -176,6 +178,7 @@ public class Player : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.C))
         {
+            
             Collider2D[] objetos = Physics2D.OverlapCircleAll(attackPosition.position, radioGolpe);
 
             foreach (Collider2D colisionador in objetos)
@@ -190,7 +193,15 @@ public class Player : MonoBehaviour
             }
         }
 
+        if (Input.GetKey(KeyCode.C)) {
 
+            circulo.SetActive(true);
+        }
+        else
+        {
+
+            circulo.SetActive(false);
+        }
     }
 
     private void OnDrawGizmosSelected()
@@ -293,6 +304,12 @@ public class Player : MonoBehaviour
         }
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Enemy") {
+            Application.LoadLevel(Application.loadedLevel);
+        }
+    }
 
     /* private void Run() {
          if (IsRuning() && !isWallJumping && !IsCrouching() && stamina.GetCurrentStamina() != 0) {
