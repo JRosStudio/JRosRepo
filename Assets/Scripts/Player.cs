@@ -27,7 +27,7 @@ public class Player : MonoBehaviour
     private float wallJumpingTime = 0.2f;
     private float wallJumpingCounter;
     private float wallJumpingDuration = 0.2f;
-    private Vector2 wallJumpingPower = new Vector2(12f, 16f);
+    private Vector2 wallJumpingPower = new Vector2(12f, 12f);
 
     //private float jumpStaminaMaxCounter = 0.6f;
     //private float jumpStaminaCounter;

@@ -14,7 +14,9 @@ public class StaminaManagement : MonoBehaviour
 
     private float defaultMaxStamina = 100;
     private float maxStamina = 100;
-    private float stamina = 100;
+
+    [SerializeField]
+    private float stamina;
 
     private float defaulthighJumpCost = 10;
     private float highJumpCost = 10;
