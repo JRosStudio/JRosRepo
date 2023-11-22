@@ -188,10 +188,6 @@ public class Player : MonoBehaviour
                 {
                     colisionador.transform.GetComponent<Enemigo>().takeDamage(dañoGolpe);
                 }
-                if (colisionador.CompareTag("Explosive"))
-                {
-                    colisionador.transform.GetComponent<Explosive>().Explosion();
-                }
 
 
             }

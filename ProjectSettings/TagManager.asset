@@ -8,7 +8,6 @@ TagManager:
   - Food
   - Enemy
   - Goal
-  - Explosive
   layers:
   - Default
   - TransparentFX
