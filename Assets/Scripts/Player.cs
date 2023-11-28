@@ -72,7 +72,7 @@ public class Player : MonoBehaviour
         WallSlide();
         WallJump();
         ConsumeFood();
-        DebugFillStamina();
+        //DebugFillStamina();
         Golpe();
 
         if (Input.GetButtonDown("Fire2") && stamina.GetCurrentStamina() >= stamina.GetDashStaminaCost()) {
@@ -176,11 +176,11 @@ public class Player : MonoBehaviour
     private void Golpe()
     {
 
-        if (Input.GetKeyDown(KeyCode.C))
+        if (Input.GetKeyDown(KeyCode.C) && stamina.GetCurrentStamina() >= stamina.GetAttackCost())
         {
             
             Collider2D[] objetos = Physics2D.OverlapCircleAll(attackPosition.position, radioGolpe);
-
+            stamina.AttackStaminaLoss();
             foreach (Collider2D colisionador in objetos)
             {
 
@@ -190,22 +190,26 @@ public class Player : MonoBehaviour
                 }
                 if (colisionador.CompareTag("Explosive"))
                 {
-                    colisionador.transform.GetComponent<Explosive>().Explosion();
+                    //colisionador.transform.GetComponent<Explosive>().Explosion();
+
                 }
 
 
             }
+
+            if (Input.GetKey(KeyCode.C))
+            {
+
+                circulo.SetActive(true);
+            }
+            if(Input.GetKeyUp(KeyCode.C))
+            {
+
+                circulo.SetActive(false);
+            }
         }
 
-        if (Input.GetKey(KeyCode.C)) {
-
-            circulo.SetActive(true);
-        }
-        else
-        {
-
-            circulo.SetActive(false);
-        }
+        
     }
 
     private void OnDrawGizmosSelected()

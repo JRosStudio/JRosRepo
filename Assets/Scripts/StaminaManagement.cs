@@ -10,25 +10,34 @@ public class StaminaManagement : MonoBehaviour
     public TMP_Text staminaNumber;
 
     public GameObject food1, food2, food3;
+    [SerializeField]
     private int currentFood = 0;
 
-    private float defaultMaxStamina = 100;
-    private float maxStamina = 100;
+    private float defaultMaxStamina = 10;
+    [SerializeField]
+    private float maxStamina = 10;
 
     [SerializeField]
     private float stamina;
 
-    private float defaulthighJumpCost = 10;
-    private float highJumpCost = 10;
+    private float defaulthighJumpCost = 4;
+    [SerializeField]
+    private float highJumpCost = 4;
 
-    private float defaultWallJumpCost = 5;
-    private float wallJumpCost = 5;
+    private float defaultWallJumpCost = 1;
+    [SerializeField]
+    private float wallJumpCost = 1;
 
     //private float defaultRunCost = 5;
     //private float runCost = 5;
 
-    private float defaultDashCost = 10f;
-    private float dashCost = 10f;
+    private float defaultDashCost = 4f;
+    [SerializeField]
+    private float dashCost = 2f;
+
+    private float defaultAttackCost = 1f;
+    [SerializeField]
+    private float attackCost = 1f;
 
     public void Start()
     {
@@ -214,6 +223,25 @@ public class StaminaManagement : MonoBehaviour
     public void SetWallJumpCostToDefault()
     {
         wallJumpCost = defaultWallJumpCost;
+    }
+
+    public void SetAttackCost(float newCost)
+    {
+        attackCost = newCost;
+    }
+    public void SetAttackCostToDefault()
+    {
+        attackCost = defaultAttackCost;
+    }
+    public float GetAttackCost()
+    {
+        return attackCost;
+    }
+
+    public float AttackStaminaLoss() {
+        stamina -= attackCost;
+        if (stamina < 0) stamina = 0;
+        return stamina;
     }
 
     /*
