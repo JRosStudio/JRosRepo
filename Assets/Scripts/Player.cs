@@ -53,6 +53,8 @@ public class Player : MonoBehaviour
 
     [SerializeField] GameObject circulo;
 
+    [SerializeField] Animator animation;
+
     private void Update()
     {
 
@@ -68,7 +70,25 @@ public class Player : MonoBehaviour
 
         horizontal = Input.GetAxisRaw("Horizontal");
         vertical = Input.GetAxisRaw("Vertical");
-        
+
+        if (IsGrounded() && horizontal == 0) {
+            animation.SetInteger("State", 0);
+        }
+        if (IsGrounded() && horizontal != 0)
+        {
+            animation.SetInteger("State", 1);
+        }
+        if (!IsGrounded() && !IsWalled())
+        {
+            animation.SetInteger("State", 2);
+        }
+        if (!IsGrounded() && IsWalled() && horizontal != 0)
+        {
+            animation.SetInteger("State", 3);
+        }
+
+        Debug.Log(animation.GetInteger("State"));
+
         Jump();
         HighJump();
         WallSlide();
