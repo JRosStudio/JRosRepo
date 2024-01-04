@@ -18,6 +18,7 @@ public class Player : MonoBehaviour
     public float highJumpingPower = 24f;
     private bool isFacingRight = true;
     //private bool isRuning;
+    private bool isAttacking;
  
 
     private bool isWallSliding;
@@ -38,6 +39,8 @@ public class Player : MonoBehaviour
     private float dashingPower = 20f;
     private float dashingTime = 0.2f;
     private float dashingCooldown = 1f;
+    private float coyoteTime = 0.2f;
+    private float coyoteTimeCounter;
 
     [SerializeField]
     private float radioGolpe;
@@ -72,41 +75,54 @@ public class Player : MonoBehaviour
         vertical = Input.GetAxisRaw("Vertical");
 
         if (IsGrounded() && horizontal == 0) {
+            coyoteTimeCounter = coyoteTime;
             animation.SetInteger("State", 0);
         }
         if (IsGrounded() && horizontal != 0)
         {
+            coyoteTimeCounter = coyoteTime;
             animation.SetInteger("State", 1);
         }
         if (!IsGrounded() && !IsWalled())
         {
+            coyoteTimeCounter -= Time.deltaTime;
             animation.SetInteger("State", 2);
         }
         if (!IsGrounded() && IsWalled() && horizontal != 0)
         {
+            coyoteTimeCounter -= Time.deltaTime;
             animation.SetInteger("State", 3);
         }
 
-        Debug.Log(animation.GetInteger("State"));
+        if (isAttacking == false) { 
+            Jump();
+            HighJump();
+            WallSlide();
+            WallJump();
+            ConsumeFood();
+            //DebugFillStamina();
+            Golpe();
+        }
 
-        Jump();
-        HighJump();
-        WallSlide();
-        WallJump();
-        ConsumeFood();
-        //DebugFillStamina();
-        Golpe();
-
-        if (Input.GetButtonDown("Fire2") && stamina.GetCurrentStamina() >= stamina.GetDashStaminaCost()) {
+        if (Input.GetButtonDown("Fire3") && stamina.GetCurrentStamina() >= stamina.GetDashStaminaCost()) {
             stamina.DashStaminaLos();
             StartCoroutine(Dash());
         }
 
-        if (!isWallJumping)
+        if (!isWallJumping && isAttacking == false)
         {
             Flip();
         }
     }
+
+    public void attackingTrue() {
+        isAttacking = true;
+    }
+    public void attackingFalse() {
+        isAttacking = false;
+    }
+
+
 
     private void FixedUpdate()
     {
@@ -136,12 +152,12 @@ public class Player : MonoBehaviour
 
     private void Walk(){
         
-        if (!isWallJumping && !IsCrouching() /*&& !IsRuning()*/)
+        if (!isWallJumping && !IsCrouching() && isAttacking == false /*&& !IsRuning()*/)
         {
             
             rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
         }
-        if (IsCrouching())
+        if (IsCrouching() || isAttacking == true)
         {
             
             rb.velocity = new Vector2(0, rb.velocity.y);
@@ -150,15 +166,17 @@ public class Player : MonoBehaviour
 
     private void Jump() {
 
-        if (Input.GetButtonDown("Jump") && IsGrounded() && !IsCrouching())
+        if (Input.GetButtonDown("Jump") && coyoteTimeCounter > 0 && !IsCrouching() )
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
         }
 
         if (Input.GetButtonUp("Jump") && rb.velocity.y > 0f)
         {
+            coyoteTimeCounter = 0;
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
         }
+
     }
 
     private void ConsumeFood() {
@@ -198,27 +216,30 @@ public class Player : MonoBehaviour
     private void Golpe()
     {
 
-        if (Input.GetKeyDown(KeyCode.C) && stamina.GetCurrentStamina() >= stamina.GetAttackCost())
+        if (Input.GetButtonDown("Fire2") && stamina.GetCurrentStamina() >= stamina.GetAttackCost() && IsGrounded())
         {
-            
-            Collider2D[] objetos = Physics2D.OverlapCircleAll(attackPosition.position, radioGolpe);
-            stamina.AttackStaminaLoss();
-            foreach (Collider2D colisionador in objetos)
+            animation.SetInteger("State", 4);
+
+        }
+
+        
+    }
+
+    public void GolpeImpacto() {
+        Collider2D[] objetos = Physics2D.OverlapCircleAll(attackPosition.position, radioGolpe);
+        stamina.AttackStaminaLoss();
+        foreach (Collider2D colisionador in objetos)
+        {
+
+            if (colisionador.CompareTag("Enemy")|| colisionador.CompareTag("Rock"))
             {
-
-                if (colisionador.CompareTag("Enemy"))
-                {
-                    colisionador.transform.GetComponent<Enemigo>().takeDamage(dañoGolpe);
-                }
-                if (colisionador.CompareTag("Explosive"))
-                {
-                    //colisionador.transform.GetComponent<Explosive>().Explosion();
-
-                }
-
-
+                colisionador.transform.GetComponent<Enemigo>().takeDamage(dañoGolpe);
             }
-
+            if (colisionador.CompareTag("Explosive"))
+            {
+                //colisionador.transform.GetComponent<Explosive>().Explosion();
+            }
+            /*
             if (Input.GetKey(KeyCode.C))
             {
 
@@ -229,11 +250,9 @@ public class Player : MonoBehaviour
 
                 circulo.SetActive(false);
             }
+            */
         }
-
-        
     }
-
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = new Color(1, 1, 0, 0.75F);

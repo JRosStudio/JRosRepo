@@ -470,6 +470,10 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 146036478298908904, guid: 2b4e6960b567240a9a2b59a0e9889e25, type: 3}
+      propertyPath: speed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 146036478298908904, guid: 2b4e6960b567240a9a2b59a0e9889e25, type: 3}
       propertyPath: stamina
       value: 
       objectReference: {fileID: 2110036605}
@@ -516,6 +520,10 @@ PrefabInstance:
     - target: {fileID: 146036478298908905, guid: 2b4e6960b567240a9a2b59a0e9889e25, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 146036478298908907, guid: 2b4e6960b567240a9a2b59a0e9889e25, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 1.3235294
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2b4e6960b567240a9a2b59a0e9889e25, type: 3}

@@ -236,7 +236,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stamina: {fileID: 0}
-  speed: 8
+  speed: 6
   jumpingPower: 15
   highJumpingPower: 24
   wallSlidingSpeed: 0.5
