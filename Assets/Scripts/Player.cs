@@ -58,6 +58,10 @@ public class Player : MonoBehaviour
 
     [SerializeField] Animator animation;
 
+
+    private double fallMultiplier = 2.5f;
+    private double lowJumpMultiplier = 2f;
+
     private void Update()
     {
 
@@ -74,14 +78,14 @@ public class Player : MonoBehaviour
         horizontal = Input.GetAxisRaw("Horizontal");
         vertical = Input.GetAxisRaw("Vertical");
 
-        if (IsGrounded() && horizontal == 0) {
+        if (IsGrounded() && horizontal == 0 && !IsCrouching()) {
             coyoteTimeCounter = coyoteTime;
             animation.SetInteger("State", 0);
         }
         if (IsGrounded() && horizontal != 0)
         {
             coyoteTimeCounter = coyoteTime;
-            animation.SetInteger("State", 1);
+            //animation.SetInteger("State", 1);
         }
         if (!IsGrounded() && !IsWalled())
         {
@@ -96,7 +100,7 @@ public class Player : MonoBehaviour
 
         if (isAttacking == false) { 
             Jump();
-            HighJump();
+            //HighJump();
             WallSlide();
             WallJump();
             ConsumeFood();
@@ -104,10 +108,10 @@ public class Player : MonoBehaviour
             Golpe();
         }
 
-        if (Input.GetButtonDown("Fire3") && stamina.GetCurrentStamina() >= stamina.GetDashStaminaCost()) {
+       /* if (Input.GetButtonDown("Fire3") && stamina.GetCurrentStamina() >= stamina.GetDashStaminaCost()) {
             stamina.DashStaminaLos();
             StartCoroutine(Dash());
-        }
+        }*/
 
         if (!isWallJumping && isAttacking == false)
         {
@@ -154,7 +158,7 @@ public class Player : MonoBehaviour
         
         if (!isWallJumping && !IsCrouching() && isAttacking == false /*&& !IsRuning()*/)
         {
-            
+            animation.SetInteger("State", 1);
             rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
         }
         if (IsCrouching() || isAttacking == true)
@@ -166,6 +170,7 @@ public class Player : MonoBehaviour
 
     private void Jump() {
 
+        
         if (Input.GetButtonDown("Jump") && coyoteTimeCounter > 0 && !IsCrouching() )
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
@@ -177,6 +182,12 @@ public class Player : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
         }
 
+        /*
+        //Gravity Jump
+        if (rb.velocity.y < 0) {
+            rb.velocity += Vector2.up * Physics.gravity.y * (fallMultiplier - 1) *Time.deltaTime;
+        }
+        */
     }
 
     private void ConsumeFood() {
@@ -269,16 +280,17 @@ public class Player : MonoBehaviour
     private bool IsCrouching(){
 
         Vector3 localScale = transform.localScale;
-        if (vertical == -1 && IsGrounded())
+        if (vertical < -0.5 && IsGrounded())
         {
-            localScale.y = 0.6f;
-            transform.localScale = localScale;
+            animation.SetInteger("State", 5);
+            //localScale.y = 0.6f;
+            //transform.localScale = localScale;
             return true;
         }
         else {
-            if (vertical == 0) { 
-                localScale.y = 1f;
-                transform.localScale = localScale;
+            if (vertical >= -0.5) { 
+                //localScale.y = 1f;
+                //transform.localScale = localScale;
             }
             return false;
         }
