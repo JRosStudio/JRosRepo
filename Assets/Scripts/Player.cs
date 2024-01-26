@@ -13,8 +13,12 @@ public class Player : MonoBehaviour
     private float horizontal;
     private float vertical;
     public float speed = 8f;
+    public float speedGround = 8f;
+    public float speedWater = 5f;
     //public float runSpeed = 16f;
     public float jumpingPower = 16f;
+    public float jumpingPowerGround = 16f;
+    public float jumpingPowerWater = 8f;
     public float highJumpingPower = 24f;
     private bool isFacingRight = true;
     //private bool isRuning;
@@ -62,8 +66,22 @@ public class Player : MonoBehaviour
     private double fallMultiplier = 2.5f;
     private double lowJumpMultiplier = 2f;
 
+    public bool inWater = false;
+
+
     private void Update()
     {
+        Debug.Log(inWater);
+
+        if (!inWater)
+        {
+            speed = speedGround;
+            jumpingPower = jumpingPowerGround;
+        }
+        else {
+            speed = speedWater;
+            jumpingPower = jumpingPowerWater;
+        }
 
         if (Input.GetKeyDown(KeyCode.R)) {
             Application.LoadLevel(Application.loadedLevel);
@@ -119,6 +137,9 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void isOnWatter(bool w) {
+        inWater = w;
+    }
     public void attackingTrue() {
         isAttacking = true;
     }
