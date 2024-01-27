@@ -16,10 +16,10 @@ public class Player : MonoBehaviour
     public float speedGround = 8f;
     public float speedWater = 5f;
     //public float runSpeed = 16f;
-    public float jumpingPower = 16f;
-    public float jumpingPowerGround = 16f;
-    public float jumpingPowerWater = 8f;
-    public float highJumpingPower = 24f;
+    public float jumpingPower ;
+    public float jumpingPowerGround ;
+    public float jumpingPowerWater ;
+    public float highJumpingPower;
     private bool isFacingRight = true;
     //private bool isRuning;
     private bool isAttacking;
@@ -66,12 +66,18 @@ public class Player : MonoBehaviour
     private double fallMultiplier = 2.5f;
     private double lowJumpMultiplier = 2f;
 
+    private double lastYVelocity;
+
     public bool inWater = false;
 
 
     private void Update()
     {
-        Debug.Log(inWater);
+        if (!IsGrounded())
+        { 
+            lastYVelocity =  rb.velocity.y;
+        }
+        
 
         if (!inWater)
         {
@@ -79,6 +85,7 @@ public class Player : MonoBehaviour
             jumpingPower = jumpingPowerGround;
         }
         else {
+            rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -wallSlidingSpeed, float.MaxValue));
             speed = speedWater;
             jumpingPower = jumpingPowerWater;
         }
@@ -137,7 +144,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void isOnWatter(bool w) {
+    public void isOnWater(bool w) {
         inWater = w;
     }
     public void attackingTrue() {
@@ -255,6 +262,14 @@ public class Player : MonoBehaviour
         }
 
         
+    }
+
+    public void checkFallingDeath() {
+        Debug.Log(lastYVelocity);
+        if (lastYVelocity < -30 && !inWater && !IsWalled()) {
+            Application.LoadLevel(Application.loadedLevel);
+            //Debug.Log("--------XXXXX-------MUERTO-------XXXXXXX------");
+        }
     }
 
     public void GolpeImpacto() {
@@ -390,6 +405,11 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.tag == "Enemy") {
             Application.LoadLevel(Application.loadedLevel);
+        }
+
+        if (collision.gameObject.tag == "Ground") {
+            checkFallingDeath();
+            lastYVelocity = 0;
         }
     }
 

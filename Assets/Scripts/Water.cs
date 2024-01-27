@@ -9,14 +9,14 @@ public class Water : MonoBehaviour
 
     private void Start()
     {
-        player.isOnWatter(false);
+        player.isOnWater(false);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            player.isOnWatter(true);
+            player.isOnWater(true);
         }
 
     }
@@ -25,7 +25,7 @@ public class Water : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            player.isOnWatter(false);
+            player.isOnWater(false);
         }
     }
 }
