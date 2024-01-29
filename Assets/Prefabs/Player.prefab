@@ -236,8 +236,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stamina: {fileID: 0}
+  alive: 1
+  transition: {fileID: 0}
   speed: 6
+  speedGround: 8
+  speedWater: 5
   jumpingPower: 15
+  jumpingPowerGround: 0
+  jumpingPowerWater: 0
   highJumpingPower: 24
   wallSlidingSpeed: 0.5
   radioGolpe: 0.5
@@ -254,6 +260,7 @@ MonoBehaviour:
   attackPosition: {fileID: 146036478651210179}
   circulo: {fileID: 146036478259683043}
   animation: {fileID: 146036478298908911}
+  inWater: 0
 --- !u!95 &146036478298908911
 Animator:
   serializedVersion: 5

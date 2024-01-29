@@ -17,11 +17,11 @@ public class Enemigo : MonoBehaviour
     }
 
     public void takeDamage (int damage) {
-        Debug.Log("Recibe Daño");
+        //Debug.Log("Recibe Daño");
         health -= damage;
 
         if (health <= 0) {
-            Debug.Log("Muere");
+            //Debug.Log("Muere");
             Destroy(gameObject);
         }
     }

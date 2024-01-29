@@ -10,20 +10,25 @@ public class Player : MonoBehaviour
     [SerializeField]
     StaminaManagement stamina;
 
+    public bool alive = true;
+
+    [SerializeField]
+    public Animator transition;
+
     private float horizontal;
     private float vertical;
     public float speed = 8f;
     public float speedGround = 8f;
     public float speedWater = 5f;
     //public float runSpeed = 16f;
-    public float jumpingPower ;
-    public float jumpingPowerGround ;
-    public float jumpingPowerWater ;
+    public float jumpingPower;
+    public float jumpingPowerGround;
+    public float jumpingPowerWater;
     public float highJumpingPower;
     private bool isFacingRight = true;
     //private bool isRuning;
     private bool isAttacking;
- 
+
 
     private bool isWallSliding;
     public float wallSlidingSpeed = 2f;
@@ -74,10 +79,10 @@ public class Player : MonoBehaviour
     private void Update()
     {
         if (!IsGrounded())
-        { 
-            lastYVelocity =  rb.velocity.y;
+        {
+            lastYVelocity = rb.velocity.y;
         }
-        
+
 
         if (!inWater)
         {
@@ -92,7 +97,7 @@ public class Player : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.R)) {
             Application.LoadLevel(Application.loadedLevel);
-            
+
         }
 
         if (isDashing)
@@ -103,27 +108,32 @@ public class Player : MonoBehaviour
         horizontal = Input.GetAxisRaw("Horizontal");
         vertical = Input.GetAxisRaw("Vertical");
 
-        if (IsGrounded() && horizontal == 0 && !IsCrouching()) {
+        if (IsGrounded() && horizontal == 0 && !IsCrouching() && alive) {
             coyoteTimeCounter = coyoteTime;
             animation.SetInteger("State", 0);
         }
-        if (IsGrounded() && horizontal != 0)
+        if (IsGrounded() && horizontal != 0 && alive)
         {
             coyoteTimeCounter = coyoteTime;
             //animation.SetInteger("State", 1);
         }
-        if (!IsGrounded() && !IsWalled())
+        if (!IsGrounded() && !IsWalled() && alive)
         {
             coyoteTimeCounter -= Time.deltaTime;
             animation.SetInteger("State", 2);
         }
-        if (!IsGrounded() && IsWalled() && horizontal != 0)
+        if (!IsGrounded() && IsWalled() && horizontal != 0 && alive)
         {
             coyoteTimeCounter -= Time.deltaTime;
             animation.SetInteger("State", 3);
         }
+        if (!alive) {
+            animation.SetInteger("State", 6);
+            rb.velocity = new Vector2(0, rb.velocity.y);
 
-        if (isAttacking == false) { 
+        }
+
+        if (isAttacking == false && alive) {
             Jump();
             //HighJump();
             WallSlide();
@@ -133,12 +143,12 @@ public class Player : MonoBehaviour
             Golpe();
         }
 
-       /* if (Input.GetButtonDown("Fire3") && stamina.GetCurrentStamina() >= stamina.GetDashStaminaCost()) {
-            stamina.DashStaminaLos();
-            StartCoroutine(Dash());
-        }*/
+        /* if (Input.GetButtonDown("Fire3") && stamina.GetCurrentStamina() >= stamina.GetDashStaminaCost()) {
+             stamina.DashStaminaLos();
+             StartCoroutine(Dash());
+         }*/
 
-        if (!isWallJumping && isAttacking == false)
+        if (!isWallJumping && isAttacking == false && alive)
         {
             Flip();
         }
@@ -162,7 +172,10 @@ public class Player : MonoBehaviour
         {
             return;
         }
-        Walk();
+        if (alive) {
+            Walk();
+        }
+
         //Run();
     }
 
@@ -182,8 +195,8 @@ public class Player : MonoBehaviour
 
     }
 
-    private void Walk(){
-        
+    private void Walk() {
+
         if (!isWallJumping && !IsCrouching() && isAttacking == false /*&& !IsRuning()*/)
         {
             animation.SetInteger("State", 1);
@@ -191,15 +204,15 @@ public class Player : MonoBehaviour
         }
         if (IsCrouching() || isAttacking == true)
         {
-            
+
             rb.velocity = new Vector2(0, rb.velocity.y);
         }
     }
 
     private void Jump() {
 
-        
-        if (Input.GetButtonDown("Jump") && coyoteTimeCounter > 0 && !IsCrouching() )
+
+        if (Input.GetButtonDown("Jump") && coyoteTimeCounter > 0 && !IsCrouching())
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
         }
@@ -225,7 +238,7 @@ public class Player : MonoBehaviour
         }
 
     }
-    
+
     private void DebugFillStamina() {
 
         if (Input.GetButtonDown("Fire1")) {
@@ -235,9 +248,9 @@ public class Player : MonoBehaviour
     }
 
     private void HighJump() {
-        if (Input.GetButtonDown("Jump")  && IsCrouching() && stamina.GetCurrentStamina() >= stamina.GetHighJumpStaminaCost())
+        if (Input.GetButtonDown("Jump") && IsCrouching() && stamina.GetCurrentStamina() >= stamina.GetHighJumpStaminaCost())
         {
-            
+
             stamina.HighJumpStaminaLoss();
             rb.velocity = new Vector2(rb.velocity.x, highJumpingPower);
         }
@@ -249,7 +262,7 @@ public class Player : MonoBehaviour
     }
     private bool IsGrounded()
     {
-        return Physics2D.OverlapBox(groundCheck.position, new Vector2(0.35f, 0.1f) ,0f, groundLayer);
+        return Physics2D.OverlapBox(groundCheck.position, new Vector2(0.35f, 0.1f), 0f, groundLayer);
     }
 
     private void Golpe()
@@ -261,15 +274,30 @@ public class Player : MonoBehaviour
 
         }
 
-        
+
     }
 
     public void checkFallingDeath() {
-        Debug.Log(lastYVelocity);
+        //Debug.Log(lastYVelocity);
         if (lastYVelocity < -30 && !inWater && !IsWalled()) {
-            Application.LoadLevel(Application.loadedLevel);
-            //Debug.Log("--------XXXXX-------MUERTO-------XXXXXXX------");
+            Death();
+
         }
+    }
+
+    public void Death() {
+        alive = false;
+        Invoke("TransitionOn", 1f);
+        Invoke("ReloadLevel", 1.8f);
+    }
+
+    public void TransitionOn (){
+        transition.SetInteger("Transition", 1);
+
+    }
+
+    private void ReloadLevel() {
+        Application.LoadLevel(Application.loadedLevel);
     }
 
     public void GolpeImpacto() {
@@ -403,11 +431,11 @@ public class Player : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Enemy") {
-            Application.LoadLevel(Application.loadedLevel);
+        if (collision.gameObject.tag == "Enemy" || collision.gameObject.layer == 8) {
+            Death();
         }
 
-        if (collision.gameObject.tag == "Ground") {
+        if (collision.gameObject.tag == "Ground" || collision.gameObject.layer == 3) {
             checkFallingDeath();
             lastYVelocity = 0;
         }
