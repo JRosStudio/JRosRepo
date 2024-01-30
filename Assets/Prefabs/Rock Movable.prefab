@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5761825947163189321}
   - component: {fileID: 1861044094589126573}
   - component: {fileID: 1633271652606802270}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: CollisionDetector_Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -82,7 +82,7 @@ GameObject:
   - component: {fileID: 6324870203333786998}
   - component: {fileID: 9167483944605574177}
   - component: {fileID: 6124222275313306162}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: CollisionDetector_Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -152,8 +152,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5375005604335437051}
   - component: {fileID: 4897437456134985215}
-  - component: {fileID: 6819915046484255146}
-  m_Layer: 3
+  - component: {fileID: 377907688154855705}
+  m_Layer: 0
   m_Name: CollisionDetector_Down
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -188,7 +188,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.011018157, y: -0.46376738}
+  m_Offset: {x: 0.011018157, y: -0.46939188}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -199,9 +199,9 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.8013474, y: 0.17020148}
+  m_Size: {x: 0.8013474, y: 0.18145049}
   m_EdgeRadius: 0
---- !u!114 &6819915046484255146
+--- !u!114 &377907688154855705
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -210,9 +210,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 8085778690369145878}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d3cdf46302c608e49ae42434617c0b42, type: 3}
+  m_Script: {fileID: 11500000, guid: 67dae62e1e9fa4ec5b367f44e518fa5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  groundCheck: {fileID: 0}
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 8
 --- !u!1001 &3742913101706148895
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -378,11 +382,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5403174383802302212, guid: 375883f77078e44d1a80661197406d43, type: 3}
       propertyPath: m_Layer
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8495217959599309300, guid: 375883f77078e44d1a80661197406d43, type: 3}
       propertyPath: m_Layer
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 375883f77078e44d1a80661197406d43, type: 3}

@@ -6,6 +6,6 @@ public class RockCollisionDetector : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("collision against: " + collision.gameObject.tag);
+        //Debug.Log("||| collision against: " + collision.gameObject.tag);
     }
 }
