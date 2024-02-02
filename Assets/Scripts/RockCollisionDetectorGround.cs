@@ -6,13 +6,15 @@ public class RockCollisionDetectorGround : MonoBehaviour
 {
 
     public bool isGrounded = false;
+    [SerializeField] AudioManager audioManager;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
 
         if (!isGrounded && collision.gameObject.tag == "Rock" || collision.gameObject.tag == "Ground")
         {
-            Debug.Log("----collision against: " + collision.gameObject.tag);
+            audioManager.playRockImpact();
+            //Debug.Log("----collision against: " + collision.gameObject.tag);
         }
 
         if (collision.gameObject.layer == 3) {

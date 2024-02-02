@@ -213,10 +213,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67dae62e1e9fa4ec5b367f44e518fa5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  groundCheck: {fileID: 0}
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 8
+  isGrounded: 0
+  audioManager: {fileID: 57222355879447257, guid: 87be1ff74440ed24cb906e2f6aa62e64, type: 3}
 --- !u!1001 &3742913101706148895
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -386,6 +384,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8495217959599309300, guid: 375883f77078e44d1a80661197406d43, type: 3}
       propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8495217959599309300, guid: 375883f77078e44d1a80661197406d43, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
