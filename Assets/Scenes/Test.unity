@@ -29207,10 +29207,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 00:00
+  m_text: 0:00
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: d403ef807b7f54350909ad5e92e7df0d, type: 2}
+  m_sharedMaterial: {fileID: 5320070350164843958, guid: d403ef807b7f54350909ad5e92e7df0d, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -40451,8 +40451,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeMultiplier: 1
-  timeRunning: 0
   timerText: {fileID: 269292330}
+  player: {fileID: 327081883}
 --- !u!4 &1647456475
 Transform:
   m_ObjectHideFlags: 0
@@ -44471,6 +44471,46 @@ PrefabInstance:
     - target: {fileID: 2410944846353178419, guid: 9e354084da55e4199be8a5d67163b6d2, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 27
+      objectReference: {fileID: 0}
+    - target: {fileID: 2410944846426711316, guid: 9e354084da55e4199be8a5d67163b6d2, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 123.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 2410944846426711317, guid: 9e354084da55e4199be8a5d67163b6d2, type: 3}
+      propertyPath: m_text
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2410944846426711317, guid: 9e354084da55e4199be8a5d67163b6d2, type: 3}
+      propertyPath: m_fontSize
+      value: 12.63
+      objectReference: {fileID: 0}
+    - target: {fileID: 2410944846426711317, guid: 9e354084da55e4199be8a5d67163b6d2, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: d403ef807b7f54350909ad5e92e7df0d, type: 2}
+    - target: {fileID: 2410944846426711317, guid: 9e354084da55e4199be8a5d67163b6d2, type: 3}
+      propertyPath: m_fontColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2410944846426711317, guid: 9e354084da55e4199be8a5d67163b6d2, type: 3}
+      propertyPath: m_fontColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2410944846426711317, guid: 9e354084da55e4199be8a5d67163b6d2, type: 3}
+      propertyPath: m_fontColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2410944846426711317, guid: 9e354084da55e4199be8a5d67163b6d2, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 12.63
+      objectReference: {fileID: 0}
+    - target: {fileID: 2410944846426711317, guid: 9e354084da55e4199be8a5d67163b6d2, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 5320070350164843958, guid: d403ef807b7f54350909ad5e92e7df0d, type: 2}
+    - target: {fileID: 2410944846426711317, guid: 9e354084da55e4199be8a5d67163b6d2, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 6108631193752985424, guid: 9e354084da55e4199be8a5d67163b6d2, type: 3}
       propertyPath: m_Name

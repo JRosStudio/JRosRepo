@@ -10,11 +10,13 @@ public class Timer : MonoBehaviour
     private int sec;
     public float timeMultiplier = 1f;
 
-    public bool timeRunning = true;
+    private bool timeRunning = false;
 
     [SerializeField]
     public TMP_Text timerText;
 
+    [SerializeField]
+    public Player player;
 
     private void Update()
     {
@@ -28,6 +30,14 @@ public class Timer : MonoBehaviour
 
             timerText.text = niceTime;
         }
+
+        if (player.horizontal != 0) {
+            timeRunning = true;
+        }
+        /*else
+        {
+            timeRunning = false;
+        }*/
 
        
     }

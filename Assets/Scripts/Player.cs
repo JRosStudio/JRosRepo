@@ -15,8 +15,8 @@ public class Player : MonoBehaviour
     [SerializeField]
     public Animator transition;
 
-    private float horizontal;
-    private float vertical;
+    public float horizontal;
+    public float vertical;
     public float speed = 8f;
     public float speedGround = 8f;
     public float speedWater = 5f;
