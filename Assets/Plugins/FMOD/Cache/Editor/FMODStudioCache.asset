@@ -15,7 +15,7 @@ MonoBehaviour:
   Path: Assets/Audio/FMOD/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638427413989352394
+  lastModified: 638428154568704657
   FileSizes:
   - Name: Desktop
     Value: 812
@@ -70,7 +70,7 @@ MonoBehaviour:
   - {fileID: 1218904474912716178}
   StringsBanks:
   - {fileID: -5226353260973369366}
-  cacheTime: 638427413989352394
+  cacheTime: 638428154568704657
   cacheVersion: 131609
 --- !u!114 &1218904474912716178
 MonoBehaviour:
@@ -87,10 +87,10 @@ MonoBehaviour:
   Path: Assets/Audio/FMOD/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638427413989348506
+  lastModified: 638428154568684709
   FileSizes:
   - Name: Desktop
-    Value: 4864
+    Value: 5440
   Exists: 1
 --- !u!114 &9036686809595176459
 MonoBehaviour:
@@ -106,16 +106,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: event:/RockImpact
   Guid:
-    Data1: 905946011
-    Data2: 1297583996
-    Data3: -1459594584
-    Data4: 596793586
+    Data1: -252624464
+    Data2: 1134204657
+    Data3: -1881375869
+    Data4: 990440357
   Banks:
   - {fileID: 1218904474912716178}
   IsStream: 0
-  Is3D: 0
+  Is3D: 1
   IsOneShot: 1
   Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 118
+  MinDistance: 6
+  MaxDistance: 30
+  Length: 103

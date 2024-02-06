@@ -4,16 +4,31 @@ using UnityEngine;
 
 public class RockCollisionDetectorGround : MonoBehaviour
 {
-
+    
     public bool isGrounded = false;
-    [SerializeField] AudioManager audioManager;
+
+        FMOD.Studio.EventInstance rockImpact;
+
+    private void Start()
+    {
+        rockImpact = FMODUnity.RuntimeManager.CreateInstance("event:/RockImpact");
+        
+
+    }
+
+    private void Update()
+    {
+        FMODUnity.RuntimeManager.AttachInstanceToGameObject(rockImpact, gameObject.transform, gameObject.GetComponent<Rigidbody2D>());
+    }
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
 
         if (!isGrounded && collision.gameObject.tag == "Rock" || collision.gameObject.tag == "Ground")
         {
-            audioManager.playRockImpact();
+            rockImpact.start();
+            //rockImpact.release();
             //Debug.Log("----collision against: " + collision.gameObject.tag);
         }
 

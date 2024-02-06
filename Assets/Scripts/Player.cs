@@ -211,7 +211,6 @@ public class Player : MonoBehaviour
 
     private void Jump() {
 
-
         if (Input.GetButtonDown("Jump") && coyoteTimeCounter > 0 && !IsCrouching())
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
