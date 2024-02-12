@@ -95,6 +95,11 @@ public class Player : MonoBehaviour
             jumpingPower = jumpingPowerWater;
         }
 
+        if (inWater && stamina.GetCurrentStamina() == 0)
+        {
+            Death();
+        }
+
         if (Input.GetKeyDown(KeyCode.R)) {
             Application.LoadLevel(Application.loadedLevel);
 
@@ -127,8 +132,14 @@ public class Player : MonoBehaviour
             coyoteTimeCounter -= Time.deltaTime;
             animation.SetInteger("State", 3);
         }
-        if (!alive) {
+        if (!alive && !inWater || !alive && inWater && IsGrounded()) {
             animation.SetInteger("State", 6);
+            rb.velocity = new Vector2(0, rb.velocity.y);
+
+        }
+        if (!alive && inWater && !IsGrounded())
+        {
+            animation.SetInteger("State", 7);
             rb.velocity = new Vector2(0, rb.velocity.y);
 
         }
