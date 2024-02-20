@@ -11,6 +11,7 @@ TagManager:
   - Explosive
   - Rock
   - Water
+  - Spikes
   layers:
   - Default
   - TransparentFX

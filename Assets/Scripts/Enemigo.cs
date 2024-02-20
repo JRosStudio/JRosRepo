@@ -8,13 +8,7 @@ public class Enemigo : MonoBehaviour
     [SerializeField]
     private int health;
 
-    [SerializeField]
-    private TMP_Text text_health;
 
-    private void Update()
-    {
-        text_health.text = health.ToString();
-    }
 
     public void takeDamage (int damage) {
         //Debug.Log("Recibe Daño");
@@ -24,5 +18,10 @@ public class Enemigo : MonoBehaviour
             //Debug.Log("Muere");
             Destroy(gameObject);
         }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        
     }
 }

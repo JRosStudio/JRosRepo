@@ -132,12 +132,12 @@ public class Player : MonoBehaviour
             coyoteTimeCounter -= Time.deltaTime;
             animation.SetInteger("State", 3);
         }
-        if (!alive && !inWater || !alive && inWater && IsGrounded()) {
+        if (!alive && IsGrounded()) {
             animation.SetInteger("State", 6);
             rb.velocity = new Vector2(0, rb.velocity.y);
 
         }
-        if (!alive && inWater && !IsGrounded())
+        if (!alive && !IsGrounded())
         {
             animation.SetInteger("State", 7);
             rb.velocity = new Vector2(0, rb.velocity.y);
@@ -441,7 +441,7 @@ public class Player : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Enemy" || collision.gameObject.layer == 8) {
+        if (collision.gameObject.tag == "Enemy" || collision.gameObject.layer == 8 || collision.gameObject.tag == "Spikes" ) {
             Death();
         }
 
