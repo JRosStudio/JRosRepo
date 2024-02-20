@@ -25,7 +25,9 @@
 		"Terrain.png",
 		"Water.png",
 		"Platforms.png",
-		"Background.png"
+		"Background.png",
+		"Tiles.png",
+		"Spikes.png"
 	],
 	"entities" : {}
 }

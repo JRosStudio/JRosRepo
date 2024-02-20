@@ -25,12 +25,14 @@
 		"Terrain.png",
 		"Water.png",
 		"Platforms.png",
-		"Background.png"
+		"Background.png",
+		"Tiles.png",
+		"Spikes.png"
 	],
 	"entities": {
-		"Entity": [
+		"Sandwitch": [
 			{
-				"id": "Entity",
+				"id": "Sandwitch",
 				"iid": "5e57b6a0-b0a0-11ee-a6c5-ef98877ae166",
 				"layer": "Sandwitches",
 				"x": 814,
@@ -38,7 +40,9 @@
 				"width": 16,
 				"height": 16,
 				"color": 12470831,
-				"customFields" : {}
+				"customFields": {
+					"Sandwitch": "Sandwitch0"
+				}
 			}
 		],
 		"Rock_Wall": [
@@ -51,6 +55,85 @@
 				"width": 32,
 				"height": 36,
 				"color": 15389866,
+				"customFields" : {}
+			}
+		],
+		"Stone": [
+			{
+				"id": "Stone",
+				"iid": "60237590-b0a0-11ee-94a3-a92355fb93e4",
+				"layer": "Sandwitches",
+				"x": 1312,
+				"y": 896,
+				"width": 32,
+				"height": 32,
+				"color": 7552569,
+				"customFields" : {}
+			},
+			{
+				"id": "Stone",
+				"iid": "60a8f940-b0a0-11ee-94a3-7d6fa5004bb1",
+				"layer": "Sandwitches",
+				"x": 1376,
+				"y": 896,
+				"width": 32,
+				"height": 32,
+				"color": 7552569,
+				"customFields" : {}
+			},
+			{
+				"id": "Stone",
+				"iid": "610b3d80-b0a0-11ee-94a3-77bb7a777670",
+				"layer": "Sandwitches",
+				"x": 1440,
+				"y": 896,
+				"width": 32,
+				"height": 32,
+				"color": 7552569,
+				"customFields" : {}
+			},
+			{
+				"id": "Stone",
+				"iid": "61bdebb0-b0a0-11ee-94a3-c73a7cfa8e89",
+				"layer": "Sandwitches",
+				"x": 1344,
+				"y": 864,
+				"width": 32,
+				"height": 32,
+				"color": 7552569,
+				"customFields" : {}
+			},
+			{
+				"id": "Stone",
+				"iid": "630511b0-b0a0-11ee-94a3-89d1af70f613",
+				"layer": "Sandwitches",
+				"x": 1408,
+				"y": 864,
+				"width": 32,
+				"height": 32,
+				"color": 7552569,
+				"customFields" : {}
+			},
+			{
+				"id": "Stone",
+				"iid": "635e0720-b0a0-11ee-94a3-0fd161b06018",
+				"layer": "Sandwitches",
+				"x": 1376,
+				"y": 864,
+				"width": 32,
+				"height": 32,
+				"color": 7552569,
+				"customFields" : {}
+			},
+			{
+				"id": "Stone",
+				"iid": "63fc1be0-b0a0-11ee-94a3-930968bef8ee",
+				"layer": "Sandwitches",
+				"x": 1376,
+				"y": 832,
+				"width": 32,
+				"height": 32,
+				"color": 7552569,
 				"customFields" : {}
 			}
 		]

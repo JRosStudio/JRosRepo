@@ -21,7 +21,9 @@
 		"Terrain.png",
 		"Water.png",
 		"Platforms.png",
-		"Background.png"
+		"Background.png",
+		"Tiles.png",
+		"Spikes.png"
 	],
 	"entities": {
 		"Rock_Wall": [
@@ -34,6 +36,43 @@
 				"width": 32,
 				"height": 36,
 				"color": 15389866,
+				"customFields" : {}
+			}
+		],
+		"Rock_Movable": [
+			{
+				"id": "Rock_Movable",
+				"iid": "82748360-b0a0-11ee-94a3-459e69996fce",
+				"layer": "Sandwitches",
+				"x": 1104,
+				"y": 64,
+				"width": 32,
+				"height": 32,
+				"color": 14120515,
+				"customFields" : {}
+			}
+		],
+		"Stone": [
+			{
+				"id": "Stone",
+				"iid": "366e1d20-b0a0-11ee-94a3-8532ac62b975",
+				"layer": "Sandwitches",
+				"x": 1280,
+				"y": 288,
+				"width": 32,
+				"height": 32,
+				"color": 7552569,
+				"customFields" : {}
+			},
+			{
+				"id": "Stone",
+				"iid": "3944bcc0-b0a0-11ee-94a3-db101ca29cc9",
+				"layer": "Sandwitches",
+				"x": 1312,
+				"y": 288,
+				"width": 32,
+				"height": 32,
+				"color": 7552569,
 				"customFields" : {}
 			}
 		]
