@@ -351,7 +351,7 @@ public class Player : MonoBehaviour
     }
     
 
-    private bool IsCrouching(){
+    public bool IsCrouching(){
 
         Vector3 localScale = transform.localScale;
         if (vertical < -0.5 && IsGrounded())

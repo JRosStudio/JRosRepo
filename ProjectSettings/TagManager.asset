@@ -12,6 +12,7 @@ TagManager:
   - Rock
   - Water
   - Spikes
+  - OneWayPlatform
   layers:
   - Default
   - TransparentFX
@@ -22,7 +23,7 @@ TagManager:
   - Wall
   - Corner
   - DeathWall
-  - 
+  - Platform
   - 
   - 
   - 
