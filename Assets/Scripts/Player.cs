@@ -113,10 +113,17 @@ public class Player : MonoBehaviour
         horizontal = Input.GetAxisRaw("Horizontal");
         vertical = Input.GetAxisRaw("Vertical");
 
-        if (IsGrounded() && horizontal == 0 && !IsCrouching() && alive) {
+        if (IsGrounded() && horizontal == 0 && vertical == 0 && !IsCrouching() && alive) {
             coyoteTimeCounter = coyoteTime;
             animation.SetInteger("State", 0);
         }
+
+        if (IsGrounded() && vertical >= 0.5 && horizontal == 0 && !IsCrouching() && alive)
+        {
+            coyoteTimeCounter = coyoteTime;
+            animation.SetInteger("State", 8);
+        }
+
         if (IsGrounded() && horizontal != 0 && alive)
         {
             coyoteTimeCounter = coyoteTime;
