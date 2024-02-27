@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
     StaminaManagement stamina;
 
     public bool alive = true;
+    
 
     [SerializeField]
     public Animator transition;
@@ -74,7 +75,7 @@ public class Player : MonoBehaviour
     private double lastYVelocity;
 
     public bool inWater = false;
-
+    public bool inRope = false;
 
     private void Update()
     {
@@ -95,7 +96,7 @@ public class Player : MonoBehaviour
             jumpingPower = jumpingPowerWater;
         }
 
-        if (inWater && stamina.GetCurrentStamina() == 0)
+        if (inWater && stamina.GetCurrentStamina() == 0 && !inRope)
         {
             Death();
         }
@@ -105,10 +106,10 @@ public class Player : MonoBehaviour
 
         }
 
-        if (isDashing)
+        /*if (isDashing)
         {
             return;
-        }
+        }*/
 
         horizontal = Input.GetAxisRaw("Horizontal");
         vertical = Input.GetAxisRaw("Vertical");
@@ -171,6 +172,9 @@ public class Player : MonoBehaviour
             Flip();
         }
     }
+
+    
+
 
     public void isOnWater(bool w) {
         inWater = w;
