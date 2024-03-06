@@ -16,11 +16,14 @@ public class Player : MonoBehaviour
     [SerializeField]
     public Animator transition;
 
+    public float originalGravityScale = 5;
     public float horizontal;
     public float vertical;
     public float speed = 8f;
     public float speedGround = 8f;
     public float speedWater = 5f;
+    public float speedClimb = 3f;
+    public float speedClimbNoStamina = 1f;
     //public float runSpeed = 16f;
     public float jumpingPower;
     public float jumpingPowerGround;
@@ -35,22 +38,27 @@ public class Player : MonoBehaviour
     public float wallSlidingSpeed = 2f;
 
     private bool isWallJumping;
+    private bool isRopeJumping;
     private float wallJumpingDirection;
     private float wallJumpingTime = 0.2f;
     private float wallJumpingCounter;
     private float wallJumpingDuration = 0.2f;
     private Vector2 wallJumpingPower = new Vector2(12f, 12f);
+    private Vector2 ropeJumpingPower = new Vector2(12f, 12f);
+    private Vector2 ropeJumpingPowerNoStamina = new Vector2(0.2f, 0.2f);
 
     //private float jumpStaminaMaxCounter = 0.6f;
     //private float jumpStaminaCounter;
 
-    private bool canDash = true;
+    /*private bool canDash = true;
     private bool isDashing;
     private float dashingPower = 20f;
     private float dashingTime = 0.2f;
-    private float dashingCooldown = 1f;
+    private float dashingCooldown = 1f;*/
     private float coyoteTime = 0.2f;
     private float coyoteTimeCounter;
+    private float coyoteTimeWall = 0.2f;
+    private float coyoteTimeCounterWall;
 
     [SerializeField]
     private float radioGolpe;
@@ -65,7 +73,6 @@ public class Player : MonoBehaviour
     [SerializeField] private Transform attackPosition;
 
     [SerializeField] GameObject circulo;
-
     [SerializeField] Animator animation;
 
 
@@ -76,9 +83,12 @@ public class Player : MonoBehaviour
 
     public bool inWater = false;
     public bool inRope = false;
-
+    private Vector3 lastRopeRail;
+    public HashSet<GameObject> ropesHashSet = new HashSet<GameObject>();
     private void Update()
     {
+        //Debug.Log(horizontal + " , " + vertical);
+
         if (!IsGrounded())
         {
             lastYVelocity = rb.velocity.y;
@@ -114,52 +124,89 @@ public class Player : MonoBehaviour
         horizontal = Input.GetAxisRaw("Horizontal");
         vertical = Input.GetAxisRaw("Vertical");
 
-        if (IsGrounded() && horizontal == 0 && vertical == 0 && !IsCrouching() && alive) {
+        //Sprite Iddle
+        if (IsGrounded() && horizontal == 0 && !IsCrouching() && alive && !inRope) {
+            animation.speed = 1;
             coyoteTimeCounter = coyoteTime;
             animation.SetInteger("State", 0);
         }
 
-        if (IsGrounded() && vertical >= 0.5 && horizontal == 0 && !IsCrouching() && alive)
+        //Sprite Rope Ready
+        if (IsGrounded() && vertical >= 0.5 && horizontal == 0 && !IsCrouching() && alive && ropesHashSet.Count == 0)
         {
+            animation.speed = 1;
             coyoteTimeCounter = coyoteTime;
             animation.SetInteger("State", 8);
         }
 
-        if (IsGrounded() && horizontal != 0 && alive)
+        //Sprite Walking
+        if (IsGrounded() && horizontal != 0 && alive && !inRope)
         {
+            animation.speed = 1;
             coyoteTimeCounter = coyoteTime;
-            //animation.SetInteger("State", 1);
+            animation.SetInteger("State", 1);
         }
-        if (!IsGrounded() && !IsWalled() && alive)
+
+        //Sprite Jumping
+        if (!IsGrounded() && !IsWalled() && alive && !inRope)
         {
+            animation.speed = 1;
             coyoteTimeCounter -= Time.deltaTime;
+            coyoteTimeCounterWall -= Time.deltaTime;
             animation.SetInteger("State", 2);
         }
-        if (!IsGrounded() && IsWalled() && horizontal != 0 && alive)
+
+        //Sprite Walled
+        if (!IsGrounded() && IsWalled() && horizontal != 0 && alive && !inRope)
         {
+            animation.speed = 1;
             coyoteTimeCounter -= Time.deltaTime;
+            coyoteTimeCounterWall = coyoteTimeWall;
             animation.SetInteger("State", 3);
         }
+
+        //Sprites Muerte
         if (!alive && IsGrounded()) {
+            animation.speed = 1;
             animation.SetInteger("State", 6);
             rb.velocity = new Vector2(0, rb.velocity.y);
 
         }
         if (!alive && !IsGrounded())
         {
+            animation.speed = 1;
             animation.SetInteger("State", 7);
             rb.velocity = new Vector2(0, rb.velocity.y);
 
         }
+
+        //Sprite Climbing
+        if (alive && inRope && !IsGrounded() && !IsWalled())
+        {
+            coyoteTimeCounter = 0;
+            animation.SetInteger("State", 9);
+
+            if (vertical >= 0.2 || vertical <= -0.2)
+            {
+                animation.speed = 1;
+            }
+            if(vertical <= 0.2 && vertical >= -0.2) {
+                animation.speed = 0;
+            }
+        }
+
+
 
         if (isAttacking == false && alive) {
             Jump();
             //HighJump();
             WallSlide();
             WallJump();
+            RopeJump();
             ConsumeFood();
             //DebugFillStamina();
             Golpe();
+            Rope();
         }
 
         /* if (Input.GetButtonDown("Fire3") && stamina.GetCurrentStamina() >= stamina.GetDashStaminaCost()) {
@@ -167,14 +214,48 @@ public class Player : MonoBehaviour
              StartCoroutine(Dash());
          }*/
 
-        if (!isWallJumping && isAttacking == false && alive)
+        if (!isWallJumping && isAttacking == false && alive && !inRope)
         {
             Flip();
         }
     }
 
-    
+    //Climbing Rope Management
+    public void Rope() {
+        if (vertical >= 0.5f && ropesHashSet.Count > 0 && !inRope && !isRopeJumping) {
+            inRope = true;
+            rb.gravityScale = 0;
+            gameObject.transform.position= new Vector3(lastRopeRail.x, transform.position.y, transform.position.z);
+        }
 
+        if (inRope && vertical >= 0.2f && !isRopeJumping) {
+
+            if (stamina.GetCurrentStamina() > 0)
+            {
+                rb.velocity = new Vector2(0, vertical * speedClimb);
+            }
+            else {
+                rb.velocity = new Vector2(0, vertical * speedClimbNoStamina);
+            }
+
+        }
+
+        if (inRope && vertical < 0.2 && vertical > -0.2 && !isRopeJumping) {
+            rb.velocity = new Vector2(0,0);
+        }
+
+        if (inRope && vertical <= -0.2f && !isRopeJumping)
+        {
+            rb.velocity = new Vector2(0, vertical * speedClimb);
+        }
+
+        if (ropesHashSet.Count == 0 || IsGrounded()) {
+            rb.gravityScale = originalGravityScale;
+            inRope = false;
+        }
+    }
+
+    
 
     public void isOnWater(bool w) {
         inWater = w;
@@ -190,10 +271,10 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (isDashing)
+       /* if (isDashing)
         {
             return;
-        }
+        }*/
         if (alive) {
             Walk();
         }
@@ -201,7 +282,7 @@ public class Player : MonoBehaviour
         //Run();
     }
 
-    private IEnumerator Dash() {
+    /*private IEnumerator Dash() {
         canDash = false;
         isDashing = true;
         float originalGravity = rb.gravityScale;
@@ -215,13 +296,13 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(dashingCooldown);
         canDash = true;
 
-    }
+    }*/
 
     private void Walk() {
 
-        if (!isWallJumping && !IsCrouching() && isAttacking == false /*&& !IsRuning()*/)
+        if (!isWallJumping && !IsCrouching() && isAttacking == false && !inRope /*&& !IsRuning()*/)
         {
-            animation.SetInteger("State", 1);
+            //animation.SetInteger("State", 1);
             rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
         }
         if (IsCrouching() || isAttacking == true)
@@ -268,7 +349,7 @@ public class Player : MonoBehaviour
 
     }
 
-    private void HighJump() {
+    /*private void HighJump() {
         if (Input.GetButtonDown("Jump") && IsCrouching() && stamina.GetCurrentStamina() >= stamina.GetHighJumpStaminaCost())
         {
 
@@ -280,7 +361,8 @@ public class Player : MonoBehaviour
         {
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
         }
-    }
+    }*/
+
     private bool IsGrounded()
     {
         return Physics2D.OverlapBox(groundCheck.position, new Vector2(0.35f, 0.1f), 0f, groundLayer);
@@ -399,6 +481,61 @@ public class Player : MonoBehaviour
             isWallSliding = false;
         }
     }
+    public void RopeJump()
+    {
+        if (inRope) {
+            isRopeJumping = false;
+            wallJumpingCounter = wallJumpingTime;
+        }
+        else
+        {
+            wallJumpingCounter -= Time.deltaTime;
+        }
+
+        if (Input.GetButtonDown("Jump") && wallJumpingCounter > 0f && stamina.GetCurrentStamina() >= stamina.GetWallJumpStaminaCost() && inRope)
+        {
+            isRopeJumping = true;
+            inRope = false;
+            rb.gravityScale = originalGravityScale;
+
+            if(horizontal >= 0.3 || horizontal <= -0.3) {
+                stamina.WallJumpStaminaLoss();
+                rb.velocity = new Vector2(Mathf.Sign(horizontal) * ropeJumpingPower.x, ropeJumpingPower.y);
+            }
+
+            wallJumpingCounter = 0f;
+
+            if (transform.localScale.x != Mathf.Sign(horizontal))
+            {
+                isFacingRight = !isFacingRight;
+                Vector3 localScale = transform.localScale;
+                localScale.x *= -1f;
+                transform.localScale = localScale;
+            }
+
+            Invoke(nameof(StopRopeJumping), wallJumpingDuration);
+        }
+        if (Input.GetButtonDown("Jump") && wallJumpingCounter > 0f && stamina.GetCurrentStamina() < stamina.GetWallJumpStaminaCost() && inRope)
+        {
+            isRopeJumping = true;
+            inRope = false;
+            rb.gravityScale = originalGravityScale;
+            stamina.WallJumpStaminaLoss();
+            rb.velocity = new Vector2(Mathf.Sign(horizontal) * ropeJumpingPowerNoStamina.x, ropeJumpingPowerNoStamina.y);
+            wallJumpingCounter = 0f;
+
+            if (transform.localScale.x != Mathf.Sign(horizontal))
+            {
+                isFacingRight = !isFacingRight;
+                Vector3 localScale = transform.localScale;
+                localScale.x *= -1f;
+                transform.localScale = localScale;
+            }
+
+            Invoke(nameof(StopRopeJumping), wallJumpingDuration);
+        }
+
+    }
 
     private void WallJump()
     {
@@ -415,7 +552,7 @@ public class Player : MonoBehaviour
             wallJumpingCounter -= Time.deltaTime;
         }
 
-        if (Input.GetButtonDown("Jump") && wallJumpingCounter > 0f && stamina.GetCurrentStamina() >= stamina.GetWallJumpStaminaCost())
+        if (Input.GetButtonDown("Jump") && wallJumpingCounter > 0f && stamina.GetCurrentStamina() >= stamina.GetWallJumpStaminaCost() && coyoteTimeCounterWall > 0)
         {
             stamina.WallJumpStaminaLoss();
             isWallJumping = true;
@@ -438,6 +575,10 @@ public class Player : MonoBehaviour
     {
         isWallJumping = false;
     }
+    private void StopRopeJumping()
+    {
+        isRopeJumping = false;
+    }
 
     private void Flip()
     {
@@ -459,6 +600,26 @@ public class Player : MonoBehaviour
         if (collision.gameObject.tag == "Ground" || collision.gameObject.layer == 3) {
             checkFallingDeath();
             lastYVelocity = 0;
+        }
+
+        
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Rope" || collision.gameObject.layer == 10)
+        {
+            ropesHashSet.Add(collision.gameObject);
+            lastRopeRail = collision.transform.GetChild(0).transform.position;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Rope" || collision.gameObject.layer == 10)
+        {
+            ropesHashSet.Remove(collision.gameObject);
+            
         }
     }
 

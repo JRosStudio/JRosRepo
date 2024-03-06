@@ -6,7 +6,11 @@ public class RopeDisplayer : MonoBehaviour
 {
     public float rayDistance = 50f;
     [SerializeField]
-    GameObject ropeStartPrefab;
+    GameObject ropeStartPrefab; 
+    [SerializeField]
+    Player player;
+
+
 
     GameObject ropeStart;
     // Update is called once per frame
@@ -20,7 +24,7 @@ public class RopeDisplayer : MonoBehaviour
     {
         RaycastHit2D rayHit =  Physics2D.Raycast(transform.position, new Vector2(0, 1), rayDistance);
         Debug.DrawRay(transform.position, new Vector2(0, rayDistance), Color.green);
-        if (rayHit && Input.GetAxisRaw("Vertical") > 0.8)
+        if (rayHit && Input.GetAxisRaw("Vertical") > 0.8 && player.ropesHashSet.Count == 0)
         {
             
             ropeStart.transform.position = rayHit.point;
