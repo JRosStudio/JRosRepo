@@ -6,10 +6,11 @@ public class RopeDisplayer : MonoBehaviour
 {
     public float rayDistance = 50f;
     [SerializeField]
-    GameObject ropeStartPrefab; 
+    public GameObject ropeStartPrefab; 
     [SerializeField]
     Player player;
 
+    public Vector3 hitPosition;
 
 
     GameObject ropeStart;
@@ -28,11 +29,13 @@ public class RopeDisplayer : MonoBehaviour
         {
             
             ropeStart.transform.position = rayHit.point;
+            hitPosition = rayHit.point;
+            Debug.Log(rayHit.point);
             ropeStart.SetActive(true);
-
-
+            gameObject.GetComponentInParent<Player>().readyToShootArrow = true;
         }
         else {
+            gameObject.GetComponentInParent<Player>().readyToShootArrow = false;
             ropeStart.SetActive(false);
         }
     }

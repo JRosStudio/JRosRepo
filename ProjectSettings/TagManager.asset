@@ -14,6 +14,7 @@ TagManager:
   - Spikes
   - OneWayPlatform
   - Rope
+  - Rope_Fly
   layers:
   - Default
   - TransparentFX

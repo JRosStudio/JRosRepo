@@ -10,6 +10,12 @@ public class Player : MonoBehaviour
     [SerializeField]
     StaminaManagement stamina;
 
+    [SerializeField]
+    GameObject ropeDisplayer;
+
+    [SerializeField]
+    GameObject ropeFly;
+
     public bool alive = true;
     
 
@@ -85,6 +91,8 @@ public class Player : MonoBehaviour
     public bool inRope = false;
     private Vector3 lastRopeRail;
     public HashSet<GameObject> ropesHashSet = new HashSet<GameObject>();
+    public bool readyToShootArrow;
+
     private void Update()
     {
         //Debug.Log(horizontal + " , " + vertical);
@@ -132,7 +140,7 @@ public class Player : MonoBehaviour
         }
 
         //Sprite Rope Ready
-        if (IsGrounded() && vertical >= 0.5 && horizontal == 0 && !IsCrouching() && alive && ropesHashSet.Count == 0)
+        if (IsGrounded() && vertical >= 0.5 && horizontal == 0 && !IsCrouching() && alive && ropesHashSet.Count == 0 && readyToShootArrow)
         {
             animation.speed = 1;
             coyoteTimeCounter = coyoteTime;
@@ -207,6 +215,7 @@ public class Player : MonoBehaviour
             //DebugFillStamina();
             Golpe();
             Rope();
+            RopeShoot();
         }
 
         /* if (Input.GetButtonDown("Fire3") && stamina.GetCurrentStamina() >= stamina.GetDashStaminaCost()) {
@@ -255,8 +264,15 @@ public class Player : MonoBehaviour
         }
     }
 
-    
 
+    private void RopeShoot()
+    {
+        if (Input.GetButtonDown("Fire2") && readyToShootArrow) {
+
+            GameObject ropeFlyInstance = Instantiate(ropeFly, gameObject.transform.position, Quaternion.identity);
+            ropeFlyInstance.GetComponent<Rope_Fly>().StartMovement(ropeDisplayer.GetComponent<RopeDisplayer>().hitPosition);
+        }
+    }
     public void isOnWater(bool w) {
         inWater = w;
     }
@@ -266,8 +282,6 @@ public class Player : MonoBehaviour
     public void attackingFalse() {
         isAttacking = false;
     }
-
-
 
     private void FixedUpdate()
     {
@@ -325,6 +339,10 @@ public class Player : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
         }
 
+        if (rb.velocity.y < -15) {
+            rb.velocity = new Vector2(rb.velocity.x , -15);
+        }
+
         /*
         //Gravity Jump
         if (rb.velocity.y < 0) {
@@ -371,20 +389,16 @@ public class Player : MonoBehaviour
     private void Golpe()
     {
 
-        if (Input.GetButtonDown("Fire2") && stamina.GetCurrentStamina() >= stamina.GetAttackCost() && IsGrounded())
+        if (Input.GetButtonDown("Fire2") && stamina.GetCurrentStamina() >= stamina.GetAttackCost() && IsGrounded() && !readyToShootArrow)
         {
             animation.SetInteger("State", 4);
-
         }
-
-
     }
 
     public void checkFallingDeath() {
         //Debug.Log(lastYVelocity);
         if (lastYVelocity < -30 && !inWater && !IsWalled()) {
             Death();
-
         }
     }
 
