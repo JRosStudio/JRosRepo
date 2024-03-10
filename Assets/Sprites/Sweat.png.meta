@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 74bc1850cf1cf90429b389e0d3e3799c
+guid: 423011134b5912647bd1e750dc034115
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -117,49 +117,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Spikes_Tileset_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 32
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: edc8b2b68dc5fa04da012cd56ad8757d
-      internalID: 1037115273
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Spikes_Tileset_1
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 32
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 00e567f8943c4fc4ab3391599c8fe490
-      internalID: -1543073270
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Spikes_Tileset_2
+      name: Sweat_0
       rect:
         serializedVersion: 2
         x: 0
@@ -173,14 +131,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e386c2ad1182dd64286cbfe2c6faf57c
-      internalID: -2081947175
+      spriteID: 4e8029a92cb80284fbc1f52b36e0f5e7
+      internalID: 2109394318
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Spikes_Tileset_3
+      name: Sweat_1
       rect:
         serializedVersion: 2
         x: 32
@@ -194,8 +152,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8bc815d43dca0f24aa54743198d63ae7
-      internalID: 1450110952
+      spriteID: 8390d3455a46425438f27169050c96fd
+      internalID: 804969154
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sweat_2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 01050694cd38c3b4cbaa10f89b77b146
+      internalID: 1445975833
       vertices: []
       indices: 
       edges: []
@@ -211,10 +190,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Spikes_Tileset_0: 1037115273
-      Spikes_Tileset_1: -1543073270
-      Spikes_Tileset_2: -2081947175
-      Spikes_Tileset_3: 1450110952
+      Sweat_0: 2109394318
+      Sweat_1: 804969154
+      Sweat_2: 1445975833
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

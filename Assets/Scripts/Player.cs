@@ -15,6 +15,9 @@ public class Player : MonoBehaviour
 
     [SerializeField]
     GameObject ropeFly;
+    
+    [SerializeField]
+    GameObject sweat;
 
     public bool alive = true;
     
@@ -216,6 +219,7 @@ public class Player : MonoBehaviour
             Golpe();
             Rope();
             RopeShoot();
+            Sweat();
         }
 
         /* if (Input.GetButtonDown("Fire3") && stamina.GetCurrentStamina() >= stamina.GetDashStaminaCost()) {
@@ -226,6 +230,17 @@ public class Player : MonoBehaviour
         if (!isWallJumping && isAttacking == false && alive && !inRope)
         {
             Flip();
+        }
+    }
+
+
+    private void Sweat()
+    {
+        if (stamina.GetCurrentStamina() == 0 && alive) {
+            sweat.SetActive(true);
+        }
+        if (stamina.GetCurrentStamina() > 0 && alive) {
+            sweat.SetActive(false);
         }
     }
 
