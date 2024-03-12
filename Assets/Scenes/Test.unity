@@ -46795,6 +46795,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4953929469826053817, guid: 73aef0665f2980640ab39735b7e9a172, type: 3}
+      propertyPath: smoke
+      value: 
+      objectReference: {fileID: 5710297461256029713, guid: a8c434fa30544d84c865c4691d6b67eb, type: 3}
+    - target: {fileID: 4953929469826053817, guid: 73aef0665f2980640ab39735b7e9a172, type: 3}
       propertyPath: sweat
       value: 
       objectReference: {fileID: 4953929469504842019}

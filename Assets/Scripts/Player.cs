@@ -17,7 +17,10 @@ public class Player : MonoBehaviour
     GameObject ropeFly;
     
     [SerializeField]
-    GameObject sweat;
+    GameObject sweat; 
+    
+    [SerializeField]
+    GameObject smoke;
 
     public bool alive = true;
     
@@ -328,11 +331,12 @@ public class Player : MonoBehaviour
     }*/
 
     private void Walk() {
-
         if (!isWallJumping && !IsCrouching() && isAttacking == false && !inRope /*&& !IsRuning()*/)
         {
             //animation.SetInteger("State", 1);
             rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
+            
+
         }
         if (IsCrouching() || isAttacking == true)
         {
@@ -341,11 +345,16 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void SpawnSmoke() {
+        Instantiate(smoke, gameObject.transform.position, Quaternion.identity);
+    }
+
     private void Jump() {
 
         if (Input.GetButtonDown("Jump") && coyoteTimeCounter > 0 && !IsCrouching())
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
+            SpawnSmoke();
         }
 
         if (Input.GetButtonUp("Jump") && rb.velocity.y > 0f)
