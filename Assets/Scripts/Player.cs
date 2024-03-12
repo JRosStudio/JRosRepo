@@ -20,7 +20,10 @@ public class Player : MonoBehaviour
     GameObject sweat; 
     
     [SerializeField]
-    GameObject smoke;
+    GameObject smokeJump;
+
+    [SerializeField]
+    GameObject smokeLand;
 
     public bool alive = true;
     
@@ -335,7 +338,6 @@ public class Player : MonoBehaviour
         {
             //animation.SetInteger("State", 1);
             rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
-            
 
         }
         if (IsCrouching() || isAttacking == true)
@@ -345,8 +347,24 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void SpawnSmoke() {
-        Instantiate(smoke, gameObject.transform.position, Quaternion.identity);
+    public void SpawnSmokeJump() {
+       GameObject smk = Instantiate(smokeJump, gameObject.transform.position, Quaternion.identity);
+        Vector3 smkLocalScale = smk.transform.localScale ;
+        if (  gameObject.transform.localScale.x > 0) {
+            smkLocalScale.x = smkLocalScale.x * -1;
+            smk.transform.localScale = smkLocalScale;
+        }
+    }
+
+    public void SpawnSmokeLand()
+    {
+        GameObject smk = Instantiate(smokeLand, gameObject.transform.position, Quaternion.identity);
+        Vector3 smkLocalScale = smk.transform.localScale;
+        if (gameObject.transform.localScale.x > 0)
+        {
+            smkLocalScale.x = smkLocalScale.x * -1;
+            smk.transform.localScale = smkLocalScale;
+        }
     }
 
     private void Jump() {
@@ -354,7 +372,7 @@ public class Player : MonoBehaviour
         if (Input.GetButtonDown("Jump") && coyoteTimeCounter > 0 && !IsCrouching())
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
-            SpawnSmoke();
+            SpawnSmokeJump();
         }
 
         if (Input.GetButtonUp("Jump") && rb.velocity.y > 0f)
@@ -484,18 +502,15 @@ public class Player : MonoBehaviour
 
     public bool IsCrouching(){
 
-        Vector3 localScale = transform.localScale;
+        
         if (vertical < -0.5 && IsGrounded())
         {
             animation.SetInteger("State", 5);
-            //localScale.y = 0.6f;
-            //transform.localScale = localScale;
+
             return true;
         }
         else {
             if (vertical >= -0.5) { 
-                //localScale.y = 1f;
-                //transform.localScale = localScale;
             }
             return false;
         }
@@ -638,6 +653,7 @@ public class Player : MonoBehaviour
         if (collision.gameObject.tag == "Ground" || collision.gameObject.layer == 3) {
             checkFallingDeath();
             lastYVelocity = 0;
+            SpawnSmokeJump();
         }
 
         
