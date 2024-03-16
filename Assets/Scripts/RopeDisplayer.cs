@@ -25,12 +25,11 @@ public class RopeDisplayer : MonoBehaviour
     {
         RaycastHit2D rayHit =  Physics2D.Raycast(transform.position, new Vector2(0, 1), rayDistance);
         Debug.DrawRay(transform.position, new Vector2(0, rayDistance), Color.green);
-        if (rayHit && Input.GetAxisRaw("Vertical") > 0.8 && player.ropesHashSet.Count == 0)
+        if (rayHit && Input.GetAxisRaw("Vertical") > 0.8 && player.ropesHashSet.Count == 0 && rayHit.transform.tag != "Rock")
         {
             
             ropeStart.transform.position = rayHit.point;
             hitPosition = rayHit.point;
-            Debug.Log(rayHit.point);
             ropeStart.SetActive(true);
             gameObject.GetComponentInParent<Player>().readyToShootArrow = true;
         }

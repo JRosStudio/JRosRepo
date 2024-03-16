@@ -11,12 +11,12 @@ public class Rope_Fly : MonoBehaviour
     GameObject rope;
     [SerializeField]
     GameObject ropeHook;
-
-    Player player;
+    bool deploying;
+    public Vector3 playerY = new Vector3(0,0,0);
 
     private void Start()
     {
-        player = GameObject.FindAnyObjectByType<Player>();
+        playerY = GameObject.FindObjectOfType<Player>().transform.position;
     }
     void Update()
     {
@@ -42,10 +42,26 @@ public class Rope_Fly : MonoBehaviour
 
     public void DeployRope() {
         GameObject ropeHookInstance = Instantiate(ropeHook, goal, Quaternion.identity);
-        Debug.Log(goal + " "+ player.transform.position);
-        if (ropeHookInstance.transform.position.y < player.transform.position.y) {
-            GameObject ropeInstance = Instantiate(ropeHook, new Vector3(goal.x, goal.y+1 , goal.z), Quaternion.identity, ropeHookInstance.transform);
-        }
+        deploying = true;
+        float lastRopePos = ropeHookInstance.transform.position.y;
+        int n = 1;
+        Debug.Log("Last Rope Pos = " + lastRopePos + "n= " + n);
+
+
+        do {
+            if (lastRopePos > playerY.y+1)
+            {
+                Debug.Log("Last Rope Pos = " + lastRopePos + "n= " + n);
+                GameObject ropeInstance1 = Instantiate(rope, new Vector3(goal.x, goal.y - n, goal.z), Quaternion.identity, ropeHookInstance.transform);
+                lastRopePos = ropeInstance1.transform.position.y;
+                n++;
+            }
+            else {
+                deploying = false;
+            }
+  
+        } while (deploying);
+
         Destroy(gameObject);
     }
 }
