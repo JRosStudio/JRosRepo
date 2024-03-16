@@ -123,6 +123,8 @@ MonoBehaviour:
   goal: {x: 0, y: 0, z: 0}
   startMovement: 0
   speed: 10
+  rope: {fileID: 3733853685141407849, guid: 9ff7be3d615c6441489922b262c66301, type: 3}
+  ropeHook: {fileID: 3733853685141407849, guid: 0ca1e167ed68cf244a1e058a128df58b, type: 3}
 --- !u!61 &6327391455573297935
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -139,7 +141,7 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0.5, y: 1}
     oldSize: {x: 1, y: 1}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
