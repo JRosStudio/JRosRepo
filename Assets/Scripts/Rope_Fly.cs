@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Rope_Fly : MonoBehaviour
 {
-    public Vector3 goal = new Vector3(0,0,0);
+    public Vector3 goal = new Vector3(0, 0, 0);
     public bool startMovement = false;
     public float speed = 5.0f;
     [SerializeField]
@@ -12,54 +12,71 @@ public class Rope_Fly : MonoBehaviour
     [SerializeField]
     GameObject ropeHook;
     bool deploying;
-    public Vector3 playerY = new Vector3(0,0,0);
+    public Vector3 playerY = new Vector3(0, 0, 0);
+    private ResourceManager resourceManager;
 
+    public void Awake()
+    {
+        resourceManager = GameObject.Find("ResourceManager").GetComponent<ResourceManager>();
+    }
     private void Start()
     {
         playerY = GameObject.FindObjectOfType<Player>().transform.position;
     }
     void Update()
     {
-        if (startMovement == true) {
-           transform.position = Vector3.MoveTowards(transform.position, goal, speed * Time.deltaTime);
-            if (transform.position == goal) {
+        if (startMovement == true)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, goal, speed * Time.deltaTime);
+            if (transform.position == goal)
+            {
                 DeployRope();
             }
         }
     }
 
-    public void StartMovement( Vector3 rope_goal) {
+    public void StartMovement(Vector3 rope_goal)
+    {
         goal = rope_goal;
         startMovement = true;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Rope") {
+        if (collision.gameObject.tag == "Rope")
+        {
             Destroy(gameObject);
         }
     }
 
-    public void DeployRope() {
-        GameObject ropeHookInstance = Instantiate(ropeHook, goal, Quaternion.identity);
-        deploying = true;
-        float lastRopePos = ropeHookInstance.transform.position.y;
+    public void DeployRope()
+    {
+        float lastRopePos = 0;
+        GameObject ropeHookInstance = new GameObject();
         int n = 1;
-        Debug.Log("Last Rope Pos = " + lastRopePos + "n= " + n);
 
+        if (resourceManager.getCurrentRopes() > 0 && deploying == false)
+        {
+            ropeHookInstance = Instantiate(ropeHook, goal, Quaternion.identity);
+            deploying = true;
+            lastRopePos = ropeHookInstance.transform.position.y;
+            resourceManager.addRopes(-1);
+        }
 
-        do {
-            if (lastRopePos > playerY.y+1)
+        do
+        {
+            if (lastRopePos > playerY.y + 1 && resourceManager.getCurrentRopes() > 0)
             {
-                Debug.Log("Last Rope Pos = " + lastRopePos + "n= " + n);
+                resourceManager.addRopes(-1);
                 GameObject ropeInstance1 = Instantiate(rope, new Vector3(goal.x, goal.y - n, goal.z), Quaternion.identity, ropeHookInstance.transform);
                 lastRopePos = ropeInstance1.transform.position.y;
                 n++;
             }
-            else {
+            else
+            {
                 deploying = false;
             }
-  
+
         } while (deploying);
 
         Destroy(gameObject);

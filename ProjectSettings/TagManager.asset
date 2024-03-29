@@ -15,6 +15,7 @@ TagManager:
   - OneWayPlatform
   - Rope
   - Rope_Fly
+  - PlayerFeet
   layers:
   - Default
   - TransparentFX

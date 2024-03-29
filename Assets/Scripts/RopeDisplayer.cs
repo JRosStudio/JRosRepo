@@ -6,7 +6,7 @@ public class RopeDisplayer : MonoBehaviour
 {
     public float rayDistance = 50f;
     [SerializeField]
-    public GameObject ropeStartPrefab; 
+    public GameObject ropeStartPrefab;
     [SerializeField]
     Player player;
 
@@ -15,25 +15,32 @@ public class RopeDisplayer : MonoBehaviour
 
     GameObject ropeStart;
     // Update is called once per frame
+    private ResourceManager resourceManager;
+
+    public void Awake()
+    {
+        resourceManager = GameObject.Find("ResourceManager").GetComponent<ResourceManager>();
+    }
 
     private void Start()
     {
-       ropeStart = Instantiate(ropeStartPrefab, transform.position, Quaternion.identity);
-       //ropeStart.SetActive(false);
+        ropeStart = Instantiate(ropeStartPrefab, transform.position, Quaternion.identity);
+        //ropeStart.SetActive(false);
     }
     void Update()
     {
-        RaycastHit2D rayHit =  Physics2D.Raycast(transform.position, new Vector2(0, 1), rayDistance);
+        RaycastHit2D rayHit = Physics2D.Raycast(transform.position, new Vector2(0, 1), rayDistance);
         Debug.DrawRay(transform.position, new Vector2(0, rayDistance), Color.green);
-        if (rayHit && Input.GetAxisRaw("Vertical") > 0.8 && player.ropesHashSet.Count == 0 && rayHit.transform.tag != "Rock")
+        if (rayHit && Input.GetAxisRaw("RopeState") > 0.8 && player.ropesHashSet.Count == 0 && rayHit.transform.tag != "Rock" && resourceManager.getCurrentRopes() > 0)
         {
-            
+
             ropeStart.transform.position = rayHit.point;
             hitPosition = rayHit.point;
             ropeStart.SetActive(true);
             gameObject.GetComponentInParent<Player>().readyToShootArrow = true;
         }
-        else {
+        else
+        {
             gameObject.GetComponentInParent<Player>().readyToShootArrow = false;
             ropeStart.SetActive(false);
         }

@@ -104,7 +104,7 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        //Debug.Log(horizontal + " , " + vertical);
+        Debug.Log(inRope);
 
         if (!IsGrounded())
         {
@@ -149,7 +149,7 @@ public class Player : MonoBehaviour
         }
 
         //Sprite Rope Ready
-        if (IsGrounded() && vertical >= 0.5 && horizontal == 0 && !IsCrouching() && alive && ropesHashSet.Count == 0 && readyToShootArrow)
+        if (IsGrounded() && Input.GetAxisRaw("RopeState") > 0.8 && horizontal == 0 && !IsCrouching() && alive && ropesHashSet.Count == 0 && readyToShootArrow)
         {
             animation.speed = 1;
             coyoteTimeCounter = coyoteTime;
@@ -251,35 +251,47 @@ public class Player : MonoBehaviour
     }
 
     //Climbing Rope Management
-    public void Rope() {
-        if (vertical >= 0.5f && ropesHashSet.Count > 0 && !inRope && !isRopeJumping) {
+    public void Rope()
+    {
+
+
+
+        if (vertical >= 0.5f && ropesHashSet.Count > 0 && !inRope && !isRopeJumping)
+        {
             inRope = true;
             rb.gravityScale = 0;
-            gameObject.transform.position= new Vector3(lastRopeRail.x, transform.position.y, transform.position.z);
+            gameObject.transform.position = new Vector3(lastRopeRail.x, transform.position.y, transform.position.z);
         }
 
-        if (inRope && vertical >= 0.2f && !isRopeJumping) {
-
+        if (inRope && vertical >= 0.2f && !isRopeJumping)
+        {
+            animation.speed = 1;
             if (stamina.GetCurrentStamina() > 0)
             {
                 rb.velocity = new Vector2(0, vertical * speedClimb);
             }
-            else {
+            else
+            {
                 rb.velocity = new Vector2(0, vertical * speedClimbNoStamina);
             }
-
         }
 
-        if (inRope && vertical < 0.2 && vertical > -0.2 && !isRopeJumping) {
-            rb.velocity = new Vector2(0,0);
-        }
-
-        if (inRope && vertical <= -0.2f && !isRopeJumping)
+        if ((inRope && vertical < 0.2 && vertical > -0.2 && !isRopeJumping) || (inRope && vertical <= -0.2f && !isRopeJumping && ropesHashSet.Count >= 0))
         {
-            rb.velocity = new Vector2(0, vertical * speedClimb);
+
+            rb.velocity = new Vector2(0, 0);
+            animation.speed = 0;
         }
 
-        if (ropesHashSet.Count == 0 || IsGrounded()) {
+        if (inRope && vertical <= -0.2f && !isRopeJumping && ropesHashSet.Count > 0)
+        {
+
+            rb.velocity = new Vector2(0, vertical * speedClimb);
+            animation.speed = 1;
+        }
+
+        if (IsGrounded())
+        {
             rb.gravityScale = originalGravityScale;
             inRope = false;
         }
@@ -536,7 +548,8 @@ public class Player : MonoBehaviour
     }
     public void RopeJump()
     {
-        if (inRope) {
+        if (inRope)
+        {
             isRopeJumping = false;
             wallJumpingCounter = wallJumpingTime;
         }
@@ -545,13 +558,15 @@ public class Player : MonoBehaviour
             wallJumpingCounter -= Time.deltaTime;
         }
 
+
         if (Input.GetButtonDown("Jump") && wallJumpingCounter > 0f && stamina.GetCurrentStamina() >= stamina.GetWallJumpStaminaCost() && inRope)
         {
             isRopeJumping = true;
             inRope = false;
             rb.gravityScale = originalGravityScale;
 
-            if(horizontal >= 0.3 || horizontal <= -0.3) {
+            if (horizontal >= 0.3 || horizontal <= -0.3)
+            {
                 stamina.WallJumpStaminaLoss();
                 rb.velocity = new Vector2(Mathf.Sign(horizontal) * ropeJumpingPower.x, ropeJumpingPower.y);
             }
@@ -568,12 +583,13 @@ public class Player : MonoBehaviour
 
             Invoke(nameof(StopRopeJumping), wallJumpingDuration);
         }
+
         if (Input.GetButtonDown("Jump") && wallJumpingCounter > 0f && stamina.GetCurrentStamina() < stamina.GetWallJumpStaminaCost() && inRope)
         {
             isRopeJumping = true;
             inRope = false;
             rb.gravityScale = originalGravityScale;
-            stamina.WallJumpStaminaLoss();
+            //stamina.WallJumpStaminaLoss();
             rb.velocity = new Vector2(Mathf.Sign(horizontal) * ropeJumpingPowerNoStamina.x, ropeJumpingPowerNoStamina.y);
             wallJumpingCounter = 0f;
 
@@ -587,6 +603,15 @@ public class Player : MonoBehaviour
 
             Invoke(nameof(StopRopeJumping), wallJumpingDuration);
         }
+
+        if (Input.GetButtonDown("Fire2") && inRope)
+        {
+            Debug.Log("CAE");
+            inRope = false;
+            rb.gravityScale = originalGravityScale;
+            rb.velocity = Vector2.zero;
+        }
+
 
     }
 
