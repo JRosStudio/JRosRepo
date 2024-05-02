@@ -46,7 +46,7 @@ public class Player : MonoBehaviour
     public float highJumpingPower;
     private bool isFacingRight = true;
     //private bool isRuning;
-    private bool isAttacking;
+    public bool isAttacking;
 
 
     private bool isWallSliding;
@@ -142,14 +142,14 @@ public class Player : MonoBehaviour
         vertical = Input.GetAxisRaw("Vertical");
 
         //Sprite Iddle
-        if (IsGrounded() && horizontal == 0 && !IsCrouching() && alive && !inRope) {
+        if (IsGrounded() && horizontal == 0 && !IsCrouching() && alive && !inRope && !isAttacking) {
             animation.speed = 1;
             coyoteTimeCounter = coyoteTime;
             animation.SetInteger("State", 0);
         }
 
         //Sprite Rope Ready
-        if (IsGrounded() && Input.GetAxisRaw("RopeState") > 0.8 && horizontal == 0 && !IsCrouching() && alive && ropesHashSet.Count == 0 && readyToShootArrow)
+        if (IsGrounded() && Input.GetAxisRaw("RopeState") > 0.8 && horizontal == 0 && !IsCrouching() && alive && ropesHashSet.Count == 0 && readyToShootArrow && !isAttacking)
         {
             animation.speed = 1;
             coyoteTimeCounter = coyoteTime;
@@ -157,7 +157,7 @@ public class Player : MonoBehaviour
         }
 
         //Sprite Walking
-        if (IsGrounded() && horizontal != 0 && alive && !inRope)
+        if (IsGrounded() && horizontal != 0 && alive && !inRope && !isAttacking)
         {
             animation.speed = 1;
             coyoteTimeCounter = coyoteTime;
@@ -165,7 +165,7 @@ public class Player : MonoBehaviour
         }
 
         //Sprite Jumping
-        if (!IsGrounded() && !IsWalled() && alive && !inRope)
+        if (!IsGrounded() && !IsWalled() && alive && !inRope && !isAttacking)
         {
             animation.speed = 1;
             coyoteTimeCounter -= Time.deltaTime;
@@ -174,7 +174,7 @@ public class Player : MonoBehaviour
         }
 
         //Sprite Walled
-        if (!IsGrounded() && IsWalled() && horizontal != 0 && alive && !inRope)
+        if (!IsGrounded() && IsWalled() && horizontal != 0 && alive && !inRope && !isAttacking)
         {
             animation.speed = 1;
             coyoteTimeCounter -= Time.deltaTime;
@@ -198,7 +198,7 @@ public class Player : MonoBehaviour
         }
 
         //Sprite Climbing
-        if (alive && inRope && !IsGrounded() && !IsWalled())
+        if (alive && inRope && !IsGrounded() && !IsWalled() && !isAttacking)
         {
             coyoteTimeCounter = 0;
             animation.SetInteger("State", 9);
@@ -314,6 +314,7 @@ public class Player : MonoBehaviour
     }
     public void attackingFalse() {
         isAttacking = false;
+        animation.SetInteger("State", 0);
     }
 
     private void FixedUpdate()
@@ -498,6 +499,7 @@ public class Player : MonoBehaviour
             }
             */
         }
+        isAttacking = false;
     }
     private void OnDrawGizmosSelected()
     {
@@ -606,7 +608,7 @@ public class Player : MonoBehaviour
 
         if (Input.GetButtonDown("Fire2") && inRope)
         {
-            Debug.Log("CAE");
+            //Debug.Log("CAE");
             inRope = false;
             rb.gravityScale = originalGravityScale;
             rb.velocity = Vector2.zero;
