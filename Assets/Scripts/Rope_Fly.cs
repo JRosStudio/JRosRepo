@@ -11,6 +11,8 @@ public class Rope_Fly : MonoBehaviour
     GameObject rope;
     [SerializeField]
     GameObject ropeHook;
+
+    private RopeDisplayer ropeDisp;
     bool deploying;
     public Vector3 playerY = new Vector3(0, 0, 0);
     private ResourceManager resourceManager;
@@ -18,6 +20,8 @@ public class Rope_Fly : MonoBehaviour
     public void Awake()
     {
         resourceManager = GameObject.Find("ResourceManager").GetComponent<ResourceManager>();
+        ropeDisp = GameObject.Find("Player").GetComponentInChildren<RopeDisplayer>();
+
     }
     private void Start()
     {
@@ -25,6 +29,7 @@ public class Rope_Fly : MonoBehaviour
     }
     void Update()
     {
+        Debug.Log(ropeDisp.ropeLength);
         if (startMovement == true)
         {
             transform.position = Vector3.MoveTowards(transform.position, goal, speed * Time.deltaTime);
@@ -63,7 +68,13 @@ public class Rope_Fly : MonoBehaviour
             resourceManager.addRopes(-1);
         }
 
-        do
+        for (int i = 1; i <= ropeDisp.ropeLength; i++) {
+            resourceManager.addRopes(-1);
+             Instantiate(rope, new Vector3(goal.x, goal.y - i, goal.z), Quaternion.identity, ropeHookInstance.transform);
+        }
+
+
+       /* do
         {
             if (lastRopePos > playerY.y + 1 && resourceManager.getCurrentRopes() > 0)
             {
@@ -77,7 +88,7 @@ public class Rope_Fly : MonoBehaviour
                 deploying = false;
             }
 
-        } while (deploying);
+        } while (deploying);*/
 
         Destroy(gameObject);
     }
