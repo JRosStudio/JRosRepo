@@ -29936,7 +29936,7 @@ RectTransform:
   - {fileID: 550484612}
   - {fileID: 269292329}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -39593,7 +39593,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4431863818022955964, guid: f4e32308594b879499c499a1b667184d, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4431863818022955964, guid: f4e32308594b879499c499a1b667184d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -40406,7 +40406,7 @@ RectTransform:
   m_Children:
   - {fileID: 1430484180}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -42732,7 +42732,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -307.75, y: 154.62}
+  m_AnchoredPosition: {x: -432.7, y: 111.3}
   m_SizeDelta: {x: 1.04, y: 0.65044}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1838397199
@@ -43492,7 +43492,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1910054158}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -363, y: 168, z: -4909.0913}
+  m_LocalPosition: {x: -487.95004, y: 124.68, z: -4909.0913}
   m_LocalScale: {x: 54.54546, y: 54.54546, z: 54.54546}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -44829,7 +44829,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4431863818022955964, guid: f4e32308594b879499c499a1b667184d, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4431863818022955964, guid: f4e32308594b879499c499a1b667184d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -45941,7 +45941,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2410944844792574565, guid: 9e354084da55e4199be8a5d67163b6d2, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2410944844862759746, guid: 9e354084da55e4199be8a5d67163b6d2, type: 3}
       propertyPath: m_AnchoredPosition.x
