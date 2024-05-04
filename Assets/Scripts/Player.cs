@@ -104,7 +104,7 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(inRope);
+        //Debug.Log(inRope);
 
         if (!IsGrounded())
         {

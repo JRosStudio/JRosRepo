@@ -8,14 +8,18 @@ public class RopeDisplayer : MonoBehaviour
     [SerializeField]
     public GameObject ropeStartPrefab;
     [SerializeField]
+    public GameObject ropeBodyPrefab;
+    [SerializeField]
     Player player;
+    public List<GameObject> ropeBody;
 
     public Vector3 hitPosition;
 
+    public int ropeLength;
 
     GameObject ropeStart;
-    // Update is called once per frame
     private ResourceManager resourceManager;
+
 
     public void Awake()
     {
@@ -29,11 +33,12 @@ public class RopeDisplayer : MonoBehaviour
     }
     void Update()
     {
+        
         RaycastHit2D rayHit = Physics2D.Raycast(transform.position, new Vector2(0, 1), rayDistance);
         Debug.DrawRay(transform.position, new Vector2(0, rayDistance), Color.green);
         if (rayHit && Input.GetAxisRaw("RopeState") > 0.8 && player.ropesHashSet.Count == 0 && rayHit.transform.tag != "Rock" && resourceManager.getCurrentRopes() > 0)
         {
-
+            RopeBodyLenght();
             ropeStart.transform.position = rayHit.point;
             hitPosition = rayHit.point;
             ropeStart.SetActive(true);
@@ -42,7 +47,33 @@ public class RopeDisplayer : MonoBehaviour
         else
         {
             gameObject.GetComponentInParent<Player>().readyToShootArrow = false;
+            foreach (var r in ropeBody) {
+                Destroy(r);
+            }
+            ropeBody.Clear();
+            ropeLength = ropeBody.Count;
             ropeStart.SetActive(false);
         }
     }
+
+    private void RopeBodyLenght() {
+
+        Debug.Log(ropeBody.Count);
+        
+        if (Input.GetKeyDown("up") && ropeBody.Count > 0)
+        {
+            Destroy(ropeBody[ropeBody.Count - 1]);
+            ropeBody.RemoveAt(ropeBody.Count - 1);
+            ropeLength = ropeBody.Count;
+        }
+
+        if (Input.GetKeyDown("down") && ropeBody.Count + 1 <= resourceManager.getCurrentRopes()  )
+        {
+            GameObject go = Instantiate(ropeBodyPrefab, new Vector3(ropeStart.transform.position.x, ropeStart.transform.position.y - ropeBody.Count - 1, ropeStart.transform.position.z), Quaternion.identity, ropeStart.transform); ;
+            ropeBody.Add(go);
+            ropeLength = ropeBody.Count;
+}
+    }
+
+
 }
