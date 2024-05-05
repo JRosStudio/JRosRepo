@@ -131,5 +131,8 @@ public class RopeDisplayer : MonoBehaviour
      
     }
 
+    public void RopeCutter(GameObject obj) {
+        ropeLength = ropeBody.IndexOf(obj);
+    }
 
 }
