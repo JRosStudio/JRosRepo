@@ -149,7 +149,7 @@ public class Player : MonoBehaviour
         }
 
         //Sprite Rope Ready
-        if (IsGrounded() && Input.GetAxisRaw("RopeState") > 0.8 && horizontal == 0 && !IsCrouching() && alive && ropesHashSet.Count == 0 && readyToShootArrow && !isAttacking)
+        if (IsGrounded() && (Input.GetAxisRaw("RopeState") > 0.8 || Input.GetButton("RopeStateKeyBoard")) && horizontal == 0 && !IsCrouching() && alive && ropesHashSet.Count == 0 && readyToShootArrow && !isAttacking)
         {
             animation.speed = 1;
             coyoteTimeCounter = coyoteTime;

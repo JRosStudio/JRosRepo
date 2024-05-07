@@ -41,7 +41,7 @@ public class RopeDisplayer : MonoBehaviour
         
         RaycastHit2D rayHit = Physics2D.Raycast(transform.position, new Vector2(0, 1), rayDistance);
         Debug.DrawRay(transform.position, new Vector2(0, rayDistance), Color.green);
-        if (rayHit && Input.GetAxisRaw("RopeState") > 0.8 && player.ropesHashSet.Count == 0 && rayHit.transform.tag != "Rock" && resourceManager.getCurrentRopes() > 0)
+        if (rayHit && (Input.GetAxisRaw("RopeState") > 0.8 || Input.GetButton("RopeStateKeyBoard")) && player.ropesHashSet.Count == 0 && rayHit.transform.tag != "Rock" && resourceManager.getCurrentRopes() > 0)
         {
             
             ropeStart.transform.position = rayHit.point;
@@ -56,7 +56,7 @@ public class RopeDisplayer : MonoBehaviour
 
             ropesUsed_Txt.enabled = false;
         }
-        if (Input.GetAxisRaw("RopeState") > 0.8)
+        if ((Input.GetAxisRaw("RopeState") > 0.8 || Input.GetButton("RopeStateKeyBoard")))
         {
             RopeBodyLenght();
             ropesUsed_Txt.enabled = true;
