@@ -6,6 +6,8 @@ public class RockMoval : MonoBehaviour
 {
     Rigidbody2D rb;
 
+    public bool isInWater = false;
+
     private void Start()
     {
         rb = this.GetComponent<Rigidbody2D>();
@@ -26,5 +28,14 @@ public class RockMoval : MonoBehaviour
             //Debug.Log("Rock Standing");
         }
 
+        if (isInWater)
+        {
+            rb.gravityScale = 1;
+        }
+        else {
+            rb.gravityScale = 5;
+        }
+
     }
+
 }

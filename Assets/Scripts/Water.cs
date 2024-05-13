@@ -25,6 +25,13 @@ public class Water : MonoBehaviour
             player.isOnWater(true);
         }
 
+        if (collision.gameObject.CompareTag("Rock"))
+        {
+            collision.gameObject.GetComponent<RockMoval>().isInWater = true;
+
+
+        }
+
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -33,6 +40,12 @@ public class Water : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             player.isOnWater(false);
+        }
+
+        if (collision.gameObject.CompareTag("Rock"))
+        {
+            collision.gameObject.GetComponent<RockMoval>().isInWater = false;
+            
         }
     }
 
