@@ -24,11 +24,14 @@ public class GoalItem : MonoBehaviour
     3- Paella verduras | Compañero de trabajo
     */
 
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.transform.CompareTag("Player")) {
-
-
+        GoalManager goalManager = GameObject.Find("GoalManager").GetComponent<GoalManager>();
+        if (collision.transform.CompareTag("Player") && goalManager.getIngredientCount() < 3) {  
+            Debug.Log(this.ID);
+            //goalManager.addIngrediente(new GoalItem(ID,type,sbyte));
+            Destroy(gameObject);
         }   
     }
 

@@ -5,8 +5,20 @@ using UnityEngine;
 public class GoalManager : MonoBehaviour
 {
 
-    [SerializeField]
-    private ResourceManager resourceManager;
+    public List<GoalItem> listaIngredientes = new List<GoalItem>();
+
+
+
+    public void addIngrediente(GoalItem gi) {
+        if (listaIngredientes.Count < 3) {
+            listaIngredientes.Add(gi);
+        }
+    }
+
+    public int getIngredientCount() {
+
+        return listaIngredientes.Count;
+    }
 
 
     private void OnTriggerEnter2D(Collider2D collision)
