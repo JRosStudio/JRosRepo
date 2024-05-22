@@ -6,9 +6,9 @@ public class GoalManager : MonoBehaviour
 {
 
     public List<GoalItem> listaIngredientes = new List<GoalItem>();
-    private int paellaCarne;
-    private int paellaMarisco;
-    private int paellaVerdura;
+    private bool paellaCarne = false;
+    private bool paellaMarisco = false;
+    private bool paellaVerdura = false;
 
 
     public void addIngrediente(string ID, int type,int subtype) {
@@ -34,41 +34,45 @@ public class GoalManager : MonoBehaviour
                 Debug.Log( "ITEM: " + g.getID() + " - Type: " + g.getType() + "- Subtype: " + g.getSubtype());
 
                 if (g.getType() == 1) {
-                    if (g.getSubtype() == 1) {
-                        paellaCarne++;
-                    }
+                    if (g.getSubtype() == 1)
+                    {
+                        paellaCarne = true;
+                    }    
+                
                     if (g.getSubtype() == 2)
                     {
-                        paellaMarisco++;
+
+                        paellaMarisco = true;
+                    }
+
                     }
                     if (g.getSubtype() == 3)
                     {
-                        paellaVerdura++;
+                        paellaVerdura = true;
+  
                     }
                 }
 
             }
 
-            Debug.Log(listaIngredientes.Count);
-
             if (listaIngredientes.Count == 3) { 
-                if (paellaCarne == 3)
+                if (paellaCarne && !paellaMarisco && !paellaVerdura)
                 {
                     Debug.Log("PAELLA DE CARNE");
                 }
-                if (paellaMarisco == 3)
+                else if (!paellaCarne && paellaMarisco && !paellaVerdura)
                 {
                     Debug.Log("PAELLA DE MARISCO");
                 }
-                if (paellaVerdura == 3)
+                else if (!paellaCarne && !paellaMarisco && paellaVerdura)
                 {
                     Debug.Log("PAELLA DE VERDURA");
                 }
-                if(paellaCarne < 3 && paellaMarisco < 3 && paellaVerdura < 3) {
+                else {
                     Debug.Log("ARROZ CON COSAS");
                 }
             }
         }
     }
 
-}
+
