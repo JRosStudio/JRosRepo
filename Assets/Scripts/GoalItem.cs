@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class GoalItem : MonoBehaviour
 {
-    public string ID;
-    public int type;
-    public int subtype;
+    public  string ID;
+    public  int Type;
+    public  int Subtype;
 
     /*ID:
      Name of ITEM
@@ -24,13 +24,35 @@ public class GoalItem : MonoBehaviour
     3- Paella verduras | Compañero de trabajo
     */
 
+    public void setGoalItem(string id, int type, int subtype) {
+        ID = id;
+        Type = type;
+        Subtype = subtype;
+    }
+
+    public string getID()
+    {
+        return ID;
+
+    }
+
+    public int getType()
+    {
+        return Type;
+
+    }
+
+    public int getSubtype()
+    {
+        return Subtype;
+
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         GoalManager goalManager = GameObject.Find("GoalManager").GetComponent<GoalManager>();
         if (collision.transform.CompareTag("Player") && goalManager.getIngredientCount() < 3) {  
-            Debug.Log(this.ID);
-            //goalManager.addIngrediente(new GoalItem(ID,type,sbyte));
+            goalManager.addIngrediente(ID,Type,Subtype);
             Destroy(gameObject);
         }   
     }
