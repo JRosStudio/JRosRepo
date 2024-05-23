@@ -51,9 +51,16 @@ public class GoalItem : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         GoalManager goalManager = GameObject.Find("GoalManager").GetComponent<GoalManager>();
-        if (collision.transform.CompareTag("Player") && goalManager.getIngredientCount() < 3) {  
-            goalManager.addIngrediente(ID,Type,Subtype);
-            Destroy(gameObject);
+        if (collision.transform.CompareTag("Player")) {
+            if (goalManager.getIngredientCount() < 3 && Type == 1) {
+                goalManager.addIngrediente(ID, Type, Subtype);
+                Destroy(gameObject);
+            }
+            if (goalManager.getPersonasCount() < 3 && Type == 2)
+            {
+                goalManager.addPersona(ID, Type, Subtype);
+                Destroy(gameObject);
+            }
         }   
     }
 
