@@ -25,6 +25,9 @@ public class Player : MonoBehaviour
     [SerializeField]
     GameObject smokeLand;
 
+    [SerializeField]
+    GameObject windowMenu;
+
     public bool alive = true;
     
 
@@ -102,6 +105,8 @@ public class Player : MonoBehaviour
     public HashSet<GameObject> ropesHashSet = new HashSet<GameObject>();
     public bool readyToShootArrow;
 
+    private bool groundedToggle = false;
+    public bool gamePaused = false;
     private void Update()
     {
         //Debug.Log(inRope);
@@ -142,14 +147,14 @@ public class Player : MonoBehaviour
         vertical = Input.GetAxisRaw("Vertical");
 
         //Sprite Iddle
-        if (IsGrounded() && horizontal == 0 && !IsCrouching() && alive && !inRope && !isAttacking) {
+        if (IsGrounded() && horizontal == 0 && !IsCrouching() && alive && !inRope && !isAttacking && !gamePaused) {
             animation.speed = 1;
             coyoteTimeCounter = coyoteTime;
             animation.SetInteger("State", 0);
         }
 
         //Sprite Rope Ready
-        if (IsGrounded() && (Input.GetAxisRaw("RopeState") > 0.8 || Input.GetButton("RopeStateKeyBoard")) && horizontal == 0 && !IsCrouching() && alive && ropesHashSet.Count == 0 && readyToShootArrow && !isAttacking)
+        if (IsGrounded() && (Input.GetAxisRaw("RopeState") > 0.8 || Input.GetButton("RopeStateKeyBoard")) && horizontal == 0 && !IsCrouching() && alive && ropesHashSet.Count == 0 && readyToShootArrow && !isAttacking && !gamePaused)
         {
             animation.speed = 1;
             coyoteTimeCounter = coyoteTime;
@@ -157,7 +162,7 @@ public class Player : MonoBehaviour
         }
 
         //Sprite Walking
-        if (IsGrounded() && horizontal != 0 && alive && !inRope && !isAttacking)
+        if (IsGrounded() && horizontal != 0 && alive && !inRope && !isAttacking && !gamePaused)
         {
             animation.speed = 1;
             coyoteTimeCounter = coyoteTime;
@@ -165,7 +170,7 @@ public class Player : MonoBehaviour
         }
 
         //Sprite Jumping
-        if (!IsGrounded() && !IsWalled() && alive && !inRope && !isAttacking)
+        if (!IsGrounded() && !IsWalled() && alive && !inRope && !isAttacking && !gamePaused)
         {
             animation.speed = 1;
             coyoteTimeCounter -= Time.deltaTime;
@@ -174,7 +179,7 @@ public class Player : MonoBehaviour
         }
 
         //Sprite Walled
-        if (!IsGrounded() && IsWalled() && horizontal != 0 && alive && !inRope && !isAttacking)
+        if (!IsGrounded() && IsWalled() && horizontal != 0 && alive && !inRope && !isAttacking && !gamePaused)
         {
             animation.speed = 1;
             coyoteTimeCounter -= Time.deltaTime;
@@ -212,9 +217,20 @@ public class Player : MonoBehaviour
             }
         }
 
+        //isGrounded Toggle
+
+        if (!IsGrounded() && groundedToggle == false) {
+            groundedToggle = true;
+        }
+
+        if (IsGrounded() && groundedToggle == true) {
+            SpawnSmokeJump();
+            groundedToggle = false;        
+        }
 
 
         if (isAttacking == false && alive) {
+            pauseGame();
             Jump();
             //HighJump();
             WallSlide();
@@ -233,7 +249,9 @@ public class Player : MonoBehaviour
              StartCoroutine(Dash());
          }*/
 
-        if (!isWallJumping && isAttacking == false && alive && !inRope)
+        
+
+        if (!isWallJumping && isAttacking == false && alive && !inRope && !gamePaused)
         {
             Flip();
         }
@@ -248,6 +266,36 @@ public class Player : MonoBehaviour
         if (stamina.GetCurrentStamina() > 0 && alive) {
             sweat.SetActive(false);
         }
+    }
+
+    //Pause Game
+    public void pauseGame(){
+        //Toggles state
+        if (Input.GetButtonDown("Pause")) {
+            if (gamePaused)
+            {
+                windowMenu.GetComponent<MenuManager>().pauseMenuBack();
+                gamePaused = false;
+            }
+            else {
+                windowMenu.GetComponent<MenuManager>().pauseMenuOut();
+                
+                gamePaused = true;
+            }
+        }
+
+        // freezes time
+        if (gamePaused)
+        {
+            
+            Time.timeScale = 0;
+        }
+        else
+        {
+            
+            Time.timeScale = 1;
+        }
+
     }
 
     //Climbing Rope Management
@@ -300,7 +348,7 @@ public class Player : MonoBehaviour
 
     private void RopeShoot()
     {
-        if (Input.GetButtonDown("Fire2") && readyToShootArrow) {
+        if (Input.GetButtonDown("Fire2") && readyToShootArrow && !gamePaused) {
 
             GameObject ropeFlyInstance = Instantiate(ropeFly, gameObject.transform.position, Quaternion.identity);
             ropeFlyInstance.GetComponent<Rope_Fly>().StartMovement(ropeDisplayer.GetComponent<RopeDisplayer>().hitPosition);
@@ -408,7 +456,7 @@ public class Player : MonoBehaviour
 
     private void ConsumeFood() {
 
-        if (Input.GetButtonDown("Fire1")) {
+        if (Input.GetButtonDown("Fire1") && !gamePaused) {
             stamina.ConsumeFood();
         }
 
@@ -444,7 +492,7 @@ public class Player : MonoBehaviour
     private void Golpe()
     {
 
-        if (Input.GetButtonDown("Fire2") && stamina.GetCurrentStamina() >= stamina.GetAttackCost() && IsGrounded() && !readyToShootArrow)
+        if (Input.GetButtonDown("Fire2") && stamina.GetCurrentStamina() >= stamina.GetAttackCost() && IsGrounded() && !readyToShootArrow && !gamePaused)
         {
             animation.SetInteger("State", 4);
         }
@@ -680,7 +728,7 @@ public class Player : MonoBehaviour
         if (collision.gameObject.tag == "Ground" || collision.gameObject.layer == 3) {
             checkFallingDeath();
             lastYVelocity = 0;
-            SpawnSmokeJump();
+            //SpawnSmokeJump();
         }
 
         

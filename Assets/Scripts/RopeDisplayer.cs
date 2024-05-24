@@ -41,48 +41,50 @@ public class RopeDisplayer : MonoBehaviour
         
         RaycastHit2D rayHit = Physics2D.Raycast(transform.position, new Vector2(0, 1), rayDistance);
         Debug.DrawRay(transform.position, new Vector2(0, rayDistance), Color.green);
-        if (rayHit && (Input.GetAxisRaw("RopeState") > 0.8 || Input.GetButton("RopeStateKeyBoard")) && player.ropesHashSet.Count == 0 && rayHit.transform.tag != "Rock" && resourceManager.getCurrentRopes() > 0)
-        {
-            
-            ropeStart.transform.position = rayHit.point;
-            hitPosition = rayHit.point;
-            ropeStart.SetActive(true);
-            gameObject.GetComponentInParent<Player>().readyToShootArrow = true;
-        }
-        else
-        {
-            gameObject.GetComponentInParent<Player>().readyToShootArrow = false;
-            ropeStart.SetActive(false);
 
-            ropesUsed_Txt.enabled = false;
-        }
-        if ((Input.GetAxisRaw("RopeState") > 0.8 || Input.GetButton("RopeStateKeyBoard")))
-        {
-            RopeBodyLenght();
-            ropesUsed_Txt.enabled = true;
-
-        }
-
-
-        if (lastRopeLength != ropeLength) {
-            foreach (var r in ropeBody)
+        if(player.gamePaused == false) { 
+            if (rayHit && (Input.GetAxisRaw("RopeState") > 0.8 || Input.GetButton("RopeStateKeyBoard")) && player.ropesHashSet.Count == 0 && rayHit.transform.tag != "Rock" && resourceManager.getCurrentRopes() > 0)
             {
-                Destroy(r);
+            
+                ropeStart.transform.position = rayHit.point;
+                hitPosition = rayHit.point;
+                ropeStart.SetActive(true);
+                gameObject.GetComponentInParent<Player>().readyToShootArrow = true;
             }
-            ropeBody.Clear();
+            else
+            {
+                gameObject.GetComponentInParent<Player>().readyToShootArrow = false;
+                ropeStart.SetActive(false);
 
-            for (int i = 1; i <= ropeLength; i++) {
-                GameObject go = Instantiate(ropeBodyPrefab, new Vector3(ropeStart.transform.position.x, ropeStart.transform.position.y - ropeBody.Count - 1, ropeStart.transform.position.z), Quaternion.identity, ropeStart.transform); ;
-                ropeBody.Add(go);
+                ropesUsed_Txt.enabled = false;
+            }
+            if ((Input.GetAxisRaw("RopeState") > 0.8 || Input.GetButton("RopeStateKeyBoard")))
+            {
+                RopeBodyLenght();
+                ropesUsed_Txt.enabled = true;
+
             }
 
-            lastRopeLength = ropeLength;
-        }
+
+            if (lastRopeLength != ropeLength) {
+                foreach (var r in ropeBody)
+                {
+                    Destroy(r);
+                }
+                ropeBody.Clear();
+
+                for (int i = 1; i <= ropeLength; i++) {
+                    GameObject go = Instantiate(ropeBodyPrefab, new Vector3(ropeStart.transform.position.x, ropeStart.transform.position.y - ropeBody.Count - 1, ropeStart.transform.position.z), Quaternion.identity, ropeStart.transform); ;
+                    ropeBody.Add(go);
+                }
+
+                lastRopeLength = ropeLength;
+            }
 
 
-        ropesUsed_Txt.SetText("(" + (ropeLength + 1) + ")");
-     
-        
+            ropesUsed_Txt.SetText("(" + (ropeLength + 1) + ")");
+
+            }
     }
 
 
