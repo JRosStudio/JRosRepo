@@ -223,8 +223,10 @@ public class Player : MonoBehaviour
             groundedToggle = true;
         }
 
-        if (IsGrounded() && groundedToggle == true) {
-            SpawnSmokeJump();
+        if (IsGrounded() && groundedToggle == true && rb.velocity.y <= 0) {
+            //Spawn Smoke
+                SpawnSmokeJump();
+
             groundedToggle = false;        
         }
 
@@ -275,26 +277,17 @@ public class Player : MonoBehaviour
             if (gamePaused)
             {
                 windowMenu.GetComponent<MenuManager>().pauseMenuBack();
-                gamePaused = false;
+                
             }
             else {
                 windowMenu.GetComponent<MenuManager>().pauseMenuOut();
                 
-                gamePaused = true;
+
             }
         }
 
         // freezes time
-        if (gamePaused)
-        {
-            
-            Time.timeScale = 0;
-        }
-        else
-        {
-            
-            Time.timeScale = 1;
-        }
+
 
     }
 

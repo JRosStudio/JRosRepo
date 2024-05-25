@@ -65,7 +65,7 @@ public class RopeDisplayer : MonoBehaviour
 
             }
 
-
+            //reset
             if (lastRopeLength != ropeLength) {
                 foreach (var r in ropeBody)
                 {
@@ -134,7 +134,9 @@ public class RopeDisplayer : MonoBehaviour
     }
 
     public void RopeCutter(GameObject obj) {
-        ropeLength = ropeBody.IndexOf(obj);
+
+       ropeLength = ropeBody.IndexOf(obj);
+
     }
 
 }

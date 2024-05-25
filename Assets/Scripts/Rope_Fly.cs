@@ -12,6 +12,9 @@ public class Rope_Fly : MonoBehaviour
     [SerializeField]
     GameObject ropeHook;
 
+    private int ropeLenght;
+
+
     private RopeDisplayer ropeDisp;
     bool deploying;
     public Vector3 playerY = new Vector3(0, 0, 0);
@@ -21,7 +24,7 @@ public class Rope_Fly : MonoBehaviour
     {
         resourceManager = GameObject.Find("ResourceManager").GetComponent<ResourceManager>();
         ropeDisp = GameObject.Find("Player").GetComponentInChildren<RopeDisplayer>();
-
+        ropeLenght = ropeDisp.ropeLength;
     }
     private void Start()
     {
@@ -29,7 +32,6 @@ public class Rope_Fly : MonoBehaviour
     }
     void Update()
     {
-        Debug.Log(ropeDisp.ropeLength);
         if (startMovement == true)
         {
             transform.position = Vector3.MoveTowards(transform.position, goal, speed * Time.deltaTime);
@@ -68,7 +70,7 @@ public class Rope_Fly : MonoBehaviour
             resourceManager.addRopes(-1);
         }
 
-        for (int i = 1; i <= ropeDisp.ropeLength; i++) {
+        for (int i = 1; i <= ropeLenght; i++) {
             resourceManager.addRopes(-1);
              Instantiate(rope, new Vector3(goal.x, goal.y - i, goal.z), Quaternion.identity, ropeHookInstance.transform);
         }
