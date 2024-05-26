@@ -110,152 +110,157 @@ public class Player : MonoBehaviour
     private void Update()
     {
         //Debug.Log(inRope);
-
-        if (!IsGrounded())
+        if (!gamePaused)
         {
-            lastYVelocity = rb.velocity.y;
-        }
+                if (!IsGrounded())
+            {
+                lastYVelocity = rb.velocity.y;
+            }
 
 
-        if (!inWater)
-        {
-            speed = speedGround;
-            jumpingPower = jumpingPowerGround;
-        }
-        else {
-            rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -wallSlidingSpeed, float.MaxValue));
-            speed = speedWater;
-            jumpingPower = jumpingPowerWater;
-        }
+            if (!inWater)
+            {
+                speed = speedGround;
+                jumpingPower = jumpingPowerGround;
+            }
+            else {
+                rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -wallSlidingSpeed, float.MaxValue));
+                speed = speedWater;
+                jumpingPower = jumpingPowerWater;
+            }
 
-        if (inWater && stamina.GetCurrentStamina() == 0 && !inRope)
-        {
-            Death();
-        }
+            if (inWater && stamina.GetCurrentStamina() == 0 && !inRope)
+            {
+                Death();
+            }
 
-        if (Input.GetKeyDown(KeyCode.R)) {
-            Application.LoadLevel(Application.loadedLevel);
+            if (Input.GetKeyDown(KeyCode.R)) {
+                Application.LoadLevel(Application.loadedLevel);
 
-        }
+            }
 
-        /*if (isDashing)
-        {
-            return;
-        }*/
+            /*if (isDashing)
+            {
+                return;
+            }*/
 
-        horizontal = Input.GetAxisRaw("Horizontal");
-        vertical = Input.GetAxisRaw("Vertical");
+            horizontal = Input.GetAxisRaw("Horizontal");
+            vertical = Input.GetAxisRaw("Vertical");
 
-        //Sprite Iddle
-        if (IsGrounded() && horizontal == 0 && !IsCrouching() && alive && !inRope && !isAttacking && !gamePaused) {
-            animation.speed = 1;
-            coyoteTimeCounter = coyoteTime;
-            animation.SetInteger("State", 0);
-        }
+            //Sprite Iddle
+            if (IsGrounded() && horizontal == 0 && !IsCrouching() && alive && !inRope && !isAttacking && !gamePaused) {
+                animation.speed = 1;
+                coyoteTimeCounter = coyoteTime;
+                animation.SetInteger("State", 0);
+            }
 
-        //Sprite Rope Ready
-        if (IsGrounded() && (Input.GetAxisRaw("RopeState") > 0.8 || Input.GetButton("RopeStateKeyBoard")) && horizontal == 0 && !IsCrouching() && alive && ropesHashSet.Count == 0 && readyToShootArrow && !isAttacking && !gamePaused)
-        {
-            animation.speed = 1;
-            coyoteTimeCounter = coyoteTime;
-            animation.SetInteger("State", 8);
-        }
-
-        //Sprite Walking
-        if (IsGrounded() && horizontal != 0 && alive && !inRope && !isAttacking && !gamePaused)
-        {
-            animation.speed = 1;
-            coyoteTimeCounter = coyoteTime;
-            animation.SetInteger("State", 1);
-        }
-
-        //Sprite Jumping
-        if (!IsGrounded() && !IsWalled() && alive && !inRope && !isAttacking && !gamePaused)
-        {
-            animation.speed = 1;
-            coyoteTimeCounter -= Time.deltaTime;
-            coyoteTimeCounterWall -= Time.deltaTime;
-            animation.SetInteger("State", 2);
-        }
-
-        //Sprite Walled
-        if (!IsGrounded() && IsWalled() && horizontal != 0 && alive && !inRope && !isAttacking && !gamePaused)
-        {
-            animation.speed = 1;
-            coyoteTimeCounter -= Time.deltaTime;
-            coyoteTimeCounterWall = coyoteTimeWall;
-            animation.SetInteger("State", 3);
-        }
-
-        //Sprites Muerte
-        if (!alive && IsGrounded()) {
-            animation.speed = 1;
-            animation.SetInteger("State", 6);
-            rb.velocity = new Vector2(0, rb.velocity.y);
-
-        }
-        if (!alive && !IsGrounded())
-        {
-            animation.speed = 1;
-            animation.SetInteger("State", 7);
-            rb.velocity = new Vector2(0, rb.velocity.y);
-
-        }
-
-        //Sprite Climbing
-        if (alive && inRope && !IsGrounded() && !IsWalled() && !isAttacking)
-        {
-            coyoteTimeCounter = 0;
-            animation.SetInteger("State", 9);
-
-            if (vertical >= 0.2 || vertical <= -0.2)
+            //Sprite Rope Ready
+            if (IsGrounded() && (Input.GetAxisRaw("RopeState") > 0.8 || Input.GetButton("RopeStateKeyBoard")) && horizontal == 0 && !IsCrouching() && alive && ropesHashSet.Count == 0 && readyToShootArrow && !isAttacking && !gamePaused)
             {
                 animation.speed = 1;
+                coyoteTimeCounter = coyoteTime;
+                animation.SetInteger("State", 8);
             }
-            if(vertical <= 0.2 && vertical >= -0.2) {
-                animation.speed = 0;
+
+            //Sprite Walking
+            if (IsGrounded() && horizontal != 0 && alive && !inRope && !isAttacking && !gamePaused)
+            {
+                animation.speed = 1;
+                coyoteTimeCounter = coyoteTime;
+                animation.SetInteger("State", 1);
             }
-        }
 
-        //isGrounded Toggle
+            //Sprite Jumping
+            if (!IsGrounded() && !IsWalled() && alive && !inRope && !isAttacking && !gamePaused)
+            {
+                animation.speed = 1;
+                coyoteTimeCounter -= Time.deltaTime;
+                coyoteTimeCounterWall -= Time.deltaTime;
+                animation.SetInteger("State", 2);
+            }
 
-        if (!IsGrounded() && groundedToggle == false) {
-            groundedToggle = true;
-        }
+            //Sprite Walled
+            if (!IsGrounded() && IsWalled() && horizontal != 0 && alive && !inRope && !isAttacking && !gamePaused)
+            {
+                animation.speed = 1;
+                coyoteTimeCounter -= Time.deltaTime;
+                coyoteTimeCounterWall = coyoteTimeWall;
+                animation.SetInteger("State", 3);
+            }
 
-        if (IsGrounded() && groundedToggle == true && rb.velocity.y <= 0) {
-            //Spawn Smoke
-                SpawnSmokeJump();
+            //Sprites Muerte
+            if (!alive && IsGrounded()) {
+                animation.speed = 1;
+                animation.SetInteger("State", 6);
+                rb.velocity = new Vector2(0, rb.velocity.y);
 
-            groundedToggle = false;        
-        }
+            }
+            if (!alive && !IsGrounded())
+            {
+                animation.speed = 1;
+                animation.SetInteger("State", 7);
+                rb.velocity = new Vector2(0, rb.velocity.y);
+
+            }
+
+            //Sprite Climbing
+            if (alive && inRope && !IsGrounded() && !IsWalled() && !isAttacking)
+            {
+                coyoteTimeCounter = 0;
+                animation.SetInteger("State", 9);
+
+                if (vertical >= 0.2 || vertical <= -0.2)
+                {
+                    animation.speed = 1;
+                }
+                if(vertical <= 0.2 && vertical >= -0.2) {
+                    animation.speed = 0;
+                }
+            }
+
+            //isGrounded Toggle
+
+            if (!IsGrounded() && groundedToggle == false) {
+                groundedToggle = true;
+            }
+
+            if (IsGrounded() && groundedToggle == true && rb.velocity.y <= 0) {
+                //Spawn Smoke
+                    SpawnSmokeJump();
+
+                groundedToggle = false;        
+            }
 
 
-        if (isAttacking == false && alive) {
-            pauseGame();
-            Jump();
-            //HighJump();
-            WallSlide();
-            WallJump();
-            RopeJump();
-            ConsumeFood();
-            //DebugFillStamina();
-            Golpe();
-            Rope();
-            RopeShoot();
-            Sweat();
-        }
+            if (isAttacking == false && alive) {
+                Jump();
+                //HighJump();
+                WallSlide();
+                WallJump();
+                RopeJump();
+                ConsumeFood();
+                //DebugFillStamina();
+                Golpe();
+                Rope();
+                RopeShoot();
+                Sweat();
+            }
 
-        /* if (Input.GetButtonDown("Fire3") && stamina.GetCurrentStamina() >= stamina.GetDashStaminaCost()) {
-             stamina.DashStaminaLos();
-             StartCoroutine(Dash());
-         }*/
+            /* if (Input.GetButtonDown("Fire3") && stamina.GetCurrentStamina() >= stamina.GetDashStaminaCost()) {
+                 stamina.DashStaminaLos();
+                 StartCoroutine(Dash());
+             }*/
 
         
 
-        if (!isWallJumping && isAttacking == false && alive && !inRope && !gamePaused)
+            if (!isWallJumping && isAttacking == false && alive && !inRope)
+            {
+                Flip();
+            }
+        }
+        if (isAttacking == false && alive)
         {
-            Flip();
+            pauseGame();
         }
     }
 

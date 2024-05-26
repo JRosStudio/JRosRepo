@@ -9,13 +9,23 @@ public class MenuManager : MonoBehaviour
     Animator animation;
 
     [SerializeField]
+    GameObject BlackScreen;
+
+    Animator animationBlackScreen;
+
+    [SerializeField]
     Player player;
 
+    private void Start()
+    {
+        animationBlackScreen = BlackScreen.GetComponent<Animator>();
+    }
 
     public void pauseMenuHidden()
     {
         animation.SetInteger("PauseMenuState", 0);
         Time.timeScale = 1;
+        animationBlackScreen.SetInteger("Transition", 3);
         player.gamePaused = false;
     }
     public void pauseMenuOut() {
@@ -25,6 +35,7 @@ public class MenuManager : MonoBehaviour
 
     public void freezeGame(){
         Time.timeScale = 0;
+        animationBlackScreen.SetInteger("Transition", 4);
         player.gamePaused = true;
     }
     public void pauseMenuStay() {
