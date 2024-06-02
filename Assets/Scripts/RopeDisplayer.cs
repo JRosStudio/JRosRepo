@@ -43,6 +43,7 @@ public class RopeDisplayer : MonoBehaviour
         Debug.DrawRay(transform.position, new Vector2(0, rayDistance), Color.green);
 
         if(player.gamePaused == false) { 
+
             if (rayHit && (Input.GetAxisRaw("RopeState") > 0.8 || Input.GetButton("RopeStateKeyBoard")) && player.ropesHashSet.Count == 0 && rayHit.transform.tag != "Rock" && resourceManager.getCurrentRopes() > 0)
             {
             
@@ -58,6 +59,7 @@ public class RopeDisplayer : MonoBehaviour
 
                 ropesUsed_Txt.enabled = false;
             }
+
             if ((Input.GetAxisRaw("RopeState") > 0.8 || Input.GetButton("RopeStateKeyBoard")))
             {
                 RopeBodyLenght();
@@ -81,7 +83,7 @@ public class RopeDisplayer : MonoBehaviour
                 lastRopeLength = ropeLength;
             }
 
-
+            
             ropesUsed_Txt.SetText("(" + (ropeLength + 1) + ")");
 
             }
@@ -96,6 +98,10 @@ public class RopeDisplayer : MonoBehaviour
             ropeLength = resourceManager.getCurrentRopes() - 1;
         }
 
+        if (ropeLength < 0) {
+            ropeLength = 0;
+        }
+
         if (Input.GetKeyDown("up") && ropeLength > 0)
         {
             ropeLength--;
@@ -106,6 +112,7 @@ public class RopeDisplayer : MonoBehaviour
             ropeLength++;
         }
 
+  
 
         if (Input.GetAxisRaw("RopeAddRemove") >= 0.8 && ropeBody.Count > 0)
         {
