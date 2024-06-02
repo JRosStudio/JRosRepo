@@ -12,7 +12,7 @@ public class Rope_Fly : MonoBehaviour
     [SerializeField]
     GameObject ropeHook;
 
-    public int ropeLenght;
+    private int ropeLenght;
 
 
     private RopeDisplayer ropeDisp;
@@ -62,16 +62,16 @@ public class Rope_Fly : MonoBehaviour
         GameObject ropeHookInstance = new GameObject();
         int n = 1;
 
-        if (deploying == false)
+        if (resourceManager.getCurrentRopes() > 0 && deploying == false)
         {
             ropeHookInstance = Instantiate(ropeHook, goal, Quaternion.identity);
             deploying = true;
             lastRopePos = ropeHookInstance.transform.position.y;
-            //resourceManager.addRopes(-1);
+            resourceManager.addRopes(-1);
         }
 
         for (int i = 1; i <= ropeLenght; i++) {
-            //resourceManager.addRopes(-1);
+            resourceManager.addRopes(-1);
              Instantiate(rope, new Vector3(goal.x, goal.y - i, goal.z), Quaternion.identity, ropeHookInstance.transform);
         }
 

@@ -28,9 +28,6 @@ public class Player : MonoBehaviour
     [SerializeField]
     GameObject windowMenu;
 
-    [SerializeField]
-    ResourceManager resourceManager;
-
     public bool alive = true;
     
 
@@ -107,7 +104,6 @@ public class Player : MonoBehaviour
     private Vector3 lastRopeRail;
     public HashSet<GameObject> ropesHashSet = new HashSet<GameObject>();
     public bool readyToShootArrow;
-    public bool ShootArrowSecurityBreak;
 
     private bool groundedToggle = false;
     public bool gamePaused = false;
@@ -350,11 +346,9 @@ public class Player : MonoBehaviour
 
     private void RopeShoot()
     {
-        if (Input.GetButtonDown("Fire2") && readyToShootArrow && !gamePaused && ShootArrowSecurityBreak) {
+        if (Input.GetButtonDown("Fire2") && readyToShootArrow && !gamePaused) {
 
             GameObject ropeFlyInstance = Instantiate(ropeFly, gameObject.transform.position, Quaternion.identity);
-            Debug.Log(ropeFlyInstance.GetComponent<Rope_Fly>().ropeLenght);
-            resourceManager.addRopes(-1 - ropeFlyInstance.GetComponent<Rope_Fly>().ropeLenght);
             ropeFlyInstance.GetComponent<Rope_Fly>().StartMovement(ropeDisplayer.GetComponent<RopeDisplayer>().hitPosition);
         }
     }

@@ -55828,10 +55828,6 @@ PrefabInstance:
       propertyPath: ropeDisplayer
       value: 
       objectReference: {fileID: 43062826}
-    - target: {fileID: 4953929469826053817, guid: 73aef0665f2980640ab39735b7e9a172, type: 3}
-      propertyPath: resourceManager
-      value: 
-      objectReference: {fileID: 712346217}
     - target: {fileID: 8197442572044135525, guid: 73aef0665f2980640ab39735b7e9a172, type: 3}
       propertyPath: m_IsActive
       value: 0
