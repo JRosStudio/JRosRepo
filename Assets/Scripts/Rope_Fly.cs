@@ -25,6 +25,7 @@ public class Rope_Fly : MonoBehaviour
         resourceManager = GameObject.Find("ResourceManager").GetComponent<ResourceManager>();
         ropeDisp = GameObject.Find("Player").GetComponentInChildren<RopeDisplayer>();
         ropeLenght = ropeDisp.ropeLength;
+        resourceManager.addRopes((ropeLenght + 1) * -1);
     }
     private void Start()
     {
@@ -62,16 +63,17 @@ public class Rope_Fly : MonoBehaviour
         GameObject ropeHookInstance = new GameObject();
         int n = 1;
 
-        if (resourceManager.getCurrentRopes() > 0 && deploying == false)
+
+        if (deploying == false)
         {
             ropeHookInstance = Instantiate(ropeHook, goal, Quaternion.identity);
             deploying = true;
             lastRopePos = ropeHookInstance.transform.position.y;
-            resourceManager.addRopes(-1);
+            //resourceManager.addRopes(-1);
         }
 
         for (int i = 1; i <= ropeLenght; i++) {
-            resourceManager.addRopes(-1);
+            //resourceManager.addRopes(-1);
              Instantiate(rope, new Vector3(goal.x, goal.y - i, goal.z), Quaternion.identity, ropeHookInstance.transform);
         }
 

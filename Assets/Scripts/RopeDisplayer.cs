@@ -38,7 +38,7 @@ public class RopeDisplayer : MonoBehaviour
     }
     void Update()
     {
-        
+        Debug.Log(ropeLength  + " : " + resourceManager.getCurrentRopes());
         RaycastHit2D rayHit = Physics2D.Raycast(transform.position, new Vector2(0, 1), rayDistance);
         Debug.DrawRay(transform.position, new Vector2(0, rayDistance), Color.green);
 
@@ -92,8 +92,12 @@ public class RopeDisplayer : MonoBehaviour
 
        // Debug.Log(Input.GetAxisRaw("RopeAddRemove"));
 
-        if (ropeLength > resourceManager.getCurrentRopes()) {
+        if (ropeLength >= resourceManager.getCurrentRopes()) {
             ropeLength = resourceManager.getCurrentRopes() - 1;
+        }
+
+        if (ropeLength < 0) {
+            ropeLength = 0;
         }
 
         if (Input.GetKeyDown("up") && ropeLength > 0)
