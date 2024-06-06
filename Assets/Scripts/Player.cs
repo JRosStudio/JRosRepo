@@ -104,9 +104,12 @@ public class Player : MonoBehaviour
     private Vector3 lastRopeRail;
     public HashSet<GameObject> ropesHashSet = new HashSet<GameObject>();
     public bool readyToShootArrow;
+    public bool ShootArrowBreak = true;
 
     private bool groundedToggle = false;
     public bool gamePaused = false;
+
+
     private void Update()
     {
         //Debug.Log(inRope);
@@ -346,7 +349,7 @@ public class Player : MonoBehaviour
 
     private void RopeShoot()
     {
-        if (Input.GetButtonDown("Fire2") && readyToShootArrow && !gamePaused) {
+        if (Input.GetButtonDown("Fire2") && readyToShootArrow && !gamePaused && ShootArrowBreak) {
 
             GameObject ropeFlyInstance = Instantiate(ropeFly, gameObject.transform.position, Quaternion.identity);
             ropeFlyInstance.GetComponent<Rope_Fly>().StartMovement(ropeDisplayer.GetComponent<RopeDisplayer>().hitPosition);
