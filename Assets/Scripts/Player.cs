@@ -37,8 +37,11 @@ public class Player : MonoBehaviour
     public float originalGravityScale = 5;
     public float horizontal;
     public float vertical;
-    public float speed = 8f;
-    public float speedGround = 8f;
+    private float speed = 0f;
+    private float maxSpeed = 0f;
+    public float aceleration;
+    public float deceleration;
+    public float speedGround = 6f;
     public float speedWater = 5f;
     public float speedClimb = 3f;
     public float speedClimbNoStamina = 1f;
@@ -73,7 +76,7 @@ public class Player : MonoBehaviour
     private float dashingPower = 20f;
     private float dashingTime = 0.2f;
     private float dashingCooldown = 1f;*/
-    private float coyoteTime = 0.2f;
+    private float coyoteTime = 0.1f;
     private float coyoteTimeCounter;
     private float coyoteTimeWall = 0.2f;
     private float coyoteTimeCounterWall;
@@ -108,6 +111,7 @@ public class Player : MonoBehaviour
 
     private bool groundedToggle = false;
     public bool gamePaused = false;
+    private float lastDirection;
 
 
     private void Update()
@@ -123,12 +127,12 @@ public class Player : MonoBehaviour
 
             if (!inWater)
             {
-                speed = speedGround;
+                maxSpeed = speedGround;
                 jumpingPower = jumpingPowerGround;
             }
             else {
                 rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -wallSlidingSpeed, float.MaxValue));
-                speed = speedWater;
+                maxSpeed = speedWater;
                 jumpingPower = jumpingPowerWater;
             }
 
@@ -166,7 +170,7 @@ public class Player : MonoBehaviour
             }
 
             //Sprite Walking
-            if (IsGrounded() && horizontal != 0 && alive && !inRope && !isAttacking && !gamePaused)
+            if (IsGrounded() && speed != 0 && alive && !inRope && !isAttacking && !gamePaused)
             {
                 animation.speed = 1;
                 coyoteTimeCounter = coyoteTime;
@@ -398,8 +402,42 @@ public class Player : MonoBehaviour
     private void Walk() {
         if (!isWallJumping && !IsCrouching() && isAttacking == false && !inRope /*&& !IsRuning()*/)
         {
-            //animation.SetInteger("State", 1);
-            rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
+            Debug.Log(speed + " = speed | speedGround = " + speedGround + " | horizontal " + horizontal);
+            if ((speed<maxSpeed || speed > -maxSpeed) && (horizontal > 0.2f || horizontal < -0.2f)) {
+                Debug.Log("ACELERANDO");
+                speed += aceleration * Time.deltaTime;
+            }
+
+            if (horizontal < 0.2f && horizontal > -0.2f && speed != 0) {
+                Debug.Log("FRENANDO");
+                speed -= deceleration * Time.deltaTime;
+
+                if (speed < 1f && speed > -1) {
+                    speed = 0;
+                }
+            }
+
+            if (speed > maxSpeed ) {
+                speed = maxSpeed;
+            }
+            if (speed < -maxSpeed)
+            {
+                speed = -maxSpeed;
+            }
+
+            if ((horizontal > 0.2f || horizontal < -0.2f)) {
+                rb.velocity = new Vector2(speed * horizontal, rb.velocity.y);
+                lastDirection = horizontal;
+                if (IsWalled())
+                {
+                    speed = 0;
+                }
+            }
+
+            if ((horizontal < 0.2f || horizontal > -0.2f)) {
+                rb.velocity = new Vector2(speed * lastDirection, rb.velocity.y);
+            }
+            
 
         }
         if (IsCrouching() || isAttacking == true)

@@ -55712,6 +55712,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 43062827, guid: 73aef0665f2980640ab39735b7e9a172, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.32
+      objectReference: {fileID: 0}
     - target: {fileID: 43062828, guid: 73aef0665f2980640ab39735b7e9a172, type: 3}
       propertyPath: ropesUsed_Txt
       value: 
@@ -55793,6 +55797,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 6224833077410629764, guid: 930b425ee2f210444bcdb4dc4137ac4e, type: 3}
     - target: {fileID: 4953929469826053817, guid: 73aef0665f2980640ab39735b7e9a172, type: 3}
+      propertyPath: speed
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4953929469826053817, guid: 73aef0665f2980640ab39735b7e9a172, type: 3}
       propertyPath: sweat
       value: 
       objectReference: {fileID: 4953929469504842019}
@@ -55821,8 +55829,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1900634974}
     - target: {fileID: 4953929469826053817, guid: 73aef0665f2980640ab39735b7e9a172, type: 3}
+      propertyPath: aceleration
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 4953929469826053817, guid: 73aef0665f2980640ab39735b7e9a172, type: 3}
       propertyPath: speedGround
-      value: 6
+      value: 6.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4953929469826053817, guid: 73aef0665f2980640ab39735b7e9a172, type: 3}
+      propertyPath: deceleration
+      value: 27
       objectReference: {fileID: 0}
     - target: {fileID: 4953929469826053817, guid: 73aef0665f2980640ab39735b7e9a172, type: 3}
       propertyPath: ropeDisplayer

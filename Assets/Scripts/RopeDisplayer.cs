@@ -38,7 +38,7 @@ public class RopeDisplayer : MonoBehaviour
     }
     void Update()
     {
-        Debug.Log(ropeLength  + " : " + resourceManager.getCurrentRopes());
+        
         RaycastHit2D rayHit = Physics2D.Raycast(transform.position, new Vector2(0, 1), rayDistance);
         Debug.DrawRay(transform.position, new Vector2(0, rayDistance), Color.green);
 
