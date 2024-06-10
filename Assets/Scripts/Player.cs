@@ -30,6 +30,8 @@ public class Player : MonoBehaviour
 
     public bool alive = true;
     
+    [SerializeField]
+    private GameObject wallRockCheck;
 
     [SerializeField]
     public Animator transition;
@@ -37,6 +39,7 @@ public class Player : MonoBehaviour
     public float originalGravityScale = 5;
     public float horizontal;
     public float vertical;
+    [SerializeField]
     private float speed = 0f;
     private float maxSpeed = 0f;
     public float aceleration;
@@ -378,6 +381,7 @@ public class Player : MonoBehaviour
         }*/
         if (alive) {
             Walk();
+           
         }
 
         //Run();
@@ -402,14 +406,14 @@ public class Player : MonoBehaviour
     private void Walk() {
         if (!isWallJumping && !IsCrouching() && isAttacking == false && !inRope /*&& !IsRuning()*/)
         {
-            Debug.Log(speed + " = speed | speedGround = " + speedGround + " | horizontal " + horizontal);
+            //Debug.Log(speed + " = speed | speedGround = " + speedGround + " | horizontal " + horizontal);
             if ((speed<maxSpeed || speed > -maxSpeed) && (horizontal > 0.2f || horizontal < -0.2f)) {
-                Debug.Log("ACELERANDO");
+                //Debug.Log("ACELERANDO");
                 speed += aceleration * Time.deltaTime;
             }
 
             if (horizontal < 0.2f && horizontal > -0.2f && speed != 0) {
-                Debug.Log("FRENANDO");
+                //Debug.Log("FRENANDO");
                 speed -= deceleration * Time.deltaTime;
 
                 if (speed < 1f && speed > -1) {
@@ -428,7 +432,7 @@ public class Player : MonoBehaviour
             if ((horizontal > 0.2f || horizontal < -0.2f)) {
                 rb.velocity = new Vector2(speed * horizontal, rb.velocity.y);
                 lastDirection = horizontal;
-                if (IsWalled())
+                if (IsWalled() && !IsWallRock())
                 {
                     speed = 0;
                 }
@@ -442,10 +446,12 @@ public class Player : MonoBehaviour
         }
         if (IsCrouching() || isAttacking == true)
         {
-
+            
             rb.velocity = new Vector2(0, rb.velocity.y);
         }
     }
+
+    
 
     public void SpawnSmokeJump() {
        GameObject smk = Instantiate(smokeJump, gameObject.transform.position, Quaternion.identity);
@@ -472,6 +478,11 @@ public class Player : MonoBehaviour
         if (Input.GetButtonDown("Jump") && coyoteTimeCounter > 0 && !IsCrouching())
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
+
+            if (speed < maxSpeed/2 && horizontal != 0) {
+                speed = maxSpeed/2;
+            }
+
             SpawnSmokeJump();
         }
 
@@ -607,12 +618,10 @@ public class Player : MonoBehaviour
         if (vertical < -0.5 && IsGrounded())
         {
             animation.SetInteger("State", 5);
-
+            speed = 0;
             return true;
         }
         else {
-            if (vertical >= -0.5) { 
-            }
             return false;
         }
     }
@@ -620,6 +629,19 @@ public class Player : MonoBehaviour
     private bool IsWalled()
     {
         return Physics2D.OverlapCircle(wallCheck.position, 0.2f, wallLayer);
+        
+    }
+
+    private bool IsWallRock(){
+       Collider2D col = Physics2D.OverlapCircle(wallCheck.position, 0.2f, wallLayer);
+        if (col != null)
+        {
+            Debug.Log("ROCK DETECTED = " + col.CompareTag("Rock"));
+            return col.CompareTag("Rock");
+        }
+        else {
+            return false;
+        }
         
     }
 
@@ -723,8 +745,11 @@ public class Player : MonoBehaviour
         {
             stamina.WallJumpStaminaLoss();
             isWallJumping = true;
-            rb.velocity = new Vector2(wallJumpingDirection * wallJumpingPower.x, wallJumpingPower.y);
+            rb.velocity = new Vector2(wallJumpingDirection * wallJumpingPower.x, wallJumpingPower.y);  
             wallJumpingCounter = 0f;
+            if (horizontal != 0) {
+                speed = maxSpeed;
+            }
 
             if (transform.localScale.x != wallJumpingDirection)
             {
