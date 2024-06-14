@@ -71,6 +71,8 @@ public class Player : MonoBehaviour
     private Vector2 ropeJumpingPower = new Vector2(12f, 12f);
     private Vector2 ropeJumpingPowerNoStamina = new Vector2(0.2f, 0.2f);
 
+    
+
     //private float jumpStaminaMaxCounter = 0.6f;
     //private float jumpStaminaCounter;
 
@@ -421,6 +423,9 @@ public class Player : MonoBehaviour
                 }
             }
 
+
+
+
             if (speed > maxSpeed ) {
                 speed = maxSpeed;
             }
@@ -441,9 +446,10 @@ public class Player : MonoBehaviour
             if ((horizontal < 0.2f || horizontal > -0.2f)) {
                 rb.velocity = new Vector2(speed * lastDirection, rb.velocity.y);
             }
-            
+
 
         }
+
         if (IsCrouching() || isAttacking == true)
         {
             
@@ -780,6 +786,7 @@ public class Player : MonoBehaviour
             Vector3 localScale = transform.localScale;
             localScale.x *= -1f;
             transform.localScale = localScale;
+            speed = maxSpeed * 0.1f;
         }
     }
 
