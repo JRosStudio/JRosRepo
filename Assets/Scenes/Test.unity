@@ -52748,6 +52748,9 @@ MonoBehaviour:
   animation: {fileID: 1900634978}
   BlackScreen: {fileID: 1430484176}
   player: {fileID: 327081883}
+  firstButton: {fileID: 831463714}
+  secondButton: {fileID: 1277398082}
+  thirdButton: {fileID: 1592430515}
 --- !u!1 &1910054158
 GameObject:
   m_ObjectHideFlags: 0
