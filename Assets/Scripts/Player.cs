@@ -105,7 +105,7 @@ public class Player : MonoBehaviour
     private double fallMultiplier = 2.5f;
     private double lowJumpMultiplier = 2f;
 
-    private double lastYVelocity;
+    
 
     public bool inWater = false;
     public bool inRope = false;
@@ -118,15 +118,23 @@ public class Player : MonoBehaviour
     public bool gamePaused = false;
     private float lastDirection;
 
+    private float fallingTime;
+    private float lastFallingTime;
+    private bool resetFallingTime;
+    public float fallingTimeLimit;
 
     private void Update()
     {
+        
         //Debug.Log(inRope);
         if (!gamePaused)
         {
-                if (!IsGrounded())
+          
+
+            if (rb.velocity.y < -1)
             {
-                lastYVelocity = rb.velocity.y;
+                fallingTime += Time.deltaTime;
+                lastFallingTime = fallingTime ;
             }
 
 
@@ -144,6 +152,10 @@ public class Player : MonoBehaviour
             if (inWater && stamina.GetCurrentStamina() == 0 && !inRope)
             {
                 Death();
+            }
+            if (inWater) {
+                lastFallingTime = 0;
+                fallingTime = 0;
             }
 
             if (Input.GetKeyDown(KeyCode.R)) {
@@ -554,11 +566,19 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void checkFallingDeath() {
-        //Debug.Log(lastYVelocity);
-        if (lastYVelocity < -30 && !inWater && !IsWalled()) {
+    public bool checkFallingDeath() {
+        
+        /*if (lastFallingTime < -30 && !inWater && !IsWalled()) {
             Death();
+        }*/
+        if (lastFallingTime > fallingTimeLimit) {
+            //Debug.Log("Too High");
+            return true;
         }
+        else {
+            return false;
+        }
+
     }
 
     public void Death() {
@@ -642,7 +662,7 @@ public class Player : MonoBehaviour
        Collider2D col = Physics2D.OverlapCircle(wallCheck.position, 0.2f, wallLayer);
         if (col != null)
         {
-            Debug.Log("ROCK DETECTED = " + col.CompareTag("Rock"));
+            //Debug.Log("ROCK DETECTED = " + col.CompareTag("Rock"));
             return col.CompareTag("Rock");
         }
         else {
@@ -657,6 +677,8 @@ public class Player : MonoBehaviour
         {
             isWallSliding = true;
             rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -wallSlidingSpeed, float.MaxValue));
+            fallingTime = 0;
+            lastFallingTime = 0;
         }
         else
         {
@@ -792,13 +814,20 @@ public class Player : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        
+
         if (collision.gameObject.tag == "Enemy" || collision.gameObject.layer == 8 || collision.gameObject.tag == "Spikes" ) {
             Death();
         }
 
-        if (collision.gameObject.tag == "Ground" || collision.gameObject.layer == 3) {
-            checkFallingDeath();
-            lastYVelocity = 0;
+        if (collision.gameObject.tag == "Ground" || collision.gameObject.layer == 3 || collision.gameObject.tag == "OneWayPlatform")
+        {
+            //Debug.Log(lastFallingTime);
+            if (checkFallingDeath()) {
+                Death();
+            }
+            fallingTime = 0;
+            lastFallingTime = 0;
             //SpawnSmokeJump();
         }
 

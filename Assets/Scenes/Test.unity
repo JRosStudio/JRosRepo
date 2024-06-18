@@ -36640,7 +36640,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 29
+  m_RootOrder: 30
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &463803632
 GameObject:
@@ -45340,7 +45340,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4387763192419913046, guid: bd9ebe6be98f04f21a890d1823136c48, type: 3}
       propertyPath: m_RootOrder
-      value: 30
+      value: 29
       objectReference: {fileID: 0}
     - target: {fileID: 4387763192419913046, guid: bd9ebe6be98f04f21a890d1823136c48, type: 3}
       propertyPath: m_LocalPosition.x
@@ -46388,7 +46388,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 831463717}
   m_OnClick:
     m_PersistentCalls:
@@ -47665,7 +47665,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3567821958304461329, guid: cf60dbdb4d1b449eeaf5441fd250766b, type: 3}
       propertyPath: m_RootOrder
-      value: 14
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 3567821958304461329, guid: cf60dbdb4d1b449eeaf5441fd250766b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -48077,7 +48077,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1277398085}
   m_OnClick:
     m_PersistentCalls:
@@ -49408,7 +49408,7 @@ Transform:
   m_Children:
   - {fileID: 1573413701}
   m_Father: {fileID: 0}
-  m_RootOrder: 19
+  m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1562382119 stripped
 MonoBehaviour:
@@ -49660,7 +49660,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1592430518}
   m_OnClick:
     m_PersistentCalls:
@@ -50766,7 +50766,7 @@ Transform:
   m_Children:
   - {fileID: 655870044}
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1674292053
 GameObject:
@@ -55272,7 +55272,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 20775780293054257, guid: 181b6130f3173f5438867e788fe36e02, type: 3}
       propertyPath: m_RootOrder
-      value: 20
+      value: 19
       objectReference: {fileID: 0}
     - target: {fileID: 20775780293054257, guid: 181b6130f3173f5438867e788fe36e02, type: 3}
       propertyPath: m_LocalPosition.x
@@ -55924,6 +55924,10 @@ PrefabInstance:
       propertyPath: wallRockCheck
       value: 
       objectReference: {fileID: 339518462}
+    - target: {fileID: 4953929469826053817, guid: 73aef0665f2980640ab39735b7e9a172, type: 3}
+      propertyPath: fallingTimeLimit
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 4953929470782680709, guid: 73aef0665f2980640ab39735b7e9a172, type: 3}
       propertyPath: m_Enabled
       value: 0
