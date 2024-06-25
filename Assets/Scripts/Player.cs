@@ -123,9 +123,21 @@ public class Player : MonoBehaviour
     private bool resetFallingTime;
     public float fallingTimeLimit;
 
+    [SerializeField]
+    public Image fallingBar;
+
     private void Update()
     {
-        
+        fallingBar.fillAmount = lastFallingTime / fallingTimeLimit;
+
+        if (lastFallingTime / fallingTimeLimit >= 1) {
+            fallingBar.color = Color.red;
+        }
+        if (lastFallingTime / fallingTimeLimit < 1)
+        {
+            fallingBar.color = Color.white;
+        }
+
         //Debug.Log(inRope);
         if (!gamePaused)
         {
@@ -189,6 +201,8 @@ public class Player : MonoBehaviour
             //Sprite Walking
             if (IsGrounded() && speed != 0 && alive && !inRope && !isAttacking && !gamePaused)
             {
+                fallingTime = 0;
+                lastFallingTime = 0;
                 animation.speed = 1;
                 coyoteTimeCounter = coyoteTime;
                 animation.SetInteger("State", 1);
@@ -231,13 +245,19 @@ public class Player : MonoBehaviour
             if (alive && inRope && !IsGrounded() && !IsWalled() && !isAttacking)
             {
                 coyoteTimeCounter = 0;
+                lastFallingTime = 0;
+                fallingTime = 0;
                 animation.SetInteger("State", 9);
 
                 if (vertical >= 0.2 || vertical <= -0.2)
                 {
+                    lastFallingTime = 0;
+                    fallingTime = 0;
                     animation.speed = 1;
                 }
                 if(vertical <= 0.2 && vertical >= -0.2) {
+                    lastFallingTime = 0;
+                    fallingTime = 0;
                     animation.speed = 0;
                 }
             }
@@ -328,6 +348,7 @@ public class Player : MonoBehaviour
 
         if (vertical >= 0.5f && ropesHashSet.Count > 0 && !inRope && !isRopeJumping)
         {
+            
             inRope = true;
             rb.gravityScale = 0;
             gameObject.transform.position = new Vector3(lastRopeRail.x, transform.position.y, transform.position.z);
@@ -554,7 +575,7 @@ public class Player : MonoBehaviour
 
     private bool IsGrounded()
     {
-        return Physics2D.OverlapBox(groundCheck.position, new Vector2(0.35f, 0.1f), 0f, groundLayer);
+        return Physics2D.OverlapBox(groundCheck.position, new Vector2(0.48f, 0.1f), 0f, groundLayer);
     }
 
     private void Golpe()
@@ -628,7 +649,7 @@ public class Player : MonoBehaviour
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = new Color(1, 1, 0, 0.75F);
-        Gizmos.DrawCube(groundCheck.position, new Vector2(0.35f, 0.1f)); 
+        Gizmos.DrawCube(groundCheck.position, new Vector2(0.48f, 0.1f)); 
         
         Gizmos.color = new Color(1, 0, 1, 0.75F);
         Gizmos.DrawSphere(wallCheck.position, 0.2f);
@@ -823,11 +844,15 @@ public class Player : MonoBehaviour
         if (collision.gameObject.tag == "Ground" || collision.gameObject.layer == 3 || collision.gameObject.tag == "OneWayPlatform")
         {
             //Debug.Log(lastFallingTime);
-            if (checkFallingDeath()) {
+            if (checkFallingDeath())
+            {
                 Death();
             }
-            fallingTime = 0;
-            lastFallingTime = 0;
+            else {
+                fallingTime = 0;
+                lastFallingTime = 0;
+            }
+            
             //SpawnSmokeJump();
         }
 
