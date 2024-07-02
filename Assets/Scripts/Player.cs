@@ -71,6 +71,8 @@ public class Player : MonoBehaviour
     private Vector2 ropeJumpingPower = new Vector2(12f, 12f);
     private Vector2 ropeJumpingPowerNoStamina = new Vector2(0.2f, 0.2f);
 
+
+
     
 
     //private float jumpStaminaMaxCounter = 0.6f;
@@ -125,6 +127,15 @@ public class Player : MonoBehaviour
 
     [SerializeField]
     public Image fallingBar;
+
+    public float respawnPosX;
+    public float respawnPosY;
+
+    private void Start()
+    {
+        respawnPosX = transform.position.x;
+        respawnPosY = transform.position.y;
+    }
 
     private void Update()
     {
@@ -275,6 +286,7 @@ public class Player : MonoBehaviour
                 groundedToggle = false;        
             }
 
+            
 
             if (isAttacking == false && alive) {
                 Jump();
@@ -308,6 +320,11 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void SetRespawnPos(float x, float y)
+    {
+        respawnPosX = x;
+        respawnPosY = y;
+    }
 
     private void Sweat()
     {
@@ -605,16 +622,28 @@ public class Player : MonoBehaviour
     public void Death() {
         alive = false;
         Invoke("TransitionOn", 1f);
-        Invoke("ReloadLevel", 1.8f);
+        Invoke("Respawn", 1.8f);
     }
 
     public void TransitionOn (){
         transition.SetInteger("Transition", 1);
 
     }
+    public void TransitionOff()
+    {
+        transition.SetInteger("Transition", 2);
+    }
 
-    private void ReloadLevel() {
-        Application.LoadLevel(Application.loadedLevel);
+    private void Respawn() {
+        transform.position = new Vector2(respawnPosX,respawnPosY);
+        alive = true;
+        lastFallingTime = 0;
+        fallingTime = 0;
+        TransitionOff();
+        animation.speed = 1;
+        coyoteTimeCounter = coyoteTime;
+        animation.SetInteger("State", 0);
+        //Application.LoadLevel(Application.loadedLevel);
     }
 
     public void GolpeImpacto() {
