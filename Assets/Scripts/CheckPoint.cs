@@ -4,27 +4,27 @@ using UnityEngine;
 
 public class CheckPoint : MonoBehaviour
 {
-    Player player;
+    private Animator checkpointAnimator;
 
     private void Start()
     {
-        player = GameObject.Find("Player").GetComponent<Player>();
+        checkpointAnimator = gameObject.GetComponent<Animator>(); 
     }
 
-    public void animationIddle() { 
-        
+    public void turnOffCheckPoint() {
+        checkpointAnimator.SetInteger("State", 0);
     }
 
-    public void ActivateCheckPoint() { 
-        
-    }
-
-    public void clearCheckpoint() { 
-        
+    public void tranistionToIddle() {
+        checkpointAnimator.SetInteger("State", 2);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-      
+        if (collision.CompareTag("Player")) {
+            collision.GetComponent<Player>().SetRespawnPos( this.transform.position.x, this.transform.position.y, gameObject);
+            checkpointAnimator.SetInteger("State", 1);
+            //code to start activation animation
+        }
     }
 }

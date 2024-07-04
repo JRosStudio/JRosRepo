@@ -127,10 +127,13 @@ public class Player : MonoBehaviour
 
     [SerializeField]
     public Image fallingBar;
+    public Image fallingIcon;
+    public Transform fallingA;
+    public Transform fallingB;
 
     public float respawnPosX;
     public float respawnPosY;
-
+    public GameObject respawnObject;
     private void Start()
     {
         respawnPosX = transform.position.x;
@@ -140,7 +143,9 @@ public class Player : MonoBehaviour
     private void Update()
     {
         fallingBar.fillAmount = lastFallingTime / fallingTimeLimit;
+        fallingIcon.transform.position = Vector3.Lerp(fallingA.position, fallingB.position, lastFallingTime / fallingTimeLimit);
 
+    
         if (lastFallingTime / fallingTimeLimit >= 1) {
             fallingBar.color = Color.red;
         }
@@ -172,7 +177,7 @@ public class Player : MonoBehaviour
                 jumpingPower = jumpingPowerWater;
             }
 
-            if (inWater && stamina.GetCurrentStamina() == 0 && !inRope)
+            if (inWater && stamina.GetCurrentStamina() == 0 && !inRope && alive)
             {
                 Death();
             }
@@ -320,10 +325,14 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void SetRespawnPos(float x, float y)
+    public void SetRespawnPos(float x, float y, GameObject respawnObj)
     {
+        if (respawnObject != null) {
+            respawnObject.GetComponent<CheckPoint>().turnOffCheckPoint();
+        }
         respawnPosX = x;
         respawnPosY = y;
+        respawnObject = respawnObj;
     }
 
     private void Sweat()
@@ -459,12 +468,12 @@ public class Player : MonoBehaviour
         if (!isWallJumping && !IsCrouching() && isAttacking == false && !inRope /*&& !IsRuning()*/)
         {
             //Debug.Log(speed + " = speed | speedGround = " + speedGround + " | horizontal " + horizontal);
-            if ((speed<maxSpeed || speed > -maxSpeed) && (horizontal > 0.2f || horizontal < -0.2f)) {
+            if ((speed<maxSpeed || speed > -maxSpeed) && (horizontal > 0.1f || horizontal < -0.1f)) {
                 //Debug.Log("ACELERANDO");
                 speed += aceleration * Time.deltaTime;
             }
 
-            if (horizontal < 0.2f && horizontal > -0.2f && speed != 0) {
+            if (horizontal < 0.1f && horizontal > -0.1f && speed != 0) {
                 //Debug.Log("FRENANDO");
                 speed -= deceleration * Time.deltaTime;
 
@@ -484,7 +493,7 @@ public class Player : MonoBehaviour
                 speed = -maxSpeed;
             }
 
-            if ((horizontal > 0.2f || horizontal < -0.2f)) {
+            if ((horizontal > 0.1f || horizontal < -0.1f)) {
                 rb.velocity = new Vector2(speed * horizontal, rb.velocity.y);
                 lastDirection = horizontal;
                 if (IsWalled() && !IsWallRock())
@@ -493,7 +502,7 @@ public class Player : MonoBehaviour
                 }
             }
 
-            if ((horizontal < 0.2f || horizontal > -0.2f)) {
+            if ((horizontal < 0.1f || horizontal > -0.1f)) {
                 rb.velocity = new Vector2(speed * lastDirection, rb.velocity.y);
             }
 
@@ -627,7 +636,6 @@ public class Player : MonoBehaviour
 
     public void TransitionOn (){
         transition.SetInteger("Transition", 1);
-
     }
     public void TransitionOff()
     {
@@ -639,10 +647,11 @@ public class Player : MonoBehaviour
         alive = true;
         lastFallingTime = 0;
         fallingTime = 0;
-        TransitionOff();
+        inWater = false;
         animation.speed = 1;
         coyoteTimeCounter = coyoteTime;
         animation.SetInteger("State", 0);
+        TransitionOff();
         //Application.LoadLevel(Application.loadedLevel);
     }
 
