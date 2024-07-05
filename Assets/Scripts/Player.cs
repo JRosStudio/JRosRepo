@@ -133,7 +133,19 @@ public class Player : MonoBehaviour
 
     public float respawnPosX;
     public float respawnPosY;
-    public GameObject respawnObject;
+    private GameObject respawnObject;
+
+    [SerializeField]
+    private GameObject rockPrefab;
+    public GameObject rock;
+    public Image fallingRockIcon;
+    private float fallingTimeRock;
+    private float lastFallingTimeRock;
+    private bool resetFallingTimeRock;
+    public float fallingTimeLimitRock;
+
+ 
+
     private void Start()
     {
         respawnPosX = transform.position.x;
@@ -144,6 +156,7 @@ public class Player : MonoBehaviour
     {
         fallingBar.fillAmount = lastFallingTime / fallingTimeLimit;
         fallingIcon.transform.position = Vector3.Lerp(fallingA.position, fallingB.position, lastFallingTime / fallingTimeLimit);
+        fallingRockIcon.transform.position = Vector3.Lerp(new Vector3(fallingA.position.x + 0.5f, fallingA.position.y  , fallingA.position.z), new Vector3(fallingB.position.x + 0.5f, fallingB.position.y, fallingB.position.z), lastFallingTimeRock / fallingTimeLimitRock);
 
     
         if (lastFallingTime / fallingTimeLimit >= 1) {
@@ -154,10 +167,41 @@ public class Player : MonoBehaviour
             fallingBar.color = Color.white;
         }
 
+        //Falling Icon Rock
+        if (lastFallingTimeRock / fallingTimeLimitRock > 0.2f) {
+            fallingRockIcon.gameObject.SetActive(true);
+        }
+
+        if (lastFallingTimeRock / fallingTimeLimitRock < 0.2f)
+        {
+            fallingRockIcon.gameObject.SetActive(false);
+        }
+
+
+
         //Debug.Log(inRope);
         if (!gamePaused)
         {
-          
+            
+            //Rock Falling
+            if (rock!=null && rock.GetComponent<Rigidbody2D>().velocity.y  < 1) {
+
+                fallingTimeRock += Time.deltaTime;
+                lastFallingTimeRock = fallingTimeRock;
+            }
+
+            if (rock != null && rock.GetComponent<Rigidbody2D>().velocity.y < -15)
+            {
+                rock.GetComponent<Rigidbody2D>().velocity = new Vector2(rb.velocity.x, -15);
+            }
+
+            if (rock == null) {
+                lastFallingTimeRock = 0;
+                fallingTimeRock = 0;
+            }
+
+
+            //Player Falling
 
             if (rb.velocity.y < -1)
             {
@@ -305,6 +349,7 @@ public class Player : MonoBehaviour
                 Rope();
                 RopeShoot();
                 Sweat();
+                ThrowRock();
             }
 
             /* if (Input.GetButtonDown("Fire3") && stamina.GetCurrentStamina() >= stamina.GetDashStaminaCost()) {
@@ -896,6 +941,13 @@ public class Player : MonoBehaviour
 
         
     }
+
+    public void ThrowRock() {
+        if (Input.GetKeyDown(KeyCode.P) && rock == null) {
+             rock = Instantiate(rockPrefab, new Vector3(groundCheck.transform.position.x + (0.5f * gameObject.transform.localScale.x), groundCheck.transform.position.y , groundCheck.transform.position.z), Quaternion.identity);
+        }
+    }
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
