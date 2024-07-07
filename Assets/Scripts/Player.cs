@@ -127,6 +127,8 @@ public class Player : MonoBehaviour
 
     [SerializeField]
     public Image fallingBar;
+    [SerializeField]
+    public GameObject fallingBarParent;
     public Image fallingIcon;
     public Transform fallingA;
     public Transform fallingB;
@@ -139,11 +141,13 @@ public class Player : MonoBehaviour
     private GameObject rockPrefab;
     public GameObject rock;
     public Image fallingRockIcon;
+    public GameObject fallingRockBreakIcon;
     private float fallingTimeRock;
     private float lastFallingTimeRock;
     private bool resetFallingTimeRock;
     public float fallingTimeLimitRock;
-
+    private bool fallingRockFlag;
+    private Vector3 fallingRockBreakPosIcon;
  
 
     private void Start()
@@ -154,10 +158,11 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
+
         fallingBar.fillAmount = lastFallingTime / fallingTimeLimit;
         fallingIcon.transform.position = Vector3.Lerp(fallingA.position, fallingB.position, lastFallingTime / fallingTimeLimit);
-        fallingRockIcon.transform.position = Vector3.Lerp(new Vector3(fallingA.position.x + 0.5f, fallingA.position.y  , fallingA.position.z), new Vector3(fallingB.position.x + 0.5f, fallingB.position.y, fallingB.position.z), lastFallingTimeRock / fallingTimeLimitRock);
-
+        Vector3 fallingRockIconPos = Vector3.Lerp(new Vector3(fallingA.position.x + 0.5f, fallingA.position.y, fallingA.position.z), new Vector3(fallingB.position.x + 0.5f, fallingB.position.y, fallingB.position.z), lastFallingTimeRock / fallingTimeLimitRock);
+        fallingRockIcon.transform.position = fallingRockIconPos;
     
         if (lastFallingTime / fallingTimeLimit >= 1) {
             fallingBar.color = Color.red;
@@ -167,13 +172,24 @@ public class Player : MonoBehaviour
             fallingBar.color = Color.white;
         }
 
+
         //Falling Icon Rock
         if (lastFallingTimeRock / fallingTimeLimitRock > 0.2f) {
             fallingRockIcon.gameObject.SetActive(true);
+            fallingRockFlag = true;
+            fallingRockBreakPosIcon = fallingRockIcon.transform.localPosition;
         }
+
+        Debug.Log(fallingRockBreakPosIcon);
 
         if (lastFallingTimeRock / fallingTimeLimitRock < 0.2f)
         {
+            if (fallingRockFlag) {
+                GameObject rockFlag = Instantiate(fallingRockBreakIcon, fallingRockBreakPosIcon, Quaternion.Euler(0,0,90));
+                rockFlag.transform.SetParent(fallingBarParent.transform, false);
+                rockFlag.GetComponent<RockBreakIcon>().setAnimBool("Broken", true);
+                fallingRockFlag = false;
+            }
             fallingRockIcon.gameObject.SetActive(false);
         }
 

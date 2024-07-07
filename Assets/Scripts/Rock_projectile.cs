@@ -5,10 +5,12 @@ using UnityEngine;
 public class Rock_projectile : MonoBehaviour
 {
     Player player;
+    Animator anim;
 
     private void Start()
     {
         player = FindAnyObjectByType<Player>();
+        anim = GetComponent<Animator>();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -16,15 +18,20 @@ public class Rock_projectile : MonoBehaviour
         if (collision.gameObject.tag == "Ground") {
             Debug.Log("ROCK HIT GROUND");
             player.rock = null;
-            Destroy(gameObject);
+            anim.SetBool("Break", true);
             
         }
         if (collision.gameObject.tag == "Rock")
         {
             Debug.Log("ROCK HIT ROCK");
             player.rock = null;
-            Destroy(gameObject);
+            anim.SetBool("Break", true);
         }
+    }
+
+    public void DestroyRock()
+    {
+        Destroy(gameObject);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -33,7 +40,8 @@ public class Rock_projectile : MonoBehaviour
         {
             Debug.Log("ROCK HIT WATER");
             player.rock = null;
-            Destroy(gameObject);
+            anim.SetBool("Break", true);
         }
     }
+
 }
