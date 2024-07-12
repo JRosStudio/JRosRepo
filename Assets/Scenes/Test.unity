@@ -47071,18 +47071,18 @@ PrefabInstance:
     - target: {fileID: 4387763192419913045, guid: bd9ebe6be98f04f21a890d1823136c48, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 1509672134, guid: 37922a82b39636c4daff72dd6f2aa15f, type: 3}
+      objectReference: {fileID: -2109076539, guid: fa1bf735dcd5b6842ba4e15c2f916af8, type: 3}
     - target: {fileID: 4387763192419913045, guid: bd9ebe6be98f04f21a890d1823136c48, type: 3}
       propertyPath: m_Color.b
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4387763192419913045, guid: bd9ebe6be98f04f21a890d1823136c48, type: 3}
       propertyPath: m_Color.g
-      value: 0.34509802
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4387763192419913045, guid: bd9ebe6be98f04f21a890d1823136c48, type: 3}
       propertyPath: m_Color.r
-      value: 0.7459911
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4387763192419913046, guid: bd9ebe6be98f04f21a890d1823136c48, type: 3}
       propertyPath: m_RootOrder
@@ -47094,7 +47094,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4387763192419913046, guid: bd9ebe6be98f04f21a890d1823136c48, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -6.14
+      value: -6.43
       objectReference: {fileID: 0}
     - target: {fileID: 4387763192419913046, guid: bd9ebe6be98f04f21a890d1823136c48, type: 3}
       propertyPath: m_LocalPosition.z
@@ -47130,7 +47130,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4387763192419913050, guid: bd9ebe6be98f04f21a890d1823136c48, type: 3}
       propertyPath: m_Name
-      value: GoalItem (13)
+      value: FRIEND 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bd9ebe6be98f04f21a890d1823136c48, type: 3}
@@ -52147,18 +52147,18 @@ PrefabInstance:
     - target: {fileID: 4387763192419913045, guid: bd9ebe6be98f04f21a890d1823136c48, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 1509672134, guid: 37922a82b39636c4daff72dd6f2aa15f, type: 3}
+      objectReference: {fileID: -708426568, guid: fa1bf735dcd5b6842ba4e15c2f916af8, type: 3}
     - target: {fileID: 4387763192419913045, guid: bd9ebe6be98f04f21a890d1823136c48, type: 3}
       propertyPath: m_Color.b
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4387763192419913045, guid: bd9ebe6be98f04f21a890d1823136c48, type: 3}
       propertyPath: m_Color.g
-      value: 0.34509802
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4387763192419913045, guid: bd9ebe6be98f04f21a890d1823136c48, type: 3}
       propertyPath: m_Color.r
-      value: 0.7459911
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4387763192419913046, guid: bd9ebe6be98f04f21a890d1823136c48, type: 3}
       propertyPath: m_RootOrder
@@ -52170,7 +52170,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4387763192419913046, guid: bd9ebe6be98f04f21a890d1823136c48, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -6.14
+      value: -6.43
       objectReference: {fileID: 0}
     - target: {fileID: 4387763192419913046, guid: bd9ebe6be98f04f21a890d1823136c48, type: 3}
       propertyPath: m_LocalPosition.z
@@ -52206,7 +52206,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4387763192419913050, guid: bd9ebe6be98f04f21a890d1823136c48, type: 3}
       propertyPath: m_Name
-      value: GoalItem (14)
+      value: FRIEND 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bd9ebe6be98f04f21a890d1823136c48, type: 3}
@@ -52540,18 +52540,18 @@ PrefabInstance:
     - target: {fileID: 4387763192419913045, guid: bd9ebe6be98f04f21a890d1823136c48, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 1509672134, guid: 37922a82b39636c4daff72dd6f2aa15f, type: 3}
+      objectReference: {fileID: 1775181361, guid: fa1bf735dcd5b6842ba4e15c2f916af8, type: 3}
     - target: {fileID: 4387763192419913045, guid: bd9ebe6be98f04f21a890d1823136c48, type: 3}
       propertyPath: m_Color.b
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4387763192419913045, guid: bd9ebe6be98f04f21a890d1823136c48, type: 3}
       propertyPath: m_Color.g
-      value: 0.34509802
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4387763192419913045, guid: bd9ebe6be98f04f21a890d1823136c48, type: 3}
       propertyPath: m_Color.r
-      value: 0.7459911
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4387763192419913046, guid: bd9ebe6be98f04f21a890d1823136c48, type: 3}
       propertyPath: m_RootOrder
@@ -52563,7 +52563,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4387763192419913046, guid: bd9ebe6be98f04f21a890d1823136c48, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -6.1699996
+      value: -6.43
       objectReference: {fileID: 0}
     - target: {fileID: 4387763192419913046, guid: bd9ebe6be98f04f21a890d1823136c48, type: 3}
       propertyPath: m_LocalPosition.z
@@ -52599,7 +52599,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4387763192419913050, guid: bd9ebe6be98f04f21a890d1823136c48, type: 3}
       propertyPath: m_Name
-      value: GoalItem (12)
+      value: FRIEND 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bd9ebe6be98f04f21a890d1823136c48, type: 3}
@@ -60418,6 +60418,10 @@ PrefabInstance:
       propertyPath: fallingTimeLimitRock
       value: 0.45
       objectReference: {fileID: 0}
+    - target: {fileID: 4953929469826053817, guid: 73aef0665f2980640ab39735b7e9a172, type: 3}
+      propertyPath: fallingPlayerIconStay
+      value: 
+      objectReference: {fileID: 5075106609889714005, guid: 4f5f896fff110aa49ad41406b7043070, type: 3}
     - target: {fileID: 4953929470706259927, guid: 73aef0665f2980640ab39735b7e9a172, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.058

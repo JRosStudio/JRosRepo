@@ -142,13 +142,16 @@ public class Player : MonoBehaviour
     public GameObject rock;
     public Image fallingRockIcon;
     public GameObject fallingRockBreakIcon;
+    public GameObject fallingPlayerIconStay;
     private float fallingTimeRock;
     private float lastFallingTimeRock;
     private bool resetFallingTimeRock;
     public float fallingTimeLimitRock;
     private bool fallingRockFlag;
     private Vector3 fallingRockBreakPosIcon;
- 
+    private bool fallingPlayerFlag;
+    private Vector3 fallingPlayerStayPos;
+
 
     private void Start()
     {
@@ -171,6 +174,23 @@ public class Player : MonoBehaviour
         {
             fallingBar.color = Color.white;
         }
+        if (lastFallingTime / fallingTimeLimit > 0.2f)
+        {
+            fallingPlayerFlag = true;
+            fallingPlayerStayPos = fallingIcon.transform.localPosition;
+        }
+        if (lastFallingTime / fallingTimeLimit < 0.2f)
+        {
+            if (fallingPlayerFlag)
+            {
+                GameObject playerIconStay = Instantiate(fallingPlayerIconStay, fallingPlayerStayPos, Quaternion.Euler(0, 0, 90));
+                playerIconStay.transform.SetParent(fallingBarParent.transform, false);
+
+                fallingPlayerFlag = false;
+            }
+            
+        }
+
 
 
         //Falling Icon Rock
@@ -180,7 +200,6 @@ public class Player : MonoBehaviour
             fallingRockBreakPosIcon = fallingRockIcon.transform.localPosition;
         }
 
-        Debug.Log(fallingRockBreakPosIcon);
 
         if (lastFallingTimeRock / fallingTimeLimitRock < 0.2f)
         {
