@@ -978,7 +978,7 @@ public class Player : MonoBehaviour
     }
 
     public void ThrowRock() {
-        if (Input.GetKeyDown(KeyCode.P) && rock == null) {
+        if (Input.GetButtonDown("Fire3") && rock == null) {
              rock = Instantiate(rockPrefab, new Vector3(groundCheck.transform.position.x + (0.5f * gameObject.transform.localScale.x), groundCheck.transform.position.y , groundCheck.transform.position.z), Quaternion.identity);
         }
     }
