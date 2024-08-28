@@ -15,10 +15,10 @@ MonoBehaviour:
   Path: Assets/Audio/FMOD/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638557137895641253
+  lastModified: 638604905660000000
   FileSizes:
   - Name: Desktop
-    Value: 812
+    Value: 1026
   Exists: 1
 --- !u!114 &-2668662905818286763
 MonoBehaviour:
@@ -47,6 +47,60 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 5000
+--- !u!114 &-2043940748702682663
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Placed_Paella
+  m_EditorClassIdentifier: 
+  Path: event:/Placed_Paella
+  Guid:
+    Data1: -1969829154
+    Data2: 1096499207
+    Data3: 275653523
+    Data4: 1482870768
+  Banks:
+  - {fileID: 1218904474912716178}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 0.90000004
+  MaxDistance: 20
+  Length: 172399
+--- !u!114 &-1848149515581811232
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Placed_Waterfall
+  m_EditorClassIdentifier: 
+  Path: event:/Placed_Waterfall
+  Guid:
+    Data1: -824082602
+    Data2: 1290123715
+    Data3: 1195473841
+    Data4: 485506536
+  Banks:
+  - {fileID: 1218904474912716178}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 158408
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -65,12 +119,17 @@ MonoBehaviour:
   EditorEvents:
   - {fileID: -2668662905818286763}
   - {fileID: 9036686809595176459}
+  - {fileID: 7863370114043760666}
+  - {fileID: 8700896157002360075}
+  - {fileID: 5279523353210268742}
+  - {fileID: -2043940748702682663}
+  - {fileID: -1848149515581811232}
   EditorParameters: []
   MasterBanks:
   - {fileID: 1218904474912716178}
   StringsBanks:
   - {fileID: -5226353260973369366}
-  cacheTime: 638557137895641253
+  cacheTime: 638604905660000000
   cacheVersion: 131609
 --- !u!114 &1218904474912716178
 MonoBehaviour:
@@ -87,11 +146,92 @@ MonoBehaviour:
   Path: Assets/Audio/FMOD/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638557137895641253
+  lastModified: 638604905660000000
   FileSizes:
   - Name: Desktop
-    Value: 5440
+    Value: 6323328
   Exists: 1
+--- !u!114 &5279523353210268742
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Forest_Ambience
+  m_EditorClassIdentifier: 
+  Path: event:/Forest_Ambience
+  Guid:
+    Data1: 75747182
+    Data2: 1304821222
+    Data3: -255933795
+    Data4: -1504035179
+  Banks:
+  - {fileID: 1218904474912716178}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 167203
+--- !u!114 &7863370114043760666
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Steps
+  m_EditorClassIdentifier: 
+  Path: event:/Steps
+  Guid:
+    Data1: -1835804203
+    Data2: 1332179258
+    Data3: 1562234015
+    Data4: 743048048
+  Banks:
+  - {fileID: 1218904474912716178}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 225
+--- !u!114 &8700896157002360075
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Jump
+  m_EditorClassIdentifier: 
+  Path: event:/Jump
+  Guid:
+    Data1: -1102620419
+    Data2: 1241858341
+    Data3: 661562264
+    Data4: -1721294653
+  Banks:
+  - {fileID: 1218904474912716178}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 175
 --- !u!114 &9036686809595176459
 MonoBehaviour:
   m_ObjectHideFlags: 0

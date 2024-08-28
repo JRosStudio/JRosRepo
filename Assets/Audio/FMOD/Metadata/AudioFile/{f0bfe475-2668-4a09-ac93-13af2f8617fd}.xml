@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{f0bfe475-2668-4a09-ac93-13af2f8617fd}">
+		<property name="assetPath">
+			<value>Water, Waterfall, Water, Big, Waterfall, Little Andaman SND102646.wav</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>96</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>180</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{2f34a75a-6fe4-4d44-abb7-11e819ff3800}</destination>
+		</relationship>
+	</object>
+</objects>

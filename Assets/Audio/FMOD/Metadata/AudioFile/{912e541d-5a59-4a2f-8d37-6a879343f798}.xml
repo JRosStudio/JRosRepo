@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{912e541d-5a59-4a2f-8d37-6a879343f798}">
+		<property name="assetPath">
+			<value>Water, Waterfall, Strong Flow, Forest, Lower Waterfall, People Chatter, Evening, Zenny Fall, Telluride SND69832.wav</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>96</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>158.40898958333332</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{2f34a75a-6fe4-4d44-abb7-11e819ff3800}</destination>
+		</relationship>
+	</object>
+</objects>

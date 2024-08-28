@@ -5,7 +5,7 @@ using UnityEngine;
 public class Food : MonoBehaviour
 {
 
-    public GameObject staminaManager;
+    private GameObject staminaManager;
     public void Awake()
     {
        staminaManager = GameObject.Find("StaminaManager");
@@ -17,7 +17,7 @@ public class Food : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player" && staminaManager.GetComponent<StaminaManagement>().GetCurrentFood() < 3 ) {
             staminaManager.GetComponent<StaminaManagement>().CollectFood(); ;
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
     }
 }

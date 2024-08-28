@@ -15,7 +15,7 @@ public class AudioManager : MonoBehaviour
        
         soundInstance = FMODUnity.RuntimeManager.CreateInstance("event:/Music_Test");
         //rockImpact = FMODUnity.RuntimeManager.CreateInstance("event:/RockImpact");
-        
+
         soundInstance.getDescription( out testDescription);
         testDescription.getLength(out  length);
         //Debug.Log(length);
@@ -23,6 +23,19 @@ public class AudioManager : MonoBehaviour
 
     public void playRockImpact() {
         //rockImpact.start();
+    }
+
+    public void PlayStep() {
+        FMOD.Studio.EventInstance stepInstance = FMODUnity.RuntimeManager.CreateInstance("event:/Steps");
+        stepInstance.start();
+        stepInstance.release(); // Liberar la instancia después de iniciarla
+    }
+
+    public void PlayJump()
+    {
+        FMOD.Studio.EventInstance jumpInstance = FMODUnity.RuntimeManager.CreateInstance("event:/Jump");
+        jumpInstance.start();
+        jumpInstance.release(); // Liberar la instancia después de iniciarla
     }
 
     private void Update()

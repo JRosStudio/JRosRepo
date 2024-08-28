@@ -8,6 +8,9 @@ using static Unity.Burst.Intrinsics.X86.Avx;
 public class Player : MonoBehaviour
 {
     [SerializeField]
+    AudioManager audioManager;
+
+    [SerializeField]
     StaminaManagement stamina;
 
     [SerializeField]
@@ -54,6 +57,7 @@ public class Player : MonoBehaviour
     public float jumpingPowerWater;
     public float highJumpingPower;
     private bool isFacingRight = true;
+
     //private bool isRuning;
     public bool isAttacking;
 
@@ -67,8 +71,8 @@ public class Player : MonoBehaviour
     private float wallJumpingTime = 0.2f;
     private float wallJumpingCounter;
     private float wallJumpingDuration = 0.2f;
-    private Vector2 wallJumpingPower = new Vector2(12f, 12f);
-    private Vector2 ropeJumpingPower = new Vector2(12f, 12f);
+    public Vector2 wallJumpingPower = new Vector2(12f, 16f);
+    public Vector2 ropeJumpingPower = new Vector2(12f, 12f);
     private Vector2 ropeJumpingPowerNoStamina = new Vector2(0.2f, 0.2f);
 
 
@@ -622,6 +626,7 @@ public class Player : MonoBehaviour
 
         if (Input.GetButtonDown("Jump") && coyoteTimeCounter > 0 && !IsCrouching())
         {
+            audioManager.PlayJump();
             rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
 
             if (speed < maxSpeed/2 && horizontal != 0) {
@@ -633,6 +638,7 @@ public class Player : MonoBehaviour
 
         if (Input.GetButtonUp("Jump") && rb.velocity.y > 0f)
         {
+           
             coyoteTimeCounter = 0;
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
         }
@@ -1000,6 +1006,12 @@ public class Player : MonoBehaviour
             ropesHashSet.Remove(collision.gameObject);
             
         }
+    }
+
+    /////AUADIO
+    ///
+    private void PlayStep() {
+        audioManager.PlayStep();
     }
 
     /* private void Run() {
