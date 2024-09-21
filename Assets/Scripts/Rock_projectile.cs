@@ -27,6 +27,12 @@ public class Rock_projectile : MonoBehaviour
             player.rock = null;
             anim.SetBool("Break", true);
         }
+        if (collision.gameObject.tag == "OneWayPlatform")
+        {
+            Debug.Log("ROCK HIT ONE WAY PLATFORM");
+            player.rock = null;
+            anim.SetBool("Break", true);
+        }
     }
 
     public void DestroyRock()

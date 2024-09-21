@@ -26,6 +26,7 @@ public class RopeDisplayer : MonoBehaviour
 
     private bool m_isAxisInUse = false;
 
+
     public void Awake()
     {
         resourceManager = GameObject.Find("ResourceManager").GetComponent<ResourceManager>();
@@ -34,12 +35,13 @@ public class RopeDisplayer : MonoBehaviour
     private void Start()
     {
         ropeStart = Instantiate(ropeStartPrefab, transform.position, Quaternion.identity);
+
         //ropeStart.SetActive(false);
     }
     void Update()
     {
         
-        RaycastHit2D rayHit = Physics2D.Raycast(transform.position, new Vector2(0, 1), rayDistance);
+        RaycastHit2D rayHit = Physics2D.Raycast(new Vector2 (player.projectileThrowMarker.transform.position.x , transform.position.y), new Vector2(0, 1), rayDistance);
         Debug.DrawRay(transform.position, new Vector2(0, rayDistance), Color.green);
 
         if(player.gamePaused == false) { 
@@ -49,11 +51,11 @@ public class RopeDisplayer : MonoBehaviour
                 ropeStart.transform.position = rayHit.point;
                 hitPosition = rayHit.point;
                 ropeStart.SetActive(true);
-                gameObject.GetComponentInParent<Player>().readyToShootArrow = true;
+                player.readyToShootArrow = true;
             }
             else
             {
-                gameObject.GetComponentInParent<Player>().readyToShootArrow = false;
+                player.readyToShootArrow = false;
                 ropeStart.SetActive(false);
 
                 ropesUsed_Txt.enabled = false;

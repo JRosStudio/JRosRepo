@@ -39,6 +39,16 @@ public class Player : MonoBehaviour
     [SerializeField]
     public Animator transition;
 
+    [SerializeField]
+    private GameObject projectileMaxPosRight;
+
+    [SerializeField]
+    private GameObject projectileMaxPosLeft;
+
+    [SerializeField]
+    public GameObject projectileThrowMarker;
+
+
     public float originalGravityScale = 5;
     public float horizontal;
     public float vertical;
@@ -73,7 +83,7 @@ public class Player : MonoBehaviour
     private float wallJumpingDuration = 0.2f;
     public Vector2 wallJumpingPower = new Vector2(12f, 16f);
     public Vector2 ropeJumpingPower = new Vector2(12f, 12f);
-    private Vector2 ropeJumpingPowerNoStamina = new Vector2(0.2f, 0.2f);
+    public Vector2 ropeJumpingPowerNoStamina = new Vector2(2f, 0.2f);
 
 
 
@@ -118,7 +128,9 @@ public class Player : MonoBehaviour
     private Vector3 lastRopeRail;
     public HashSet<GameObject> ropesHashSet = new HashSet<GameObject>();
     public bool readyToShootArrow;
+    public bool shootState;
     public bool ShootArrowBreak = true;
+    public float markerSpeed;
 
     private bool groundedToggle = false;
     public bool gamePaused = false;
@@ -195,7 +207,14 @@ public class Player : MonoBehaviour
             
         }
 
-
+        if ((Input.GetAxisRaw("RopeState") > 0.8 || Input.GetButton("RopeStateKeyBoard")))
+        {
+            shootState = true;
+        }
+        else {
+            shootState = false;
+        }
+        
 
         //Falling Icon Rock
         if (lastFallingTimeRock / fallingTimeLimitRock > 0.2f) {
@@ -283,11 +302,17 @@ public class Player : MonoBehaviour
             vertical = Input.GetAxisRaw("Vertical");
 
             //Sprite Iddle
-            if (IsGrounded() && horizontal == 0 && !IsCrouching() && alive && !inRope && !isAttacking && !gamePaused) {
+            if (IsGrounded() && horizontal == 0 && !IsCrouching() && alive && !inRope && !isAttacking && !gamePaused ) {
                 animation.speed = 1;
                 coyoteTimeCounter = coyoteTime;
                 animation.SetInteger("State", 0);
             }
+
+            if (shootState && !readyToShootArrow) {
+                animation.speed = 1;
+                animation.SetInteger("State", 0);
+            }
+
 
             //Sprite Rope Ready
             if (IsGrounded() && (Input.GetAxisRaw("RopeState") > 0.8 || Input.GetButton("RopeStateKeyBoard")) && horizontal == 0 && !IsCrouching() && alive && ropesHashSet.Count == 0 && readyToShootArrow && !isAttacking && !gamePaused)
@@ -298,7 +323,7 @@ public class Player : MonoBehaviour
             }
 
             //Sprite Walking
-            if (IsGrounded() && speed != 0 && alive && !inRope && !isAttacking && !gamePaused)
+            if (IsGrounded() && speed != 0 && alive && !inRope && !isAttacking && !gamePaused && !shootState)
             {
                 fallingTime = 0;
                 lastFallingTime = 0;
@@ -389,6 +414,7 @@ public class Player : MonoBehaviour
                 RopeShoot();
                 Sweat();
                 ThrowRock();
+                MoveMarker();
             }
 
             /* if (Input.GetButtonDown("Fire3") && stamina.GetCurrentStamina() >= stamina.GetDashStaminaCost()) {
@@ -417,6 +443,43 @@ public class Player : MonoBehaviour
         respawnPosX = x;
         respawnPosY = y;
         respawnObject = respawnObj;
+    }
+    private void MoveMarker() {
+           if (shootState)
+        {
+            projectileThrowMarker.SetActive(true);
+            if (isFacingRight) { 
+                if (horizontal > 0.5 && projectileThrowMarker.transform.localPosition.x < projectileMaxPosRight.transform.localPosition.x)
+                {
+                    projectileThrowMarker.transform.position = new Vector2(projectileThrowMarker.transform.position.x + markerSpeed, projectileThrowMarker.transform.position.y);
+                }
+
+                if (horizontal < -0.5 && projectileThrowMarker.transform.localPosition.x > projectileMaxPosLeft.transform.localPosition.x)
+                {
+                    projectileThrowMarker.transform.position = new Vector2(projectileThrowMarker.transform.position.x - markerSpeed, projectileThrowMarker.transform.position.y);
+                }
+            }
+            if (!isFacingRight)
+
+            {
+                if (horizontal < -0.5 && projectileThrowMarker.transform.localPosition.x < projectileMaxPosRight.transform.localPosition.x)
+                {
+                    projectileThrowMarker.transform.position = new Vector2(projectileThrowMarker.transform.position.x - markerSpeed, projectileThrowMarker.transform.position.y);
+                }
+
+                if (horizontal > 0.5 && projectileThrowMarker.transform.localPosition.x > projectileMaxPosLeft.transform.localPosition.x)
+                {
+                    projectileThrowMarker.transform.position = new Vector2(projectileThrowMarker.transform.position.x + markerSpeed, projectileThrowMarker.transform.position.y);
+                }
+            }
+
+
+
+
+        }
+        else {
+            projectileThrowMarker.SetActive(false);
+        }
     }
 
     private void Sweat()
@@ -557,7 +620,7 @@ public class Player : MonoBehaviour
                 speed += aceleration * Time.deltaTime;
             }
 
-            if (horizontal < 0.1f && horizontal > -0.1f && speed != 0) {
+            if (horizontal < 0.1f && horizontal > -0.1f && speed != 0 || shootState) {
                 //Debug.Log("FRENANDO");
                 speed -= deceleration * Time.deltaTime;
 
@@ -565,6 +628,8 @@ public class Player : MonoBehaviour
                     speed = 0;
                 }
             }
+
+          
 
 
 
@@ -577,7 +642,7 @@ public class Player : MonoBehaviour
                 speed = -maxSpeed;
             }
 
-            if ((horizontal > 0.1f || horizontal < -0.1f)) {
+            if ((horizontal > 0.1f || horizontal < -0.1f) && !shootState) {
                 rb.velocity = new Vector2(speed * horizontal, rb.velocity.y);
                 lastDirection = horizontal;
                 if (IsWalled() && !IsWallRock())
@@ -593,7 +658,7 @@ public class Player : MonoBehaviour
 
         }
 
-        if (IsCrouching() || isAttacking == true)
+        if (IsCrouching() || isAttacking == true )
         {
             
             rb.velocity = new Vector2(0, rb.velocity.y);
@@ -773,11 +838,16 @@ public class Player : MonoBehaviour
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = new Color(1, 1, 0, 0.75F);
-        Gizmos.DrawCube(groundCheck.position, new Vector2(0.48f, 0.1f)); 
+        Gizmos.DrawCube(groundCheck.position, new Vector2(0.48f, 0.1f));
+
+
+        Gizmos.DrawCube(projectileThrowMarker.transform.position, new Vector2(0.1f, 0.1f)); 
+
+
         
         Gizmos.color = new Color(1, 0, 1, 0.75F);
         Gizmos.DrawSphere(wallCheck.position, 0.2f);
-
+        
         Gizmos.color = new Color(1, 1, 1, 0.75F);
         Gizmos.DrawSphere(attackPosition.position, radioGolpe);
     }
@@ -947,7 +1017,7 @@ public class Player : MonoBehaviour
 
     private void Flip()
     {
-        if (isFacingRight && horizontal < 0f || !isFacingRight && horizontal > 0f)
+        if (!shootState && (isFacingRight && horizontal < 0f || !isFacingRight && horizontal > 0f))
         {
             isFacingRight = !isFacingRight;
             Vector3 localScale = transform.localScale;
@@ -984,8 +1054,11 @@ public class Player : MonoBehaviour
     }
 
     public void ThrowRock() {
-        if (Input.GetButtonDown("Fire3") && rock == null) {
-             rock = Instantiate(rockPrefab, new Vector3(groundCheck.transform.position.x + (0.5f * gameObject.transform.localScale.x), groundCheck.transform.position.y , groundCheck.transform.position.z), Quaternion.identity);
+        Vector3 throwPos = new Vector3(projectileThrowMarker.transform.position.x, groundCheck.transform.position.y, groundCheck.transform.position.z);
+        bool overlap = Physics2D.OverlapBox(projectileThrowMarker.transform.position, new Vector2(0.1f, 0.1f), 0f, groundLayer);
+        Debug.Log(!overlap);
+        if (Input.GetButtonDown("Fire3") && rock == null && overlap) {
+             rock = Instantiate(rockPrefab, throwPos, Quaternion.identity);
         }
     }
 
