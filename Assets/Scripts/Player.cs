@@ -1055,9 +1055,7 @@ public class Player : MonoBehaviour
 
     public void ThrowRock() {
         Vector3 throwPos = new Vector3(projectileThrowMarker.transform.position.x, groundCheck.transform.position.y, groundCheck.transform.position.z);
-        bool overlap = Physics2D.OverlapBox(projectileThrowMarker.transform.position, new Vector2(0.1f, 0.1f), 0f, groundLayer);
-        Debug.Log(!overlap);
-        if (Input.GetButtonDown("Fire3") && rock == null && overlap) {
+        if (Input.GetButtonDown("Fire3") && rock == null) {
              rock = Instantiate(rockPrefab, throwPos, Quaternion.identity);
         }
     }

@@ -26,6 +26,7 @@ public class RopeDisplayer : MonoBehaviour
 
     private bool m_isAxisInUse = false;
 
+    public LayerMask layerMask;
 
     public void Awake()
     {
@@ -41,7 +42,7 @@ public class RopeDisplayer : MonoBehaviour
     void Update()
     {
         
-        RaycastHit2D rayHit = Physics2D.Raycast(new Vector2 (player.projectileThrowMarker.transform.position.x , transform.position.y), new Vector2(0, 1), rayDistance);
+        RaycastHit2D rayHit = Physics2D.Raycast(new Vector2 (player.projectileThrowMarker.transform.position.x , transform.position.y), new Vector2(0, 1), rayDistance, ~layerMask);
         Debug.DrawRay(transform.position, new Vector2(0, rayDistance), Color.green);
 
         if(player.gamePaused == false) { 

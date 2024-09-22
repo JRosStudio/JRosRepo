@@ -36,7 +36,10 @@ public class Water : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        Instantiate(myPrefab, new Vector3(collision.transform.position.x, collision.transform.position.y, collision.transform.position.z), Quaternion.identity);
+        if (!collision.gameObject.CompareTag("ThrowRock")) {
+            Instantiate(myPrefab, new Vector3(collision.transform.position.x, collision.transform.position.y, collision.transform.position.z), Quaternion.identity);
+        }
+        
         if (collision.gameObject.CompareTag("Player"))
         {
             player.isOnWater(false);
@@ -47,6 +50,7 @@ public class Water : MonoBehaviour
             collision.gameObject.GetComponent<RockMoval>().isInWater = false;
             
         }
+
     }
 
 }
