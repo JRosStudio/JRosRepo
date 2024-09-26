@@ -15,10 +15,10 @@ MonoBehaviour:
   Path: Assets/Audio/FMOD/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638626277760000000
+  lastModified: 638627329600000000
   FileSizes:
   - Name: Desktop
-    Value: 1210
+    Value: 1248
   Exists: 1
 --- !u!114 &-3645401037147699703
 MonoBehaviour:
@@ -182,12 +182,13 @@ MonoBehaviour:
   - {fileID: 6426344222276345266}
   - {fileID: -3645401037147699703}
   - {fileID: -2278333780064672596}
+  - {fileID: 5052615756869009841}
   EditorParameters: []
   MasterBanks:
   - {fileID: 1218904474912716178}
   StringsBanks:
   - {fileID: -5226353260973369366}
-  cacheTime: 638626277760000000
+  cacheTime: 638627329600000000
   cacheVersion: 131609
 --- !u!114 &1218904474912716178
 MonoBehaviour:
@@ -204,11 +205,38 @@ MonoBehaviour:
   Path: Assets/Audio/FMOD/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638626277760000000
+  lastModified: 638627329600000000
   FileSizes:
   - Name: Desktop
-    Value: 6593312
+    Value: 6608928
   Exists: 1
+--- !u!114 &5052615756869009841
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/ThrowRock_Spikes
+  m_EditorClassIdentifier: 
+  Path: event:/ThrowRock_Spikes
+  Guid:
+    Data1: -779859213
+    Data2: 1170684812
+    Data3: 2020349834
+    Data4: 1137013618
+  Banks:
+  - {fileID: 1218904474912716178}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 150
+  Length: 690
 --- !u!114 &5279523353210268742
 MonoBehaviour:
   m_ObjectHideFlags: 0

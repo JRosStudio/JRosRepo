@@ -70,6 +70,18 @@ public class Rock_projectile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        Debug.Log("TRIGGER");
+        if (collision.gameObject.tag == "Spikes")
+        {
+            Debug.Log("ROCK HIT SPIKE");
+            rockHitSound = FMODUnity.RuntimeManager.CreateInstance("event:/ThrowRock_Spikes");
+            attributes = RuntimeUtils.To3DAttributes(gameObject);
+            rockHitSound.set3DAttributes(attributes);
+            rockHitSound.start();
+            rockHitSound.release();
+            Debug.Log("ROCK HIT SPIKE");
+        }
+
         if (collision.gameObject.tag == "Water")
         {
             hit = true;
