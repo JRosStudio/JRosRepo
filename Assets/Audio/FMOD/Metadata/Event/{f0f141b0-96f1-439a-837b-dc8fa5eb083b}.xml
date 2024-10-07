@@ -53,7 +53,7 @@
 			<destination>{4df0a448-2e74-47cf-b32e-15fd822d77c0}</destination>
 		</relationship>
 		<relationship name="output">
-			<destination>{2e513fa2-266c-406c-895a-90da2a3e575f}</destination>
+			<destination>{7f0bcf9d-32d3-4a65-9cb0-ba22288971e3}</destination>
 		</relationship>
 	</object>
 	<object class="EventAutomatableProperties" id="{a6055894-1264-4b5c-873a-1ce0f9a842cf}">
@@ -167,6 +167,12 @@
 	<object class="SpatialiserEffect" id="{c353beaf-d489-4a4b-adb3-3f9b9e159b16}">
 		<property name="distanceRolloffType">
 			<value>3</value>
+		</property>
+		<property name="minimumDistance">
+			<value>6</value>
+		</property>
+		<property name="maximumDistance">
+			<value>30</value>
 		</property>
 		<property name="extentMode">
 			<value>1</value>

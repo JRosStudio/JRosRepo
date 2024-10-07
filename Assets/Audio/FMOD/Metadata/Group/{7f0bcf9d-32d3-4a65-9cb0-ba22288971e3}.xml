@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="MixerGroup" id="{7f0bcf9d-32d3-4a65-9cb0-ba22288971e3}">
+		<property name="name">
+			<value>SFX</value>
+		</property>
+		<relationship name="effectChain">
+			<destination>{6a462bd3-752f-4b31-bcb3-9734413af71d}</destination>
+		</relationship>
+		<relationship name="panner">
+			<destination>{dab13b50-451e-4728-b713-be85e5f883ad}</destination>
+		</relationship>
+		<relationship name="output">
+			<destination>{2e513fa2-266c-406c-895a-90da2a3e575f}</destination>
+		</relationship>
+	</object>
+	<object class="MixerBusEffectChain" id="{6a462bd3-752f-4b31-bcb3-9734413af71d}">
+		<relationship name="effects">
+			<destination>{8e0eb247-9922-47f5-9022-93067d59e718}</destination>
+			<destination>{21278720-7109-4e8e-8a94-ec0e495ebc79}</destination>
+		</relationship>
+	</object>
+	<object class="MixerBusPanner" id="{dab13b50-451e-4728-b713-be85e5f883ad}" />
+	<object class="MixerBusFader" id="{8e0eb247-9922-47f5-9022-93067d59e718}" />
+	<object class="MixerSend" id="{21278720-7109-4e8e-8a94-ec0e495ebc79}">
+		<property name="level">
+			<value>0</value>
+		</property>
+		<property name="inputFormat">
+			<value>2</value>
+		</property>
+		<relationship name="modulators">
+			<destination>{1e2ed8c8-c11a-4f95-962f-8e53a64ce445}</destination>
+		</relationship>
+		<relationship name="mixerReturn">
+			<destination>{efe66a23-c4c4-4952-ad61-abc7f0d1c82a}</destination>
+		</relationship>
+	</object>
+	<object class="ADSRModulator" id="{1e2ed8c8-c11a-4f95-962f-8e53a64ce445}">
+		<property name="nameOfPropertyBeingModulated">
+			<value>level</value>
+		</property>
+		<property name="initialValue">
+			<value>-80</value>
+		</property>
+		<property name="attackTime">
+			<value>6249.99951</value>
+		</property>
+		<property name="finalValue">
+			<value>-80</value>
+		</property>
+	</object>
+</objects>

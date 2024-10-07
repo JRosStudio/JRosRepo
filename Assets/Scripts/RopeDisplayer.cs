@@ -28,6 +28,8 @@ public class RopeDisplayer : MonoBehaviour
 
     public LayerMask layerMask;
 
+    bool insideWall;
+
     public void Awake()
     {
         resourceManager = GameObject.Find("ResourceManager").GetComponent<ResourceManager>();
@@ -41,12 +43,13 @@ public class RopeDisplayer : MonoBehaviour
     }
     void Update()
     {
+        insideWall = player.isInsideWall;
         
-        RaycastHit2D rayHit = Physics2D.Raycast(new Vector2 (player.projectileThrowMarker.transform.position.x , transform.position.y), new Vector2(0, 1), rayDistance, ~layerMask);
+        RaycastHit2D rayHit = Physics2D.Raycast(new Vector2 (player.projectileThrowMarker.transform.position.x , transform.position.y), new Vector2(0, 1), rayDistance, ~layerMask );
         Debug.DrawRay(transform.position, new Vector2(0, rayDistance), Color.green);
 
         if(player.gamePaused == false) { 
-            if (rayHit && (Input.GetAxisRaw("RopeState") > 0.8 || Input.GetButton("RopeStateKeyBoard")) && player.ropesHashSet.Count == 0 && rayHit.transform.tag != "Rock" && resourceManager.getCurrentRopes() > 0)
+            if (rayHit && (Input.GetAxisRaw("RopeState") > 0.8 || Input.GetButton("RopeStateKeyBoard")) && player.ropesHashSet.Count == 0 && rayHit.transform.tag != "Rock" && resourceManager.getCurrentRopes() > 0 && !insideWall)
             {
             
                 ropeStart.transform.position = rayHit.point;

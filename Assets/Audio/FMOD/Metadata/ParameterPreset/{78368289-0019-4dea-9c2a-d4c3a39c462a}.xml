@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="ParameterPreset" id="{78368289-0019-4dea-9c2a-d4c3a39c462a}">
+		<property name="name">
+			<value>Rock_State</value>
+		</property>
+		<relationship name="folder">
+			<destination>{8867c25d-82ee-490a-a4b0-212e56fdee19}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{20b0eab5-c4c0-4440-856b-c9f9642baea5}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{20b0eab5-c4c0-4440-856b-c9f9642baea5}">
+		<property name="parameterType">
+			<value>1</value>
+		</property>
+		<property name="maximum">
+			<value>2</value>
+		</property>
+		<property name="initialValue">
+			<value>1</value>
+		</property>
+	</object>
+</objects>

@@ -18,7 +18,10 @@ public class Player : MonoBehaviour
 
     [SerializeField]
     GameObject ropeFly;
-    
+
+    [SerializeField]
+    ResourceManager resourceManager;
+
     [SerializeField]
     GameObject sweat; 
     
@@ -168,6 +171,14 @@ public class Player : MonoBehaviour
     private bool fallingPlayerFlag;
     private Vector3 fallingPlayerStayPos;
 
+    Vector3 throwPos;
+
+    // Define los dos puntos del área de detección
+    Vector2 pointA;
+    Vector2 pointB;
+    public bool isInsideWall;
+
+
 
     private void Start()
     {
@@ -177,6 +188,10 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
+        //Comprobador de marcador de lanzar piedra y desplegar cuerda
+        pointA = gameObject.transform.position;
+        pointB = projectileThrowMarker.transform.position;
+        isInsideWall = Physics2D.OverlapArea(pointA, pointB, wallLayer);
 
         fallingBar.fillAmount = lastFallingTime / fallingTimeLimit;
         fallingIcon.transform.position = Vector3.Lerp(fallingA.position, fallingB.position, lastFallingTime / fallingTimeLimit);
@@ -564,8 +579,8 @@ public class Player : MonoBehaviour
 
     private void RopeShoot()
     {
-        if (Input.GetButtonDown("Fire2") && readyToShootArrow && !gamePaused && ShootArrowBreak) {
-
+        
+        if (!isInsideWall && Input.GetButtonDown("Fire2") && readyToShootArrow && !gamePaused && ShootArrowBreak && resourceManager.getCurrentRopes() > 0) {
             GameObject ropeFlyInstance = Instantiate(ropeFly, gameObject.transform.position, Quaternion.identity);
             ropeFlyInstance.GetComponent<Rope_Fly>().StartMovement(ropeDisplayer.GetComponent<RopeDisplayer>().hitPosition);
         }
@@ -612,7 +627,7 @@ public class Player : MonoBehaviour
     }*/
 
     private void Walk() {
-        if (!isWallJumping && !IsCrouching() && isAttacking == false && !inRope /*&& !IsRuning()*/)
+        if (!isWallJumping && !IsCrouching() && !isAttacking && !inRope /*&& !IsRuning()*/)
         {
             //Debug.Log(speed + " = speed | speedGround = " + speedGround + " | horizontal " + horizontal);
             if ((speed<maxSpeed || speed > -maxSpeed) && (horizontal > 0.1f || horizontal < -0.1f)) {
@@ -758,7 +773,7 @@ public class Player : MonoBehaviour
     private void Golpe()
     {
 
-        if (Input.GetButtonDown("Fire2") && stamina.GetCurrentStamina() >= stamina.GetAttackCost() && IsGrounded() && !readyToShootArrow && !gamePaused)
+        if (Input.GetButtonDown("Fire2") && stamina.GetCurrentStamina() >= stamina.GetAttackCost() && IsGrounded() && !readyToShootArrow && !gamePaused && !shootState)
         {
             animation.SetInteger("State", 4);
         }
@@ -841,8 +856,9 @@ public class Player : MonoBehaviour
         Gizmos.DrawCube(groundCheck.position, new Vector2(0.48f, 0.1f));
 
 
-        Gizmos.DrawCube(projectileThrowMarker.transform.position, new Vector2(0.1f, 0.1f)); 
-
+        Gizmos.color = new Color(1, 1, 0, 0.75F);
+        Gizmos.DrawSphere(projectileThrowMarker.transform.position, 0.4f); 
+       
 
         
         Gizmos.color = new Color(1, 0, 1, 0.75F);
@@ -1054,9 +1070,20 @@ public class Player : MonoBehaviour
     }
 
     public void ThrowRock() {
-        Vector3 throwPos = new Vector3(projectileThrowMarker.transform.position.x, groundCheck.transform.position.y, groundCheck.transform.position.z);
-        if (Input.GetButtonDown("Fire3") && rock == null) {
+
+        throwPos = new Vector3(projectileThrowMarker.transform.position.x, groundCheck.transform.position.y, groundCheck.transform.position.z);
+
+        
+        if (Input.GetButtonDown("Fire3") && rock == null && !isInsideWall){
              rock = Instantiate(rockPrefab, throwPos, Quaternion.identity);
+        }
+        SpriteRenderer markerRenderer = projectileThrowMarker.GetComponent<SpriteRenderer>();
+        if (isInsideWall)
+        {
+            markerRenderer.color = Color.red;
+        }
+        else {
+            markerRenderer.color = Color.white;
         }
     }
 
