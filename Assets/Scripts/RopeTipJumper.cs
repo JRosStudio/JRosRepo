@@ -18,11 +18,16 @@ public class RopeTipJumper : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "OneWayPlatform") {
+        if (collision.gameObject.tag == "OneWayPlatform")
+        {
             jumpEnabled = true;
         }
+        else {
+            jumpEnabled = false;
+        }
 
-        if (collision.gameObject.tag == "PlayerFeet" && jumpEnabled && player.inRope) {
+        if (collision.gameObject.tag == "PlayerFeet" && jumpEnabled && player.inRope ) {
+            Debug.Log("TP AT TIP");
             player.transform.position = tpPoint.position;
         }
     }

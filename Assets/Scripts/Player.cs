@@ -294,10 +294,11 @@ public class Player : MonoBehaviour
                 jumpingPower = jumpingPowerWater;
             }
 
-            if (inWater && stamina.GetCurrentStamina() == 0 && !inRope && alive)
+            if (inWater && stamina.GetCurrentStamina() <= 0 && !inRope && alive)
             {
                 Death();
             }
+
             if (inWater) {
                 lastFallingTime = 0;
                 fallingTime = 0;
@@ -380,6 +381,14 @@ public class Player : MonoBehaviour
 
             }
 
+            if (!alive && inWater && isAttacking)
+            {
+                animation.speed = 1;
+                animation.SetInteger("State", 7);
+                rb.velocity = new Vector2(0, rb.velocity.y);
+                isAttacking = false;
+            }
+
             //Sprite Climbing
             if (alive && inRope && !IsGrounded() && !IsWalled() && !isAttacking)
             {
@@ -432,6 +441,7 @@ public class Player : MonoBehaviour
                 MoveMarker();
             }
 
+
             /* if (Input.GetButtonDown("Fire3") && stamina.GetCurrentStamina() >= stamina.GetDashStaminaCost()) {
                  stamina.DashStaminaLos();
                  StartCoroutine(Dash());
@@ -448,6 +458,7 @@ public class Player : MonoBehaviour
         {
             pauseGame();
         }
+
     }
 
     public void SetRespawnPos(float x, float y, GameObject respawnObj)
@@ -464,14 +475,14 @@ public class Player : MonoBehaviour
         {
             projectileThrowMarker.SetActive(true);
             if (isFacingRight) { 
-                if (horizontal > 0.5 && projectileThrowMarker.transform.localPosition.x < projectileMaxPosRight.transform.localPosition.x)
+                if (horizontal > 0.2 && projectileThrowMarker.transform.localPosition.x < projectileMaxPosRight.transform.localPosition.x)
                 {
                     projectileThrowMarker.transform.position = new Vector2(projectileThrowMarker.transform.position.x + markerSpeed, projectileThrowMarker.transform.position.y);
                 }
 
-                if (horizontal < -0.5 && projectileThrowMarker.transform.localPosition.x > projectileMaxPosLeft.transform.localPosition.x)
+                if (horizontal < -0.2 && projectileThrowMarker.transform.localPosition.x > projectileMaxPosLeft.transform.localPosition.x)
                 {
-                    projectileThrowMarker.transform.position = new Vector2(projectileThrowMarker.transform.position.x - markerSpeed, projectileThrowMarker.transform.position.y);
+                    projectileThrowMarker.transform.position = new Vector2(projectileThrowMarker.transform.position.x - markerSpeed * Mathf.Abs(horizontal), projectileThrowMarker.transform.position.y);
                 }
             }
             if (!isFacingRight)
@@ -479,7 +490,7 @@ public class Player : MonoBehaviour
             {
                 if (horizontal < -0.5 && projectileThrowMarker.transform.localPosition.x < projectileMaxPosRight.transform.localPosition.x)
                 {
-                    projectileThrowMarker.transform.position = new Vector2(projectileThrowMarker.transform.position.x - markerSpeed, projectileThrowMarker.transform.position.y);
+                    projectileThrowMarker.transform.position = new Vector2(projectileThrowMarker.transform.position.x - markerSpeed* Mathf.Abs(horizontal), projectileThrowMarker.transform.position.y);
                 }
 
                 if (horizontal > 0.5 && projectileThrowMarker.transform.localPosition.x > projectileMaxPosLeft.transform.localPosition.x)
@@ -773,7 +784,7 @@ public class Player : MonoBehaviour
     private void Golpe()
     {
 
-        if (Input.GetButtonDown("Fire2") && stamina.GetCurrentStamina() >= stamina.GetAttackCost() && IsGrounded() && !readyToShootArrow && !gamePaused && !shootState)
+        if (Input.GetButtonDown("Fire2") && stamina.GetCurrentStamina() >= stamina.GetAttackCost() && IsGrounded() && !readyToShootArrow && !gamePaused && !shootState && alive)
         {
             animation.SetInteger("State", 4);
         }
@@ -794,8 +805,22 @@ public class Player : MonoBehaviour
 
     }
 
+    public void PausarTiempo(float segundos)
+    {
+        StartCoroutine(PausarTiempoCoroutine(segundos));
+    }
+
+    private IEnumerator PausarTiempoCoroutine(float segundos)
+    {
+        Time.timeScale = 0; // Pausar el tiempo
+        yield return new WaitForSecondsRealtime(segundos); // Esperar en tiempo real
+        Time.timeScale = 1; // Reanudar el tiempo
+    }
+
     public void Death() {
+
         alive = false;
+        PausarTiempo(0.5f);
         Invoke("TransitionOn", 1f);
         Invoke("Respawn", 1.8f);
     }
