@@ -12,6 +12,10 @@ PrefabInstance:
       value: Rock Wall
       objectReference: {fileID: 0}
     - target: {fileID: 431353295893672179, guid: 375883f77078e44d1a80661197406d43, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 431353295893672179, guid: 375883f77078e44d1a80661197406d43, type: 3}
       propertyPath: m_TagString
       value: Rock
       objectReference: {fileID: 0}
@@ -98,6 +102,14 @@ PrefabInstance:
     - target: {fileID: 431353295893672191, guid: 375883f77078e44d1a80661197406d43, type: 3}
       propertyPath: health
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5403174383802302212, guid: 375883f77078e44d1a80661197406d43, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8495217959599309300, guid: 375883f77078e44d1a80661197406d43, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8495217959599309300, guid: 375883f77078e44d1a80661197406d43, type: 3}
       propertyPath: m_IsActive

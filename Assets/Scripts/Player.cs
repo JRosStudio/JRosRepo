@@ -1,9 +1,8 @@
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using static Unity.Burst.Intrinsics.X86.Avx;
 
 public class Player : MonoBehaviour
 {
@@ -23,8 +22,8 @@ public class Player : MonoBehaviour
     ResourceManager resourceManager;
 
     [SerializeField]
-    GameObject sweat; 
-    
+    GameObject sweat;
+
     [SerializeField]
     GameObject smokeJump;
 
@@ -35,7 +34,7 @@ public class Player : MonoBehaviour
     GameObject windowMenu;
 
     public bool alive = true;
-    
+
     [SerializeField]
     private GameObject wallRockCheck;
 
@@ -90,7 +89,7 @@ public class Player : MonoBehaviour
 
 
 
-    
+
 
     //private float jumpStaminaMaxCounter = 0.6f;
     //private float jumpStaminaCounter;
@@ -124,7 +123,7 @@ public class Player : MonoBehaviour
     private double fallMultiplier = 2.5f;
     private double lowJumpMultiplier = 2f;
 
-    
+
 
     public bool inWater = false;
     public bool inRope = false;
@@ -197,8 +196,9 @@ public class Player : MonoBehaviour
         fallingIcon.transform.position = Vector3.Lerp(fallingA.position, fallingB.position, lastFallingTime / fallingTimeLimit);
         Vector3 fallingRockIconPos = Vector3.Lerp(new Vector3(fallingA.position.x + 0.5f, fallingA.position.y, fallingA.position.z), new Vector3(fallingB.position.x + 0.5f, fallingB.position.y, fallingB.position.z), lastFallingTimeRock / fallingTimeLimitRock);
         fallingRockIcon.transform.position = fallingRockIconPos;
-    
-        if (lastFallingTime / fallingTimeLimit >= 1) {
+
+        if (lastFallingTime / fallingTimeLimit >= 1)
+        {
             fallingBar.color = Color.red;
         }
         if (lastFallingTime / fallingTimeLimit < 1)
@@ -219,20 +219,22 @@ public class Player : MonoBehaviour
 
                 fallingPlayerFlag = false;
             }
-            
+
         }
 
         if ((Input.GetAxisRaw("RopeState") > 0.8 || Input.GetButton("RopeStateKeyBoard")))
         {
             shootState = true;
         }
-        else {
+        else
+        {
             shootState = false;
         }
-        
+
 
         //Falling Icon Rock
-        if (lastFallingTimeRock / fallingTimeLimitRock > 0.2f) {
+        if (lastFallingTimeRock / fallingTimeLimitRock > 0.2f)
+        {
             fallingRockIcon.gameObject.SetActive(true);
             fallingRockFlag = true;
             fallingRockBreakPosIcon = fallingRockIcon.transform.localPosition;
@@ -241,8 +243,9 @@ public class Player : MonoBehaviour
 
         if (lastFallingTimeRock / fallingTimeLimitRock < 0.2f)
         {
-            if (fallingRockFlag) {
-                GameObject rockFlag = Instantiate(fallingRockBreakIcon, fallingRockBreakPosIcon, Quaternion.Euler(0,0,90));
+            if (fallingRockFlag)
+            {
+                GameObject rockFlag = Instantiate(fallingRockBreakIcon, fallingRockBreakPosIcon, Quaternion.Euler(0, 0, 90));
                 rockFlag.transform.SetParent(fallingBarParent.transform, false);
                 rockFlag.GetComponent<RockBreakIcon>().setAnimBool("Broken", true);
                 fallingRockFlag = false;
@@ -255,9 +258,10 @@ public class Player : MonoBehaviour
         //Debug.Log(inRope);
         if (!gamePaused)
         {
-            
+
             //Rock Falling
-            if (rock!=null && rock.GetComponent<Rigidbody2D>().velocity.y  < 1) {
+            if (rock != null && rock.GetComponent<Rigidbody2D>().velocity.y < 1)
+            {
 
                 fallingTimeRock += Time.deltaTime;
                 lastFallingTimeRock = fallingTimeRock;
@@ -268,7 +272,8 @@ public class Player : MonoBehaviour
                 rock.GetComponent<Rigidbody2D>().velocity = new Vector2(rb.velocity.x, -15);
             }
 
-            if (rock == null) {
+            if (rock == null)
+            {
                 lastFallingTimeRock = 0;
                 fallingTimeRock = 0;
             }
@@ -279,7 +284,7 @@ public class Player : MonoBehaviour
             if (rb.velocity.y < -1)
             {
                 fallingTime += Time.deltaTime;
-                lastFallingTime = fallingTime ;
+                lastFallingTime = fallingTime;
             }
 
 
@@ -288,7 +293,8 @@ public class Player : MonoBehaviour
                 maxSpeed = speedGround;
                 jumpingPower = jumpingPowerGround;
             }
-            else {
+            else
+            {
                 rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -wallSlidingSpeed, float.MaxValue));
                 maxSpeed = speedWater;
                 jumpingPower = jumpingPowerWater;
@@ -299,12 +305,14 @@ public class Player : MonoBehaviour
                 Death();
             }
 
-            if (inWater) {
+            if (inWater)
+            {
                 lastFallingTime = 0;
                 fallingTime = 0;
             }
 
-            if (Input.GetKeyDown(KeyCode.R)) {
+            if (Input.GetKeyDown(KeyCode.R))
+            {
                 Application.LoadLevel(Application.loadedLevel);
 
             }
@@ -318,13 +326,15 @@ public class Player : MonoBehaviour
             vertical = Input.GetAxisRaw("Vertical");
 
             //Sprite Iddle
-            if (IsGrounded() && horizontal == 0 && !IsCrouching() && alive && !inRope && !isAttacking && !gamePaused ) {
+            if (IsGrounded() && horizontal == 0 && !IsCrouching() && alive && !inRope && !isAttacking && !gamePaused)
+            {
                 animation.speed = 1;
                 coyoteTimeCounter = coyoteTime;
                 animation.SetInteger("State", 0);
             }
 
-            if (shootState && !readyToShootArrow) {
+            if (shootState && !readyToShootArrow)
+            {
                 animation.speed = 1;
                 animation.SetInteger("State", 0);
             }
@@ -367,7 +377,8 @@ public class Player : MonoBehaviour
             }
 
             //Sprites Muerte
-            if (!alive && IsGrounded()) {
+            if (!alive && IsGrounded())
+            {
                 animation.speed = 1;
                 animation.SetInteger("State", 6);
                 rb.velocity = new Vector2(0, rb.velocity.y);
@@ -403,7 +414,8 @@ public class Player : MonoBehaviour
                     fallingTime = 0;
                     animation.speed = 1;
                 }
-                if(vertical <= 0.2 && vertical >= -0.2) {
+                if (vertical <= 0.2 && vertical >= -0.2)
+                {
                     lastFallingTime = 0;
                     fallingTime = 0;
                     animation.speed = 0;
@@ -412,20 +424,23 @@ public class Player : MonoBehaviour
 
             //isGrounded Toggle
 
-            if (!IsGrounded() && groundedToggle == false) {
+            if (!IsGrounded() && groundedToggle == false)
+            {
                 groundedToggle = true;
             }
 
-            if (IsGrounded() && groundedToggle == true && rb.velocity.y <= 0) {
+            if (IsGrounded() && groundedToggle == true && rb.velocity.y <= 0)
+            {
                 //Spawn Smoke
-                    SpawnSmokeJump();
+                SpawnSmokeJump();
 
-                groundedToggle = false;        
+                groundedToggle = false;
             }
 
-            
 
-            if (isAttacking == false && alive) {
+
+            if (isAttacking == false && alive)
+            {
                 Jump();
                 //HighJump();
                 WallSlide();
@@ -447,7 +462,7 @@ public class Player : MonoBehaviour
                  StartCoroutine(Dash());
              }*/
 
-        
+
 
             if (!isWallJumping && isAttacking == false && alive && !inRope)
             {
@@ -463,18 +478,21 @@ public class Player : MonoBehaviour
 
     public void SetRespawnPos(float x, float y, GameObject respawnObj)
     {
-        if (respawnObject != null) {
+        if (respawnObject != null)
+        {
             respawnObject.GetComponent<CheckPoint>().turnOffCheckPoint();
         }
         respawnPosX = x;
         respawnPosY = y;
         respawnObject = respawnObj;
     }
-    private void MoveMarker() {
-           if (shootState)
+    private void MoveMarker()
+    {
+        if (shootState)
         {
             projectileThrowMarker.SetActive(true);
-            if (isFacingRight) { 
+            if (isFacingRight)
+            {
                 if (horizontal > 0.2 && projectileThrowMarker.transform.localPosition.x < projectileMaxPosRight.transform.localPosition.x)
                 {
                     projectileThrowMarker.transform.position = new Vector2(projectileThrowMarker.transform.position.x + markerSpeed, projectileThrowMarker.transform.position.y);
@@ -490,7 +508,7 @@ public class Player : MonoBehaviour
             {
                 if (horizontal < -0.5 && projectileThrowMarker.transform.localPosition.x < projectileMaxPosRight.transform.localPosition.x)
                 {
-                    projectileThrowMarker.transform.position = new Vector2(projectileThrowMarker.transform.position.x - markerSpeed* Mathf.Abs(horizontal), projectileThrowMarker.transform.position.y);
+                    projectileThrowMarker.transform.position = new Vector2(projectileThrowMarker.transform.position.x - markerSpeed * Mathf.Abs(horizontal), projectileThrowMarker.transform.position.y);
                 }
 
                 if (horizontal > 0.5 && projectileThrowMarker.transform.localPosition.x > projectileMaxPosLeft.transform.localPosition.x)
@@ -503,33 +521,39 @@ public class Player : MonoBehaviour
 
 
         }
-        else {
+        else
+        {
             projectileThrowMarker.SetActive(false);
         }
     }
 
     private void Sweat()
     {
-        if (stamina.GetCurrentStamina() == 0 && alive) {
+        if (stamina.GetCurrentStamina() == 0 && alive)
+        {
             sweat.SetActive(true);
         }
-        if (stamina.GetCurrentStamina() > 0 && alive) {
+        if (stamina.GetCurrentStamina() > 0 && alive)
+        {
             sweat.SetActive(false);
         }
     }
 
     //Pause Game
-    public void pauseGame(){
+    public void pauseGame()
+    {
         //Toggles state
-        if (Input.GetButtonDown("Pause")) {
+        if (Input.GetButtonDown("Pause"))
+        {
             if (gamePaused)
             {
                 windowMenu.GetComponent<MenuManager>().pauseMenuBack();
-                
+
             }
-            else {
+            else
+            {
                 windowMenu.GetComponent<MenuManager>().pauseMenuOut();
-                
+
 
             }
         }
@@ -547,7 +571,7 @@ public class Player : MonoBehaviour
 
         if (vertical >= 0.5f && ropesHashSet.Count > 0 && !inRope && !isRopeJumping)
         {
-            
+
             inRope = true;
             rb.gravityScale = 0;
             gameObject.transform.position = new Vector3(lastRopeRail.x, transform.position.y, transform.position.z);
@@ -590,32 +614,37 @@ public class Player : MonoBehaviour
 
     private void RopeShoot()
     {
-        
-        if (!isInsideWall && Input.GetButtonDown("Fire2") && readyToShootArrow && !gamePaused && ShootArrowBreak && resourceManager.getCurrentRopes() > 0) {
+
+        if (!isInsideWall && Input.GetButtonDown("Fire2") && readyToShootArrow && !gamePaused && ShootArrowBreak && resourceManager.getCurrentRopes() > 0)
+        {
             GameObject ropeFlyInstance = Instantiate(ropeFly, gameObject.transform.position, Quaternion.identity);
             ropeFlyInstance.GetComponent<Rope_Fly>().StartMovement(ropeDisplayer.GetComponent<RopeDisplayer>().hitPosition);
         }
     }
-    public void isOnWater(bool w) {
+    public void isOnWater(bool w)
+    {
         inWater = w;
     }
-    public void attackingTrue() {
+    public void attackingTrue()
+    {
         isAttacking = true;
     }
-    public void attackingFalse() {
+    public void attackingFalse()
+    {
         isAttacking = false;
         animation.SetInteger("State", 0);
     }
 
     private void FixedUpdate()
     {
-       /* if (isDashing)
+        /* if (isDashing)
+         {
+             return;
+         }*/
+        if (alive)
         {
-            return;
-        }*/
-        if (alive) {
             Walk();
-           
+
         }
 
         //Run();
@@ -637,30 +666,31 @@ public class Player : MonoBehaviour
 
     }*/
 
-    private void Walk() {
+    private void Walk()
+    {
         if (!isWallJumping && !IsCrouching() && !isAttacking && !inRope /*&& !IsRuning()*/)
         {
             //Debug.Log(speed + " = speed | speedGround = " + speedGround + " | horizontal " + horizontal);
-            if ((speed<maxSpeed || speed > -maxSpeed) && (horizontal > 0.1f || horizontal < -0.1f)) {
+            if ((speed < maxSpeed || speed > -maxSpeed) && (horizontal > 0.1f || horizontal < -0.1f))
+            {
                 //Debug.Log("ACELERANDO");
                 speed += aceleration * Time.deltaTime;
             }
 
-            if (horizontal < 0.1f && horizontal > -0.1f && speed != 0 || shootState) {
+            if (horizontal < 0.1f && horizontal > -0.1f && speed != 0 || shootState)
+            {
                 //Debug.Log("FRENANDO");
                 speed -= deceleration * Time.deltaTime;
 
-                if (speed < 1f && speed > -1) {
+                if (speed < 1f && speed > -1)
+                {
                     speed = 0;
                 }
             }
 
-          
 
-
-
-
-            if (speed > maxSpeed ) {
+            if (speed > maxSpeed)
+            {
                 speed = maxSpeed;
             }
             if (speed < -maxSpeed)
@@ -668,7 +698,8 @@ public class Player : MonoBehaviour
                 speed = -maxSpeed;
             }
 
-            if ((horizontal > 0.1f || horizontal < -0.1f) && !shootState) {
+            if ((horizontal > 0.1f || horizontal < -0.1f) && !shootState)
+            {
                 rb.velocity = new Vector2(speed * horizontal, rb.velocity.y);
                 lastDirection = horizontal;
                 if (IsWalled() && !IsWallRock())
@@ -677,26 +708,29 @@ public class Player : MonoBehaviour
                 }
             }
 
-            if ((horizontal < 0.1f || horizontal > -0.1f)) {
+            if ((horizontal < 0.1f || horizontal > -0.1f))
+            {
                 rb.velocity = new Vector2(speed * lastDirection, rb.velocity.y);
             }
 
 
         }
 
-        if (IsCrouching() || isAttacking == true )
+        if (IsCrouching() || isAttacking == true)
         {
-            
+
             rb.velocity = new Vector2(0, rb.velocity.y);
         }
     }
 
-    
 
-    public void SpawnSmokeJump() {
-       GameObject smk = Instantiate(smokeJump, gameObject.transform.position, Quaternion.identity);
-        Vector3 smkLocalScale = smk.transform.localScale ;
-        if (  gameObject.transform.localScale.x > 0) {
+
+    public void SpawnSmokeJump()
+    {
+        GameObject smk = Instantiate(smokeJump, gameObject.transform.position, Quaternion.identity);
+        Vector3 smkLocalScale = smk.transform.localScale;
+        if (gameObject.transform.localScale.x > 0)
+        {
             smkLocalScale.x = smkLocalScale.x * -1;
             smk.transform.localScale = smkLocalScale;
         }
@@ -713,15 +747,17 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void Jump() {
+    private void Jump()
+    {
 
         if (Input.GetButtonDown("Jump") && coyoteTimeCounter > 0 && !IsCrouching())
         {
             audioManager.PlayJump();
             rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
 
-            if (speed < maxSpeed/2 && horizontal != 0) {
-                speed = maxSpeed/2;
+            if (speed < maxSpeed / 2 && horizontal != 0)
+            {
+                speed = maxSpeed / 2;
             }
 
             SpawnSmokeJump();
@@ -729,13 +765,14 @@ public class Player : MonoBehaviour
 
         if (Input.GetButtonUp("Jump") && rb.velocity.y > 0f)
         {
-           
+
             coyoteTimeCounter = 0;
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
         }
 
-        if (rb.velocity.y < -15) {
-            rb.velocity = new Vector2(rb.velocity.x , -15);
+        if (rb.velocity.y < -15)
+        {
+            rb.velocity = new Vector2(rb.velocity.x, -15);
         }
 
         /*
@@ -746,17 +783,21 @@ public class Player : MonoBehaviour
         */
     }
 
-    private void ConsumeFood() {
+    private void ConsumeFood()
+    {
 
-        if (Input.GetButtonDown("Fire1") && !gamePaused) {
+        if (Input.GetButtonDown("Fire1") && !gamePaused)
+        {
             stamina.ConsumeFood();
         }
 
     }
 
-    private void DebugFillStamina() {
+    private void DebugFillStamina()
+    {
 
-        if (Input.GetButtonDown("Fire1")) {
+        if (Input.GetButtonDown("Fire1"))
+        {
             stamina.DebugFullStamina();
         }
 
@@ -790,16 +831,19 @@ public class Player : MonoBehaviour
         }
     }
 
-    public bool checkFallingDeath() {
-        
+    public bool checkFallingDeath()
+    {
+
         /*if (lastFallingTime < -30 && !inWater && !IsWalled()) {
             Death();
         }*/
-        if (lastFallingTime > fallingTimeLimit) {
+        if (lastFallingTime > fallingTimeLimit)
+        {
             //Debug.Log("Too High");
             return true;
         }
-        else {
+        else
+        {
             return false;
         }
 
@@ -817,15 +861,20 @@ public class Player : MonoBehaviour
         Time.timeScale = 1; // Reanudar el tiempo
     }
 
-    public void Death() {
+    public void Death()
+    {
 
-        alive = false;
-        PausarTiempo(0.5f);
-        Invoke("TransitionOn", 1f);
-        Invoke("Respawn", 1.8f);
+        if (alive)
+        {
+            alive = false;
+            PausarTiempo(0.2f);
+            Invoke("TransitionOn", 1f);
+            Invoke("Respawn", 1.8f);
+        }
     }
 
-    public void TransitionOn (){
+    public void TransitionOn()
+    {
         transition.SetInteger("Transition", 1);
     }
     public void TransitionOff()
@@ -833,8 +882,9 @@ public class Player : MonoBehaviour
         transition.SetInteger("Transition", 2);
     }
 
-    private void Respawn() {
-        transform.position = new Vector2(respawnPosX,respawnPosY);
+    private void Respawn()
+    {
+        transform.position = new Vector2(respawnPosX, respawnPosY);
         alive = true;
         lastFallingTime = 0;
         fallingTime = 0;
@@ -846,13 +896,14 @@ public class Player : MonoBehaviour
         //Application.LoadLevel(Application.loadedLevel);
     }
 
-    public void GolpeImpacto() {
+    public void GolpeImpacto()
+    {
         Collider2D[] objetos = Physics2D.OverlapCircleAll(attackPosition.position, radioGolpe);
         stamina.AttackStaminaLoss();
         foreach (Collider2D colisionador in objetos)
         {
 
-            if (colisionador.CompareTag("Enemy")|| colisionador.CompareTag("Rock"))
+            if (colisionador.CompareTag("Enemy") || colisionador.CompareTag("Rock"))
             {
                 colisionador.transform.GetComponent<Enemigo>().takeDamage(dañoGolpe);
             }
@@ -882,28 +933,30 @@ public class Player : MonoBehaviour
 
 
         Gizmos.color = new Color(1, 1, 0, 0.75F);
-        Gizmos.DrawSphere(projectileThrowMarker.transform.position, 0.4f); 
-       
+        Gizmos.DrawSphere(projectileThrowMarker.transform.position, 0.4f);
 
-        
+
+
         Gizmos.color = new Color(1, 0, 1, 0.75F);
         Gizmos.DrawSphere(wallCheck.position, 0.2f);
-        
+
         Gizmos.color = new Color(1, 1, 1, 0.75F);
         Gizmos.DrawSphere(attackPosition.position, radioGolpe);
     }
-    
 
-    public bool IsCrouching(){
 
-        
+    public bool IsCrouching()
+    {
+
+
         if (vertical < -0.5 && IsGrounded())
         {
             animation.SetInteger("State", 5);
             speed = 0;
             return true;
         }
-        else {
+        else
+        {
             return false;
         }
     }
@@ -911,20 +964,22 @@ public class Player : MonoBehaviour
     private bool IsWalled()
     {
         return Physics2D.OverlapCircle(wallCheck.position, 0.2f, wallLayer);
-        
+
     }
 
-    private bool IsWallRock(){
-       Collider2D col = Physics2D.OverlapCircle(wallCheck.position, 0.2f, wallLayer);
+    private bool IsWallRock()
+    {
+        Collider2D col = Physics2D.OverlapCircle(wallCheck.position, 0.2f, wallLayer);
         if (col != null)
         {
             //Debug.Log("ROCK DETECTED = " + col.CompareTag("Rock"));
             return col.CompareTag("Rock");
         }
-        else {
+        else
+        {
             return false;
         }
-        
+
     }
 
     private void WallSlide()
@@ -1029,9 +1084,10 @@ public class Player : MonoBehaviour
         {
             stamina.WallJumpStaminaLoss();
             isWallJumping = true;
-            rb.velocity = new Vector2(wallJumpingDirection * wallJumpingPower.x, wallJumpingPower.y);  
+            rb.velocity = new Vector2(wallJumpingDirection * wallJumpingPower.x, wallJumpingPower.y);
             wallJumpingCounter = 0f;
-            if (horizontal != 0) {
+            if (horizontal != 0)
+            {
                 speed = maxSpeed;
             }
 
@@ -1070,9 +1126,10 @@ public class Player : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        
 
-        if (collision.gameObject.tag == "Enemy" || collision.gameObject.layer == 8 || collision.gameObject.tag == "Spikes" ) {
+
+        if (collision.gameObject.tag == "Enemy" || collision.gameObject.layer == 8 || collision.gameObject.tag == "Spikes")
+        {
             Death();
         }
 
@@ -1083,31 +1140,35 @@ public class Player : MonoBehaviour
             {
                 Death();
             }
-            else {
+            else
+            {
                 fallingTime = 0;
                 lastFallingTime = 0;
             }
-            
+
             //SpawnSmokeJump();
         }
 
-        
+
     }
 
-    public void ThrowRock() {
+    public void ThrowRock()
+    {
 
         throwPos = new Vector3(projectileThrowMarker.transform.position.x, groundCheck.transform.position.y, groundCheck.transform.position.z);
 
-        
-        if (Input.GetButtonDown("Fire3") && rock == null && !isInsideWall){
-             rock = Instantiate(rockPrefab, throwPos, Quaternion.identity);
+
+        if (Input.GetButtonDown("Fire3") && rock == null && !isInsideWall)
+        {
+            rock = Instantiate(rockPrefab, throwPos, Quaternion.identity);
         }
         SpriteRenderer markerRenderer = projectileThrowMarker.GetComponent<SpriteRenderer>();
         if (isInsideWall)
         {
             markerRenderer.color = Color.red;
         }
-        else {
+        else
+        {
             markerRenderer.color = Color.white;
         }
     }
@@ -1127,13 +1188,14 @@ public class Player : MonoBehaviour
         if (collision.gameObject.tag == "Rope" || collision.gameObject.layer == 10)
         {
             ropesHashSet.Remove(collision.gameObject);
-            
+
         }
     }
 
     /////AUADIO
     ///
-    private void PlayStep() {
+    private void PlayStep()
+    {
         audioManager.PlayStep();
     }
 
@@ -1175,4 +1237,5 @@ public class Player : MonoBehaviour
     }
      */
 }
+
 

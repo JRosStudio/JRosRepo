@@ -61,7 +61,6 @@ public class Rope_Fly : MonoBehaviour
     {
         float lastRopePos = 0;
         GameObject ropeHookInstance = new GameObject();
-        int n = 1;
 
 
         if (deploying == false)
