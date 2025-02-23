@@ -603,8 +603,8 @@ TextureImporter:
       name: Terrain_Forest_Tilemap_23
       rect:
         serializedVersion: 2
-        x: 64
-        y: 64
+        x: 128
+        y: 96
         width: 32
         height: 32
       alignment: 0
@@ -624,8 +624,8 @@ TextureImporter:
       name: Terrain_Forest_Tilemap_24
       rect:
         serializedVersion: 2
-        x: 96
-        y: 64
+        x: 160
+        y: 96
         width: 32
         height: 32
       alignment: 0
@@ -637,6 +637,90 @@ TextureImporter:
       bones: []
       spriteID: 512d0ee07d58c478a845a58c8a5cb233
       internalID: -1055342436
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Terrain_Forest_Tilemap_25
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 95037cd705af9974baff1c5d80a5fa3f
+      internalID: 902124346
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Terrain_Forest_Tilemap_26
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7931f7e1289c33b42b75761a1b6c40c5
+      internalID: -2008202934
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Terrain_Forest_Tilemap_27
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 55ad7f9fabc70b640839d3d950e6d039
+      internalID: -1330909402
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Terrain_Forest_Tilemap_28
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3839e9d3cab868b48ba1c26ebaffbe97
+      internalID: -619213600
       vertices: []
       indices: 
       edges: []
@@ -670,6 +754,10 @@ TextureImporter:
       Terrain_Forest_Tilemap_22: 55093522
       Terrain_Forest_Tilemap_23: 2105726995
       Terrain_Forest_Tilemap_24: -1055342436
+      Terrain_Forest_Tilemap_25: 902124346
+      Terrain_Forest_Tilemap_26: -2008202934
+      Terrain_Forest_Tilemap_27: -1330909402
+      Terrain_Forest_Tilemap_28: -619213600
       Terrain_Forest_Tilemap_3: 1960207294
       Terrain_Forest_Tilemap_4: -918069403
       Terrain_Forest_Tilemap_5: 1627407802

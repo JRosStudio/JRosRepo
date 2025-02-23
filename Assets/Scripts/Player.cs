@@ -166,6 +166,7 @@ public class Player : MonoBehaviour
     private bool resetFallingTimeRock;
     public float fallingTimeLimitRock;
     private bool fallingRockFlag;
+    private bool fallingRockBellFlag;
     private Vector3 fallingRockBreakPosIcon;
     private bool fallingPlayerFlag;
     private Vector3 fallingPlayerStayPos;
@@ -197,6 +198,7 @@ public class Player : MonoBehaviour
         Vector3 fallingRockIconPos = Vector3.Lerp(new Vector3(fallingA.position.x + 0.5f, fallingA.position.y, fallingA.position.z), new Vector3(fallingB.position.x + 0.5f, fallingB.position.y, fallingB.position.z), lastFallingTimeRock / fallingTimeLimitRock);
         fallingRockIcon.transform.position = fallingRockIconPos;
 
+
         if (lastFallingTime / fallingTimeLimit >= 1)
         {
             fallingBar.color = Color.red;
@@ -220,6 +222,12 @@ public class Player : MonoBehaviour
                 fallingPlayerFlag = false;
             }
 
+        }
+
+        if (fallingTimeRock > fallingTimeLimitRock && !fallingRockBellFlag) {
+            Debug.Log("Se muere usted");
+            audioManager.PlayBell();
+            fallingRockBellFlag = true;
         }
 
         if ((Input.GetAxisRaw("RopeState") > 0.8 || Input.GetButton("RopeStateKeyBoard")))
@@ -249,6 +257,8 @@ public class Player : MonoBehaviour
                 rockFlag.transform.SetParent(fallingBarParent.transform, false);
                 rockFlag.GetComponent<RockBreakIcon>().setAnimBool("Broken", true);
                 fallingRockFlag = false;
+                fallingRockBellFlag = false;
+
             }
             fallingRockIcon.gameObject.SetActive(false);
         }

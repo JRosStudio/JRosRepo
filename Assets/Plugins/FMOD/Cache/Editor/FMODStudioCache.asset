@@ -1,5 +1,32 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8183614126800752523
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/DeathThreshHold
+  m_EditorClassIdentifier: 
+  Path: event:/DeathThreshHold
+  Guid:
+    Data1: -635869991
+    Data2: 1090720919
+    Data3: 1127145139
+    Data4: -1479876210
+  Banks:
+  - {fileID: 1218904474912716178}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2200
 --- !u!114 &-7380164556496809284
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -43,10 +70,10 @@ MonoBehaviour:
   Path: Assets/Audio/FMOD/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638639408940000000
+  lastModified: 638692798300000000
   FileSizes:
   - Name: Desktop
-    Value: 1434
+    Value: 1480
   Exists: 1
 --- !u!114 &-3645401037147699703
 MonoBehaviour:
@@ -240,12 +267,13 @@ MonoBehaviour:
   - {fileID: 5052615756869009841}
   - {fileID: -938550320726642246}
   - {fileID: -7380164556496809284}
+  - {fileID: -8183614126800752523}
   EditorParameters: []
   MasterBanks:
   - {fileID: 1218904474912716178}
   StringsBanks:
   - {fileID: -5226353260973369366}
-  cacheTime: 638639408940000000
+  cacheTime: 638692798300000000
   cacheVersion: 131609
 --- !u!114 &866952101517674170
 MonoBehaviour:
@@ -286,10 +314,10 @@ MonoBehaviour:
   Path: Assets/Audio/FMOD/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638639408940000000
+  lastModified: 638692798300000000
   FileSizes:
   - Name: Desktop
-    Value: 6690336
+    Value: 6740512
   Exists: 1
 --- !u!114 &5052615756869009841
 MonoBehaviour:

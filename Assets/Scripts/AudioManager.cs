@@ -38,6 +38,14 @@ public class AudioManager : MonoBehaviour
         jumpInstance.release(); // Liberar la instancia después de iniciarla
     }
 
+    public void PlayBell() {
+        FMOD.Studio.EventInstance bellInstance = FMODUnity.RuntimeManager.CreateInstance("event:/DeathThreshHold");
+        bellInstance.start();
+        bellInstance.release(); // Liberar la instancia después de iniciarla
+    }
+
+
+
     private void Update()
     {
         
