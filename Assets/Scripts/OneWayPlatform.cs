@@ -15,7 +15,7 @@ public class OneWayPlatform : MonoBehaviour
     {
         if (Input.GetAxisRaw("Vertical") <= -0.9 && Input.GetButtonDown("Jump"))
         {
-            counter = 0.4f;
+            counter = 0.45f;
             effector.rotationalOffset = 180;
         }
         if(counter <= 0.2f)

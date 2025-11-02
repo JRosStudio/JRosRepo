@@ -75,7 +75,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: d34d9ef948ee0dd47991b3ab3df5cda2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -125,6 +125,7 @@ MonoBehaviour:
   speed: 10
   rope: {fileID: 3733853685141407849, guid: 9ff7be3d615c6441489922b262c66301, type: 3}
   ropeHook: {fileID: 3733853685141407849, guid: 0ca1e167ed68cf244a1e058a128df58b, type: 3}
+  playerY: {x: 0, y: 0, z: 0}
 --- !u!61 &6327391455573297935
 BoxCollider2D:
   m_ObjectHideFlags: 0

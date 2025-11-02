@@ -7,7 +7,7 @@
 [LOG] OutputWASAPI::init                       : Output buffer size: 4096 samples, latency: 0.00ms, period: 10.00ms, DSP buffer: 1024 * 4
 [LOG] Thread::initThread                       : Init FMOD stream thread. Affinity: 0x4000000000000003, Priority: 0xFFFF7FFB, Stack Size: 98304, Semaphore: No, Sleep Time: 10, Looping: Yes.
 [LOG] Thread::initThread                       : Init FMOD mixer thread. Affinity: 0x4000000000000001, Priority: 0xFFFF7FFA, Stack Size: 81920, Semaphore: No, Sleep Time: 0, Looping: Yes.
-[LOG] AsyncManager::init                       : manager 00000202B94522B8 isAsync 0 updatePeriod 0.02
+[LOG] AsyncManager::init                       : manager 0000016AC606C458 isAsync 0 updatePeriod 0.02
 [LOG] AsyncManager::init                       : done
 [LOG] PlaybackSystem::init                     : 
 [LOG] Thread::initThread                       : Init FMOD Studio sample load thread. Affinity: 0x4000000000000003, Priority: 0xFFFF7FFD, Stack Size: 98304, Semaphore: No, Sleep Time: 1, Looping: No.
@@ -18,10 +18,514 @@
 [LOG] Manager::readBank                        : fileversion = 141, compatVersion = 140 (oldest = 44, newest = 142)
 [LOG] Manager::readBank                        : fileversion = 141, compatVersion = 140 (oldest = 44, newest = 142)
 [LOG] PlaybackSystem::acquireMasterBus         : Setting master channel group format to 6
+[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
+[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             : exinfo->length             = 6664416
+[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 34752
+[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 000000510264F548
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFE1BE93F70
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFE1BE93F30
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFE1BE94050
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFE1BE94110
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 0000016A17ACA8C8
+[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
+[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
+[LOG] SystemI::createSoundInternal             : Sample 0/1: name='STEP_GRASS_1', format=5, channels=2, frequency=48000, lengthbytes=2080, lengthpcm=11520, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.517365.
+[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
+[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             : exinfo->length             = 6664416
+[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 34752
+[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 000000510264F548
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFE1BE93F70
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFE1BE93F30
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFE1BE94050
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFE1BE94110
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 0000016A17ACA8C8
+[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
+[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
+[LOG] SystemI::createSoundInternal             : Sample 0/1: name='STEP_HEEL', format=5, channels=2, frequency=48000, lengthbytes=896, lengthpcm=11520, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.409393.
+[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
+[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             : exinfo->length             = 6664416
+[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 34752
+[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 000000510264F548
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFE1BE93F70
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFE1BE93F30
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFE1BE94050
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFE1BE94110
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 0000016A17ACA8C8
+[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
+[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
+[LOG] SystemI::createSoundInternal             : Sample 0/1: name='STEP_GRASS_3', format=5, channels=2, frequency=48000, lengthbytes=1824, lengthpcm=11520, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.217957.
+[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
+[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             : exinfo->length             = 6664416
+[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 34752
+[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 000000510264F548
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFE1BE93F70
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFE1BE93F30
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFE1BE94050
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFE1BE94110
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 0000016A17ACA8C8
+[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
+[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
+[LOG] SystemI::createSoundInternal             : Sample 0/1: name='STEP_GRASS_2', format=5, channels=2, frequency=48000, lengthbytes=1888, lengthpcm=11520, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.258484.
+[LOG] SoundI::release                          : Fire, Crackle, Campfire, Close, Moderate Size SND86189 (00000169F39C4EE8)
+[LOG] SoundI::release                          :     Fire, Crackle, Campfire, Close, Moderate Size SND86189 (00000169EA37E298)
+[LOG] SoundI::release                          :     Fire, Crackle, Campfire, Close, Moderate Size SND86189 (0000016ACA3D0838)
+[LOG] SoundI::release                          : Food & Drink, Cooking, Rice, Potatoes, Boiling In Water, Frothing SND22100 (00000169ED101D48)
+[LOG] SoundI::release                          :     Food & Drink, Cooking, Rice, Potatoes, Boiling In Water, Frothing SND22100 (00000169EA37DF58)
+[LOG] SoundI::release                          :     Food & Drink, Cooking, Rice, Potatoes, Boiling In Water, Frothing SND22100 (0000016ACA3D0B98)
+[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
+[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             : exinfo->length             = 6664416
+[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 34752
+[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 000000510264F548
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFE1BE93F70
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFE1BE93F30
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFE1BE94050
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFE1BE94110
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 0000016A17ACCFF8
+[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
+[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
+[LOG] SystemI::createSoundInternal             : Sample 0/1: name='Cartoon, Boing, Jump SND5946', format=5, channels=2, frequency=48000, lengthbytes=2304, lengthpcm=8433, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.323594.
+[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
+[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             : exinfo->length             = 6664416
+[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 34752
+[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 000000510264F548
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFE1BE93F70
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFE1BE93F30
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFE1BE94050
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFE1BE94110
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 00000169E83AF7E8
+[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
+[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
+[LOG] SystemI::createSoundInternal             : Sample 0/1: name='Wood, Impact, Planks, Drop On Floor Together 02 SND30353', format=5, channels=2, frequency=48000, lengthbytes=5856, lengthpcm=20270, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.891251.
+[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
+[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             : exinfo->length             = 6664416
+[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 34752
+[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 000000510264F548
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFE1BE93F70
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFE1BE93F30
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFE1BE94050
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFE1BE94110
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 00000169E83AF7E8
+[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
+[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
+[LOG] SystemI::createSoundInternal             : Sample 0/1: name='Rocks, Crash & Debris, Throw, Smashing Impact SND42685', format=5, channels=2, frequency=48000, lengthbytes=9696, lengthpcm=40806, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.871231.
+[LOG] SystemI::createSound                     : filename = Assets/Audio/FMOD/Build/Desktop/Master.bank : mode 02010082
+[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] AsyncThread::add                         : add sound to async queue : soundi = 0000016ACA471598, queue head = 0000016AA04200C8, queue count = 0
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 0000016ACA471598
+[LOG] SystemI::createSound                     : filename = Assets/Audio/FMOD/Build/Desktop/Master.bank : mode 02010082
+[LOG] SystemI::createSoundInternal             :     Create name='Assets/Audio/FMOD/Build/Desktop/Master.bank', mode=0x02010082
+[LOG] SystemI::createSound                     :     FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 224
+[LOG] AsyncThread::add                         :     add sound to async queue : soundi = 0000016ACA4718F8, queue head = 0000016AA04200C8, queue count = 0
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 6664416
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 34752
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 00000169EA7637B0
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='Water, Waterfall, Strong Flow, Forest, Lower Waterfall, People Chatter, Evening, Zenny Fall, Telluride SND69832', format=5, channels=2, frequency=48000, lengthbytes=2057472, lengthpcm=7603631, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.343588.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 0000016ACA471598
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 0000016ACA4718F8
+[LOG] SystemI::createSoundInternal             :     Create name='Assets/Audio/FMOD/Build/Desktop/Master.bank', mode=0x02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 6664416
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 34752
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 00000169EA763A30
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='Water, Waterfall, Strong Flow, Forest, Lower Waterfall, People Chatter, Evening, Zenny Fall, Telluride SND69832', format=5, channels=2, frequency=48000, lengthbytes=2057472, lengthpcm=7603631, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.343588.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 0000016ACA4718F8
+[LOG] SoundI::release                          : Water, Waterfall, Strong Flow, Forest, Lower Waterfall, People Chatter, Evening, Zenny Fall, Telluride SND69832 (0000016ACA471598)
+[LOG] SoundI::release                          :     Water, Waterfall, Strong Flow, Forest, Lower Waterfall, People Chatter, Evening, Zenny Fall, Telluride SND69832 (00000169EA37D598)
+[LOG] SoundI::release                          :     Water, Waterfall, Strong Flow, Forest, Lower Waterfall, People Chatter, Evening, Zenny Fall, Telluride SND69832 (0000016ACA119698)
+[LOG] SoundI::release                          : Water, Waterfall, Strong Flow, Forest, Lower Waterfall, People Chatter, Evening, Zenny Fall, Telluride SND69832 (0000016AA0541308)
+[LOG] SoundI::release                          :     Water, Waterfall, Strong Flow, Forest, Lower Waterfall, People Chatter, Evening, Zenny Fall, Telluride SND69832 (00000169EA37C078)
+[LOG] SoundI::release                          :     Water, Waterfall, Strong Flow, Forest, Lower Waterfall, People Chatter, Evening, Zenny Fall, Telluride SND69832 (0000016ACA1194E8)
+[LOG] SoundI::release                          : Water, Waterfall, Strong Flow, Forest, Lower Waterfall, People Chatter, Evening, Zenny Fall, Telluride SND69832 (0000016ACA4718F8)
+[LOG] SoundI::release                          :     Water, Waterfall, Strong Flow, Forest, Lower Waterfall, People Chatter, Evening, Zenny Fall, Telluride SND69832 (00000169EA37D0B8)
+[LOG] SoundI::release                          :     Water, Waterfall, Strong Flow, Forest, Lower Waterfall, People Chatter, Evening, Zenny Fall, Telluride SND69832 (0000016ACA119848)
+[LOG] SystemI::createSound                     : filename = Assets/Audio/FMOD/Build/Desktop/Master.bank : mode 02010082
+[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] AsyncThread::add                         : add sound to async queue : soundi = 0000016AC5960988, queue head = 0000016AA04200C8, queue count = 0
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 0000016AC5960988
+[LOG] SystemI::createSoundInternal             :     Create name='Assets/Audio/FMOD/Build/Desktop/Master.bank', mode=0x02010082
+[LOG] SystemI::createSound                     :     filename = Assets/Audio/FMOD/Build/Desktop/Master.bank : mode 02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 224
+[LOG] SystemI::createSound                     :     FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 6664416
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 34752
+[LOG] AsyncThread::add                         :     add sound to async queue : soundi = 0000016A9DCD41A8, queue head = 0000016AA04200C8, queue count = 0
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 00000169F3BA56D0
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='Water, Waterfall, Strong Flow, Forest, Lower Waterfall, People Chatter, Evening, Zenny Fall, Telluride SND69832', format=5, channels=2, frequency=48000, lengthbytes=2057472, lengthpcm=7603631, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.343588.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 0000016AC5960988
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 0000016A9DCD41A8
+[LOG] SystemI::createSoundInternal             :     Create name='Assets/Audio/FMOD/Build/Desktop/Master.bank', mode=0x02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 6664416
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 34752
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 00000169F3BA5950
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='Water, Waterfall, Strong Flow, Forest, Lower Waterfall, People Chatter, Evening, Zenny Fall, Telluride SND69832', format=5, channels=2, frequency=48000, lengthbytes=2057472, lengthpcm=7603631, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.343588.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 0000016A9DCD41A8
+[LOG] SoundI::release                          : Water, Waterfall, Strong Flow, Forest, Lower Waterfall, People Chatter, Evening, Zenny Fall, Telluride SND69832 (0000016AC5960988)
+[LOG] SoundI::release                          :     Water, Waterfall, Strong Flow, Forest, Lower Waterfall, People Chatter, Evening, Zenny Fall, Telluride SND69832 (00000169EA37EAB8)
+[LOG] SoundI::release                          :     Water, Waterfall, Strong Flow, Forest, Lower Waterfall, People Chatter, Evening, Zenny Fall, Telluride SND69832 (0000016A9E15E2D8)
+[LOG] SystemI::createSound                     : filename = Assets/Audio/FMOD/Build/Desktop/Master.bank : mode 02010082
+[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] AsyncThread::add                         : add sound to async queue : soundi = 00000169F3AF9C38, queue head = 0000016AA04200C8, queue count = 0
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 00000169F3AF9C38
+[LOG] SystemI::createSoundInternal             :     Create name='Assets/Audio/FMOD/Build/Desktop/Master.bank', mode=0x02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 6664416
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 34752
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 00000169EB276610
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='Voices, Singing, Female, Humming SND3149', format=5, channels=2, frequency=48000, lengthbytes=227840, lengthpcm=1130880, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.136738.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 00000169F3AF9C38
+[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
+[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             : exinfo->length             = 6664416
+[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 34752
+[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 000000510264F548
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFE1BE93F70
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFE1BE93F30
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFE1BE94050
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFE1BE94110
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 00000169E83B0238
+[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
+[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
+[LOG] SystemI::createSoundInternal             : Sample 0/1: name='Cartoon, Vocal, Cartoon Character, Gulp, Swallow SND15130', format=5, channels=2, frequency=48000, lengthbytes=7584, lengthpcm=50987, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.314258.
+[LOG] SoundI::release                          : Voices, Singing, Female, Humming SND3149 (0000016A9D33A008)
+[LOG] SoundI::release                          :     Voices, Singing, Female, Humming SND3149 (00000169EDAE28D8)
+[LOG] SoundI::release                          :     Voices, Singing, Female, Humming SND3149 (00000169F17D1EC8)
+[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
+[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             : exinfo->length             = 6664416
+[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 34752
+[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 000000510264F548
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFE1BE93F70
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFE1BE93F30
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFE1BE94050
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFE1BE94110
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 00000169E83AFC08
+[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
+[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
+[LOG] SystemI::createSoundInternal             : Sample 0/1: name='Water, Splash, Hand Splash, Small, Singular 01 SND92887', format=5, channels=2, frequency=48000, lengthbytes=18848, lengthpcm=58462, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.429570.
+[LOG] SoundI::release                          : Water, Waterfall, Strong Flow, Forest, Lower Waterfall, People Chatter, Evening, Zenny Fall, Telluride SND69832 (0000016A9DCD41A8)
+[LOG] SoundI::release                          :     Water, Waterfall, Strong Flow, Forest, Lower Waterfall, People Chatter, Evening, Zenny Fall, Telluride SND69832 (00000169EA37F478)
+[LOG] SoundI::release                          :     Water, Waterfall, Strong Flow, Forest, Lower Waterfall, People Chatter, Evening, Zenny Fall, Telluride SND69832 (0000016A9E15E488)
+[LOG] SystemI::createSound                     : filename = Assets/Audio/FMOD/Build/Desktop/Master.bank : mode 02010082
+[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] AsyncThread::add                         : add sound to async queue : soundi = 00000169F39C4B88, queue head = 0000016AA04200C8, queue count = 0
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 00000169F39C4B88
+[LOG] SystemI::createSoundInternal             :     Create name='Assets/Audio/FMOD/Build/Desktop/Master.bank', mode=0x02010082
+[LOG] SystemI::createSound                     :     filename = Assets/Audio/FMOD/Build/Desktop/Master.bank : mode 02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 224
+[LOG] SystemI::createSound                     :     FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 6664416
+[LOG] AsyncThread::add                         :     add sound to async queue : soundi = 00000169F39C4EE8, queue head = 0000016AA04200C8, queue count = 0
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 34752
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 00000169EDBB2190
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='Water, Waterfall, Strong Flow, Forest, Lower Waterfall, People Chatter, Evening, Zenny Fall, Telluride SND69832', format=5, channels=2, frequency=48000, lengthbytes=2057472, lengthpcm=7603631, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.343588.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 00000169F39C4B88
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 00000169F39C4EE8
+[LOG] SystemI::createSoundInternal             :     Create name='Assets/Audio/FMOD/Build/Desktop/Master.bank', mode=0x02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 6664416
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 34752
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 00000169EDBB2690
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='Water, Waterfall, Strong Flow, Forest, Lower Waterfall, People Chatter, Evening, Zenny Fall, Telluride SND69832', format=5, channels=2, frequency=48000, lengthbytes=2057472, lengthpcm=7603631, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.343588.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 00000169F39C4EE8
+[LOG] SoundI::release                          : Water, Waterfall, Strong Flow, Forest, Lower Waterfall, People Chatter, Evening, Zenny Fall, Telluride SND69832 (00000169F39C4B88)
+[LOG] SoundI::release                          :     Water, Waterfall, Strong Flow, Forest, Lower Waterfall, People Chatter, Evening, Zenny Fall, Telluride SND69832 (00000169EA37CF18)
+[LOG] SoundI::release                          :     Water, Waterfall, Strong Flow, Forest, Lower Waterfall, People Chatter, Evening, Zenny Fall, Telluride SND69832 (0000016A9E15E2D8)
+[LOG] SoundI::release                          : Water, Waterfall, Strong Flow, Forest, Lower Waterfall, People Chatter, Evening, Zenny Fall, Telluride SND69832 (00000169F39C4EE8)
+[LOG] SoundI::release                          :     Water, Waterfall, Strong Flow, Forest, Lower Waterfall, People Chatter, Evening, Zenny Fall, Telluride SND69832 (00000169EA37E298)
+[LOG] SoundI::release                          :     Water, Waterfall, Strong Flow, Forest, Lower Waterfall, People Chatter, Evening, Zenny Fall, Telluride SND69832 (0000016A9E15E488)
+[LOG] SystemI::createSound                     : filename = Assets/Audio/FMOD/Build/Desktop/Master.bank : mode 02010082
+[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] AsyncThread::add                         : add sound to async queue : soundi = 00000169E82063B8, queue head = 0000016AA04200C8, queue count = 0
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 00000169E82063B8
+[LOG] SystemI::createSound                     :     filename = Assets/Audio/FMOD/Build/Desktop/Master.bank : mode 02010082
+[LOG] SystemI::createSoundInternal             :     Create name='Assets/Audio/FMOD/Build/Desktop/Master.bank', mode=0x02010082
+[LOG] SystemI::createSound                     :     FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 224
+[LOG] AsyncThread::add                         :     add sound to async queue : soundi = 00000169E8206208, queue head = 0000016AA04200C8, queue count = 0
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 6664416
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 34752
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 00000169EDBB2E10
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='Water, Waterfall, Strong Flow, Forest, Lower Waterfall, People Chatter, Evening, Zenny Fall, Telluride SND69832', format=5, channels=2, frequency=48000, lengthbytes=2057472, lengthpcm=7603631, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.343588.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 00000169E82063B8
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 00000169E8206208
+[LOG] SystemI::createSoundInternal             :     Create name='Assets/Audio/FMOD/Build/Desktop/Master.bank', mode=0x02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 6664416
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 34752
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 00000169EDBB2B90
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='Water, Waterfall, Strong Flow, Forest, Lower Waterfall, People Chatter, Evening, Zenny Fall, Telluride SND69832', format=5, channels=2, frequency=48000, lengthbytes=2057472, lengthpcm=7603631, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.343588.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 00000169E8206208
+[LOG] SoundI::release                          : Water, Waterfall, Strong Flow, Forest, Lower Waterfall, People Chatter, Evening, Zenny Fall, Telluride SND69832 (00000169E82063B8)
+[LOG] SoundI::release                          :     Water, Waterfall, Strong Flow, Forest, Lower Waterfall, People Chatter, Evening, Zenny Fall, Telluride SND69832 (00000169EA37FC98)
+[LOG] SoundI::release                          :     Water, Waterfall, Strong Flow, Forest, Lower Waterfall, People Chatter, Evening, Zenny Fall, Telluride SND69832 (0000016A9E15E638)
+[LOG] SystemI::createSound                     : filename = Assets/Audio/FMOD/Build/Desktop/Master.bank : mode 02010082
+[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] AsyncThread::add                         : add sound to async queue : soundi = 00000169F3AF9A88, queue head = 0000016AA04200C8, queue count = 0
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 00000169F3AF9A88
+[LOG] SystemI::createSoundInternal             :     Create name='Assets/Audio/FMOD/Build/Desktop/Master.bank', mode=0x02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 6664416
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 34752
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 00000169EB276390
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='Voices, Singing, Female, Humming SND3149', format=5, channels=2, frequency=48000, lengthbytes=227840, lengthpcm=1130880, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.136738.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 00000169F3AF9A88
+[LOG] SoundI::release                          : Voices, Singing, Female, Humming SND3149 (00000169F3AF9C38)
+[LOG] SoundI::release                          :     Voices, Singing, Female, Humming SND3149 (00000169F43BC458)
+[LOG] SoundI::release                          :     Voices, Singing, Female, Humming SND3149 (00000169E8206058)
+[LOG] SoundI::release                          : Water, Waterfall, Strong Flow, Forest, Lower Waterfall, People Chatter, Evening, Zenny Fall, Telluride SND69832 (00000169E8206208)
+[LOG] SoundI::release                          :     Water, Waterfall, Strong Flow, Forest, Lower Waterfall, People Chatter, Evening, Zenny Fall, Telluride SND69832 (00000169EA37D598)
+[LOG] SoundI::release                          :     Water, Waterfall, Strong Flow, Forest, Lower Waterfall, People Chatter, Evening, Zenny Fall, Telluride SND69832 (0000016A9E15E2D8)
+[LOG] SystemI::createSound                     : filename = Assets/Audio/FMOD/Build/Desktop/Master.bank : mode 02010082
+[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] AsyncThread::add                         : add sound to async queue : soundi = 0000016A180D8418, queue head = 0000016AA04200C8, queue count = 0
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 0000016A180D8418
+[LOG] SystemI::createSoundInternal             :     Create name='Assets/Audio/FMOD/Build/Desktop/Master.bank', mode=0x02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 6664416
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 34752
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 00000169EB276610
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='Water, Waterfall, Strong Flow, Forest, Lower Waterfall, People Chatter, Evening, Zenny Fall, Telluride SND69832', format=5, channels=2, frequency=48000, lengthbytes=2057472, lengthpcm=7603631, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.343588.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 0000016A180D8418
+[LOG] SystemI::createSound                     : filename = Assets/Audio/FMOD/Build/Desktop/Master.bank : mode 02010082
+[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] AsyncThread::add                         : add sound to async queue : soundi = 0000016AC5C89898, queue head = 0000016AA04200C8, queue count = 0
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 0000016AC5C89898
+[LOG] SystemI::createSoundInternal             :     Create name='Assets/Audio/FMOD/Build/Desktop/Master.bank', mode=0x02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 6664416
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 34752
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 00000169EB276750
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='Water, Waterfall, Strong Flow, Forest, Lower Waterfall, People Chatter, Evening, Zenny Fall, Telluride SND69832', format=5, channels=2, frequency=48000, lengthbytes=2057472, lengthpcm=7603631, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.343588.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 0000016AC5C89898
+[LOG] SoundI::release                          : Water, Waterfall, Strong Flow, Forest, Lower Waterfall, People Chatter, Evening, Zenny Fall, Telluride SND69832 (0000016A180D8418)
+[LOG] SoundI::release                          :     Water, Waterfall, Strong Flow, Forest, Lower Waterfall, People Chatter, Evening, Zenny Fall, Telluride SND69832 (00000169F39C5068)
+[LOG] SoundI::release                          :     Water, Waterfall, Strong Flow, Forest, Lower Waterfall, People Chatter, Evening, Zenny Fall, Telluride SND69832 (0000016AA09740A8)
+[LOG] SoundI::release                          : Water, Waterfall, Strong Flow, Forest, Lower Waterfall, People Chatter, Evening, Zenny Fall, Telluride SND69832 (0000016AC5C89898)
+[LOG] SoundI::release                          :     Water, Waterfall, Strong Flow, Forest, Lower Waterfall, People Chatter, Evening, Zenny Fall, Telluride SND69832 (00000169F39C4B88)
+[LOG] SoundI::release                          :     Water, Waterfall, Strong Flow, Forest, Lower Waterfall, People Chatter, Evening, Zenny Fall, Telluride SND69832 (0000016ACA8830B8)
+[LOG] SystemI::createSound                     : filename = Assets/Audio/FMOD/Build/Desktop/Master.bank : mode 02010082
+[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] AsyncThread::add                         : add sound to async queue : soundi = 0000016AC5C89388, queue head = 0000016AA04200C8, queue count = 0
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 0000016AC5C89388
+[LOG] SystemI::createSoundInternal             :     Create name='Assets/Audio/FMOD/Build/Desktop/Master.bank', mode=0x02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 6664416
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 34752
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 00000169EB276610
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='Voices, Singing, Female, Humming SND3149', format=5, channels=2, frequency=48000, lengthbytes=227840, lengthpcm=1130880, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.136738.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 0000016AC5C89388
+[LOG] SoundI::release                          : Voices, Singing, Female, Humming SND3149 (00000169F3AF9A88)
+[LOG] SoundI::release                          :     Voices, Singing, Female, Humming SND3149 (0000016AC5FE9E18)
+[LOG] SoundI::release                          :     Voices, Singing, Female, Humming SND3149 (00000169E82063B8)
+[LOG] SystemI::createSound                     : filename = Assets/Audio/FMOD/Build/Desktop/Master.bank : mode 02010082
+[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] AsyncThread::add                         : add sound to async queue : soundi = 00000169E7F6EE48, queue head = 0000016AA04200C8, queue count = 0
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 00000169E7F6EE48
+[LOG] SystemI::createSoundInternal             :     Create name='Assets/Audio/FMOD/Build/Desktop/Master.bank', mode=0x02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 6664416
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 34752
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 0000016ACC061C60
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='Water, Waterfall, Strong Flow, Forest, Lower Waterfall, People Chatter, Evening, Zenny Fall, Telluride SND69832', format=5, channels=2, frequency=48000, lengthbytes=2057472, lengthpcm=7603631, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.343588.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 00000169E7F6EE48
+[LOG] SystemI::createSound                     : filename = Assets/Audio/FMOD/Build/Desktop/Master.bank : mode 02010082
+[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] AsyncThread::add                         : add sound to async queue : soundi = 00000169E7F6FA18, queue head = 0000016AA04200C8, queue count = 0
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 00000169E7F6FA18
+[LOG] SystemI::createSoundInternal             :     Create name='Assets/Audio/FMOD/Build/Desktop/Master.bank', mode=0x02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 6664416
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 34752
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 0000016ACC061260
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='Water, Waterfall, Strong Flow, Forest, Lower Waterfall, People Chatter, Evening, Zenny Fall, Telluride SND69832', format=5, channels=2, frequency=48000, lengthbytes=2057472, lengthpcm=7603631, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.343588.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 00000169E7F6FA18
+[LOG] SoundI::release                          : Water, Waterfall, Strong Flow, Forest, Lower Waterfall, People Chatter, Evening, Zenny Fall, Telluride SND69832 (00000169E7F6EE48)
+[LOG] SoundI::release                          :     Water, Waterfall, Strong Flow, Forest, Lower Waterfall, People Chatter, Evening, Zenny Fall, Telluride SND69832 (00000169F43BC458)
+[LOG] SoundI::release                          :     Water, Waterfall, Strong Flow, Forest, Lower Waterfall, People Chatter, Evening, Zenny Fall, Telluride SND69832 (00000169E4767A08)
+[LOG] SystemI::createSound                     : filename = Assets/Audio/FMOD/Build/Desktop/Master.bank : mode 02010082
+[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] AsyncThread::add                         : add sound to async queue : soundi = 00000169EB7BCAE8, queue head = 0000016AA04200C8, queue count = 0
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 00000169EB7BCAE8
+[LOG] SystemI::createSoundInternal             :     Create name='Assets/Audio/FMOD/Build/Desktop/Master.bank', mode=0x02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 6664416
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 34752
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 00000169F3B1EA60
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='Voices, Singing, Female, Humming SND3149', format=5, channels=2, frequency=48000, lengthbytes=227840, lengthpcm=1130880, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.136738.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 00000169EB7BCAE8
+[LOG] SoundI::release                          : Voices, Singing, Female, Humming SND3149 (0000016AC5C89388)
+[LOG] SoundI::release                          :     Voices, Singing, Female, Humming SND3149 (00000169EA37D738)
+[LOG] SoundI::release                          :     Voices, Singing, Female, Humming SND3149 (0000016A9E15E2D8)
+[LOG] SystemI::createSound                     : filename = Assets/Audio/FMOD/Build/Desktop/Master.bank : mode 02010082
+[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] AsyncThread::add                         : add sound to async queue : soundi = 00000169E4773E78, queue head = 0000016AA04200C8, queue count = 0
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 00000169E4773E78
+[LOG] SystemI::createSoundInternal             :     Create name='Assets/Audio/FMOD/Build/Desktop/Master.bank', mode=0x02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 6664416
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 34752
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 00000169EB276390
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='Voices, Singing, Female, Humming SND3149', format=5, channels=2, frequency=48000, lengthbytes=227840, lengthpcm=1130880, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.136738.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 00000169E4773E78
+[LOG] SoundI::release                          : Voices, Singing, Female, Humming SND3149 (00000169EB7BCAE8)
+[LOG] SoundI::release                          :     Voices, Singing, Female, Humming SND3149 (00000169F3AF9C18)
+[LOG] SoundI::release                          :     Voices, Singing, Female, Humming SND3149 (00000169E4767D68)
+[LOG] SoundI::release                          : Water, Waterfall, Strong Flow, Forest, Lower Waterfall, People Chatter, Evening, Zenny Fall, Telluride SND69832 (00000169E7F6FA18)
+[LOG] SoundI::release                          :     Water, Waterfall, Strong Flow, Forest, Lower Waterfall, People Chatter, Evening, Zenny Fall, Telluride SND69832 (00000169F3AF9A78)
+[LOG] SoundI::release                          :     Water, Waterfall, Strong Flow, Forest, Lower Waterfall, People Chatter, Evening, Zenny Fall, Telluride SND69832 (00000169E4767858)
+[LOG] SystemI::createSound                     : filename = Assets/Audio/FMOD/Build/Desktop/Master.bank : mode 02010082
+[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] AsyncThread::add                         : add sound to async queue : soundi = 00000169E47741D8, queue head = 0000016AA04200C8, queue count = 0
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 00000169E47741D8
+[LOG] SystemI::createSoundInternal             :     Create name='Assets/Audio/FMOD/Build/Desktop/Master.bank', mode=0x02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 6664416
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 34752
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 00000169EB276750
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='Voices, Singing, Female, Humming SND3149', format=5, channels=2, frequency=48000, lengthbytes=227840, lengthpcm=1130880, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.136738.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 00000169E47741D8
+[LOG] SoundI::release                          : Voices, Singing, Female, Humming SND3149 (00000169E4773E78)
+[LOG] SoundI::release                          :     Voices, Singing, Female, Humming SND3149 (0000016AC5960478)
+[LOG] SoundI::release                          :     Voices, Singing, Female, Humming SND3149 (0000016AA09740A8)
+[LOG] SoundI::release                          : Voices, Singing, Female, Humming SND3149 (00000169E47741D8)
+[LOG] SoundI::release                          :     Voices, Singing, Female, Humming SND3149 (00000169EA37EAB8)
+[LOG] SoundI::release                          :     Voices, Singing, Female, Humming SND3149 (0000016A9E15E638)
+[LOG] SoundI::release                          :  (00000169F3B1E128)
+[LOG] SoundI::release                          :     Wood, Impact, Planks, Drop On Floor Together 02 SND30353 (00000169EE487988)
+[LOG] SoundI::release                          :  (00000169F3B1E298)
+[LOG] SoundI::release                          :     Rocks, Crash & Debris, Throw, Smashing Impact SND42685 (00000169EE487CC8)
+[LOG] SoundI::release                          :  (00000169F3B1E408)
+[LOG] SoundI::release                          :     Cartoon, Vocal, Cartoon Character, Gulp, Swallow SND15130 (00000169F3BA49D8)
+[LOG] SoundI::release                          :  (00000169F3B1E6E8)
+[LOG] SoundI::release                          :     Water, Splash, Hand Splash, Small, Singular 01 SND92887 (00000169F3BA4B78)
+[LOG] SoundI::release                          :  (0000016AA10D0048)
+[LOG] SoundI::release                          :     Cartoon, Boing, Jump SND5946 (00000169EFA45DE8)
+[LOG] SoundI::release                          :  (0000016917429048)
+[LOG] SoundI::release                          :     STEP_HEEL (00000169EFA44248)
+[LOG] SoundI::release                          :  (0000016917428BF8)
+[LOG] SoundI::release                          :     STEP_GRASS_1 (00000169EFA43BC8)
+[LOG] SoundI::release                          :  (00000167F6458DD8)
+[LOG] SoundI::release                          :     STEP_GRASS_2 (00000169EFA43A28)
+[LOG] SoundI::release                          :  (00000169174291B8)
+[LOG] SoundI::release                          :     STEP_GRASS_3 (00000169EFA45F88)
+[LOG] SoundI::release                          :  (000001691729AAA8)
+[LOG] SoundI::release                          :     Rocks, Impact, Single Rock, Throw, Short Debris SND42678 (00000169EFA43F08)
+[LOG] Thread::callback                         : FMOD Studio update thread finished.
 [LOG] Thread::callback                         : FMOD Studio bank load thread finished.
+[LOG] Profile::disconnectAll                   : Profiler disconnecting all clients
 [LOG] Thread::callback                         : FMOD Studio sample load thread finished.
 [LOG] LiveUpdate::release                      : 
 [LOG] LiveUpdate::reset                        : Reset connection (reason Disconnected)
 [LOG] Thread::callback                         : FMOD stream thread finished.
 [LOG] Thread::callback                         : FMOD mixer thread finished.
+[LOG] Profile::disconnectAll                   : Profiler disconnecting all clients
 [LOG] SystemI::close                           : Closed.
+[ERR] assert                                   : assertion: 'gSystemInitCount == 0' failed
