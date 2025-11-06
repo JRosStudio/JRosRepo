@@ -1,32 +1,52 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class OneWayPlatform : MonoBehaviour
 {
-    private PlatformEffector2D effector;
-    private double counter = 0f;
+    private TilemapCollider2D tilemapCollider;
+    private float counter = 0f;
+
+    [SerializeField]
+    private Player player;
+
+    private bool canTrigger = true; //  bandera para evitar repetición
+    private bool comboHeld = false; //  indica si ↓ + salto siguen pulsados
+
+    public float maxCounter = 0.3f;
+
     private void Start()
     {
-        effector = GetComponent<PlatformEffector2D>();
+        tilemapCollider = GetComponent<TilemapCollider2D>();
     }
 
     private void Update()
-    {
-        if (Input.GetAxisRaw("Vertical") <= -0.9 && Input.GetButtonDown("Jump"))
+    {   
+        // Detectamos si la combinación está activa actualmente
+        comboHeld = player.vertical < -0.5f && player.isJumpPressed > 0.5f;
+
+        // Si la combinación está pulsada y se puede activar, inicia el ciclo
+        if (canTrigger && comboHeld)
         {
-            counter = 0.45f;
-            effector.rotationalOffset = 180;
-        }
-        if(counter <= 0.2f)
-        {
-            effector.rotationalOffset = 0;
+            canTrigger = false; // bloquea nuevas activaciones
+            counter = maxCounter;
+            tilemapCollider.enabled = false;
         }
 
-        if (counter > 0) {
+        // Cuenta atrás del tiempo de desactivación
+        if (counter > 0)
+        {
             counter -= Time.deltaTime;
+            if (counter <= 0f)
+            {
+                tilemapCollider.enabled = true;
+                counter = 0f;
+            }
+        }
+
+        // Cuando el jugador suelta la combinación, vuelve a permitir activación
+        if (!comboHeld && counter <= 0f)
+        {
+            canTrigger = true;
         }
     }
-
-
 }

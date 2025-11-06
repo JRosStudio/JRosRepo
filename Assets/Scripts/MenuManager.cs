@@ -50,6 +50,7 @@ public class MenuManager : MonoBehaviour
 
     public void pauseMenuHidden()
     {
+
         animation.SetInteger("PauseMenuState", 0);
         Time.timeScale = 1;
         animationBlackScreen.SetInteger("Transition", 3);
@@ -57,7 +58,7 @@ public class MenuManager : MonoBehaviour
        
     }
     public void pauseMenuOut() {
-        
+
         options.Select();
         options.interactable = true;
         tutorial.interactable = true;
@@ -66,16 +67,19 @@ public class MenuManager : MonoBehaviour
     }
 
     public void freezeGame() {
+
         Time.timeScale = 0;
         animationBlackScreen.SetInteger("Transition", 4);
         player.gamePaused = true;
     }
     public void pauseMenuStay() {
+
         animation.SetInteger("PauseMenuState", 2);
 
     }
     public void pauseMenuBack()
     {
+
         CloseAllPanels();
         options.interactable = false;
         tutorial.interactable = false;
@@ -162,6 +166,21 @@ public class MenuManager : MonoBehaviour
             OptionPanel.SetActive(false);
             TutorialPanel.SetActive(false);
             ControlsPanel.SetActive(false);
+    }
+
+    public void TogglePause()
+    {
+        // Cambia el estado de pausa
+        player.gamePaused = !player.gamePaused;
+
+        if (player.gamePaused)
+        {
+            pauseMenuOut();   // abre el menú
+        }
+        else
+        {
+            pauseMenuBack(); // reanuda tiempo y cierra el menú
+        }
     }
 
 }

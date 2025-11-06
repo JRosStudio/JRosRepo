@@ -84,7 +84,7 @@ public class StaminaManagement : MonoBehaviour
             
 
             currentFood++;
-            Debug.Log("CURRENT FOOD: " + currentFood);
+            //Debug.Log("CURRENT FOOD: " + currentFood);
 
             if (currentFood == 1) {
                 food1.SetActive(true);

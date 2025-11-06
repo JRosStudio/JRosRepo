@@ -6,7 +6,7 @@ public class RopeTipJumper : MonoBehaviour
 {
 
     Player player;
-    private bool jumpEnabled;
+    private bool jumpEnabled = false;
 
     [SerializeField]
     Transform tpPoint;
@@ -16,19 +16,24 @@ public class RopeTipJumper : MonoBehaviour
         player = FindFirstObjectByType<Player>();
 
     }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "OneWayPlatform")
+
+        if (collision.CompareTag("OneWayPlatform"))
         {
             jumpEnabled = true;
         }
-        else {
+
+        if (collision.CompareTag("Ground"))
+        {
             jumpEnabled = false;
         }
 
-        if (collision.gameObject.tag == "PlayerFeet" && jumpEnabled && player.inRope ) {
-            Debug.Log("TP AT TIP");
+        if (collision.CompareTag("PlayerFeet") && jumpEnabled && player.inRope)
+        {
             player.transform.position = tpPoint.position;
+            player.inRope = false;
         }
     }
 }

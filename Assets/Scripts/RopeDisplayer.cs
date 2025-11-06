@@ -49,7 +49,7 @@ public class RopeDisplayer : MonoBehaviour
         Debug.DrawRay(transform.position, new Vector2(0, rayDistance), Color.green);
 
         if(player.gamePaused == false) { 
-            if (rayHit && (Input.GetAxisRaw("RopeState") > 0.8 || Input.GetButton("RopeStateKeyBoard")) && player.ropesHashSet.Count == 0 && rayHit.transform.tag != "Rock" && resourceManager.getCurrentRopes() > 0 && !insideWall)
+            if (rayHit && player.ropeState && player.ropesHashSet.Count == 0 && rayHit.transform.tag != "Rock" && resourceManager.getCurrentRopes() > 0 && !insideWall)
             {
             
                 ropeStart.transform.position = rayHit.point;
@@ -64,7 +64,7 @@ public class RopeDisplayer : MonoBehaviour
 
                 ropesUsed_Txt.enabled = false;
             }
-            if ((Input.GetAxisRaw("RopeState") > 0.8 || Input.GetButton("RopeStateKeyBoard")))
+            if (player.ropeState)
             {
                 RopeBodyLenght();
                 ropesUsed_Txt.enabled = true;
@@ -106,18 +106,8 @@ public class RopeDisplayer : MonoBehaviour
             ropeLength = 0;
         }
 
-        if (Input.GetKeyDown("up") && ropeLength > 0)
-        {
-            ropeLength--;
-        }
 
-        if (Input.GetKeyDown("down") && ropeLength + 2 <= resourceManager.getCurrentRopes())
-        {
-            ropeLength++;
-        }
-
-
-        if (Input.GetAxisRaw("RopeAddRemove") >= 0.8 && ropeBody.Count > 0)
+        if (player.vertical >= 0.8 && ropeBody.Count > 0)
         {
             if (m_isAxisInUse == false)
             {
@@ -126,7 +116,7 @@ public class RopeDisplayer : MonoBehaviour
             }
         }
 
-        if (Input.GetAxisRaw("RopeAddRemove") <= -0.8 && ropeBody.Count + 2 <= resourceManager.getCurrentRopes())
+        if (player.vertical <= -0.8 && ropeBody.Count + 2 <= resourceManager.getCurrentRopes())
         {
             if (m_isAxisInUse == false)
             {
@@ -134,7 +124,7 @@ public class RopeDisplayer : MonoBehaviour
                 m_isAxisInUse = true;
             }
         }
-        if (Input.GetAxisRaw("RopeAddRemove") == 0)
+        if (player.vertical == 0)
         {
             m_isAxisInUse = false;
         }
