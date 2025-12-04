@@ -3,7 +3,8 @@ using UnityEngine.Tilemaps;
 
 public class OneWayPlatform : MonoBehaviour
 {
-    private TilemapCollider2D tilemapCollider;
+    //private TilemapCollider2D tilemapCollider;
+    private BoxCollider2D tilemapCollider;
     private float counter = 0f;
 
     [SerializeField]
@@ -16,7 +17,8 @@ public class OneWayPlatform : MonoBehaviour
 
     private void Start()
     {
-        tilemapCollider = GetComponent<TilemapCollider2D>();
+        //tilemapCollider = GetComponent<TilemapCollider2D>();
+        tilemapCollider = GetComponent<BoxCollider2D>();
     }
 
     private void Update()

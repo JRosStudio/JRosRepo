@@ -32,8 +32,9 @@ public class RopeTipJumper : MonoBehaviour
 
         if (collision.CompareTag("PlayerFeet") && jumpEnabled && player.inRope)
         {
-            player.transform.position = tpPoint.position;
             player.inRope = false;
+            player.transform.position = tpPoint.position;
+            
         }
     }
 }

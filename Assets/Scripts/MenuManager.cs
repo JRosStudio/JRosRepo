@@ -31,6 +31,12 @@ public class MenuManager : MonoBehaviour
     [SerializeField]
     GameObject ControlsPanel;
 
+    [SerializeField]
+    GameObject keyboardIMG;
+
+    [SerializeField]
+    GameObject controllerIMG;
+
     Button options;
     Button tutorial;
     Button controls;
@@ -38,6 +44,7 @@ public class MenuManager : MonoBehaviour
     public bool optionPanelState;
     public bool tutorialPanelState;
     public bool controlPanelState;
+
 
 
     private void Start()
@@ -55,9 +62,10 @@ public class MenuManager : MonoBehaviour
         Time.timeScale = 1;
         animationBlackScreen.SetInteger("Transition", 3);
         player.gamePaused = false;
-       
+
     }
-    public void pauseMenuOut() {
+    public void pauseMenuOut()
+    {
 
         options.Select();
         options.interactable = true;
@@ -66,13 +74,15 @@ public class MenuManager : MonoBehaviour
         animation.SetInteger("PauseMenuState", 1);
     }
 
-    public void freezeGame() {
+    public void freezeGame()
+    {
 
         Time.timeScale = 0;
         animationBlackScreen.SetInteger("Transition", 4);
         player.gamePaused = true;
     }
-    public void pauseMenuStay() {
+    public void pauseMenuStay()
+    {
 
         animation.SetInteger("PauseMenuState", 2);
 
@@ -87,7 +97,8 @@ public class MenuManager : MonoBehaviour
         animation.SetInteger("PauseMenuState", 3);
     }
 
-    public void ToggleOptionPanel (){
+    public void ToggleOptionPanel()
+    {
         if (!optionPanelState)
         {
             optionPanelState = true;
@@ -98,7 +109,8 @@ public class MenuManager : MonoBehaviour
             TutorialPanel.SetActive(false);
             ControlsPanel.SetActive(false);
         }
-        else {
+        else
+        {
             optionPanelState = false;
             tutorialPanelState = false;
             controlPanelState = false;
@@ -159,13 +171,13 @@ public class MenuManager : MonoBehaviour
 
     public void CloseAllPanels()
     {
-            optionPanelState = false;
-            tutorialPanelState = false;
-            controlPanelState = false;
+        optionPanelState = false;
+        tutorialPanelState = false;
+        controlPanelState = false;
 
-            OptionPanel.SetActive(false);
-            TutorialPanel.SetActive(false);
-            ControlsPanel.SetActive(false);
+        OptionPanel.SetActive(false);
+        TutorialPanel.SetActive(false);
+        ControlsPanel.SetActive(false);
     }
 
     public void TogglePause()
@@ -183,4 +195,13 @@ public class MenuManager : MonoBehaviour
         }
     }
 
+    public void ControllsNext()
+    {
+
+        bool nextState = !keyboardIMG.activeSelf;
+
+        keyboardIMG.SetActive(nextState);
+        controllerIMG.SetActive(!nextState);
+
+    }
 }

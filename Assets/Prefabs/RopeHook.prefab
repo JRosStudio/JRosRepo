@@ -163,7 +163,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.012424469, y: -0.8184316}
+  m_Offset: {x: 0.012424469, y: -0.59}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.4155042, y: 0.9752846}
@@ -174,7 +174,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.39941406, y: 0.2976141}
+  m_Size: {x: 0.39941406, y: 0.72}
   m_EdgeRadius: 0
 --- !u!1 &6209507620325087975
 GameObject:
@@ -187,7 +187,7 @@ GameObject:
   - component: {fileID: 2956951626944389459}
   - component: {fileID: 4342758669644474509}
   - component: {fileID: 2999175207032589228}
-  m_Layer: 2
+  m_Layer: 10
   m_Name: Jumper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -223,7 +223,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0068645477, y: 0.09190416}
+  m_Offset: {x: 0.0068645477, y: -0.06}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}

@@ -214,7 +214,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isGrounded: 0
-  audioManager: {fileID: 57222355879447257, guid: 87be1ff74440ed24cb906e2f6aa62e64, type: 3}
 --- !u!1001 &3742913101706148895
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -366,6 +365,10 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 431353295893672190, guid: 375883f77078e44d1a80661197406d43, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 431353295893672191, guid: 375883f77078e44d1a80661197406d43, type: 3}
       propertyPath: health
       value: 1
@@ -414,3 +417,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fde59eafe617d8343a9ac8dddc652ffb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isInWater: 0

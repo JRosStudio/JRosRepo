@@ -97,6 +97,7 @@ GameObject:
   - component: {fileID: 146036478298908907}
   - component: {fileID: 146036478298908900}
   - component: {fileID: 146036478298908904}
+  - component: {fileID: 9215052702727591499}
   - component: {fileID: 146036478298908911}
   m_Layer: 0
   m_Name: Player
@@ -235,18 +236,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80c0a207d51be4611833030ccc4641c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioManager: {fileID: 0}
   stamina: {fileID: 0}
   ropeDisplayer: {fileID: 0}
   ropeFly: {fileID: 0}
+  resourceManager: {fileID: 0}
   sweat: {fileID: 0}
   smokeJump: {fileID: 0}
   smokeLand: {fileID: 0}
+  windowMenu: {fileID: 0}
   alive: 1
+  wallRockCheck: {fileID: 0}
   transition: {fileID: 0}
+  projectileMaxPosRight: {fileID: 0}
+  projectileMaxPosLeft: {fileID: 0}
+  projectileThrowMarker: {fileID: 0}
+  InputSystemMove: {fileID: 0}
+  InputSystemPause: {fileID: 0}
+  InputSystemPico: {fileID: 0}
+  InputSystemPiedra: {fileID: 0}
+  InputSystemSandwitch: {fileID: 0}
+  InputSystemJump: {fileID: 0}
+  InputSystemRopeState: {fileID: 0}
+  ropeState: 0
+  isJumpPressed: 0
+  isGolpePressed: 0
+  canJump: 0
+  canWallJump: 0
+  canRopeJump: 0
   originalGravityScale: 5
   horizontal: 0
   vertical: 0
   speed: 6
+  aceleration: 0
+  deceleration: 0
   speedGround: 8
   speedWater: 5
   speedClimb: 3
@@ -254,9 +277,11 @@ MonoBehaviour:
   jumpingPower: 15
   jumpingPowerGround: 0
   jumpingPowerWater: 0
-  highJumpingPower: 24
   isAttacking: 0
   wallSlidingSpeed: 0.5
+  wallJumpingPower: {x: 12, y: 16}
+  ropeJumpingPower: {x: 12, y: 12}
+  ropeJumpingPowerNoStamina: {x: 2, y: 0.2}
   radioGolpe: 0.5
   "da\xF1oGolpe": 1
   rb: {fileID: 146036478298908900}
@@ -274,6 +299,36 @@ MonoBehaviour:
   inWater: 0
   inRope: 0
   readyToShootArrow: 0
+  ShootArrowBreak: 1
+  markerSpeed: 0
+  gamePaused: 0
+  fallingTimeLimit: 0
+  fallingBar: {fileID: 0}
+  fallingBarParent: {fileID: 0}
+  fallingIcon: {fileID: 0}
+  fallingA: {fileID: 0}
+  fallingB: {fileID: 0}
+  respawnPosX: 0
+  respawnPosY: 0
+  rockPrefab: {fileID: 0}
+  rock: {fileID: 0}
+  fallingRockIcon: {fileID: 0}
+  fallingRockBreakIcon: {fileID: 0}
+  fallingPlayerIconStay: {fileID: 0}
+  fallingTimeLimitRock: 0
+  isInsideWall: 0
+--- !u!114 &9215052702727591499
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 146036478298908901}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37cd7388da406f942824c470f12ae340, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!95 &146036478298908911
 Animator:
   serializedVersion: 5

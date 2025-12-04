@@ -28,7 +28,6 @@ public class Rock_projectile : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Ground" && !hit) {
-            Debug.Log("ROCK HIT GROUND");
             rockHitSound = FMODUnity.RuntimeManager.CreateInstance("event:/ThrowRock_Ground");
             attributes = RuntimeUtils.To3DAttributes(gameObject);
             rockHitSound.set3DAttributes(attributes);
@@ -40,7 +39,6 @@ public class Rock_projectile : MonoBehaviour
         }
         if (collision.gameObject.tag == "Rock" && !hit)
         {
-            Debug.Log("ROCK HIT ROCK");
             rockHitSound = FMODUnity.RuntimeManager.CreateInstance("event:/ThrowRock_Ground");
             attributes = RuntimeUtils.To3DAttributes(gameObject);
             rockHitSound.set3DAttributes(attributes);
@@ -51,7 +49,6 @@ public class Rock_projectile : MonoBehaviour
         }
         if (collision.gameObject.tag == "OneWayPlatform" && !hit)
         {
-            Debug.Log("ROCK HIT ONE WAY PLATFORM");
             rockHitSound = FMODUnity.RuntimeManager.CreateInstance("event:/ThrowRock_Wood");
             attributes = RuntimeUtils.To3DAttributes(gameObject);
             rockHitSound.set3DAttributes(attributes);
@@ -70,16 +67,13 @@ public class Rock_projectile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("TRIGGER");
         if (collision.gameObject.tag == "Spikes")
         {
-            Debug.Log("ROCK HIT SPIKE");
             rockHitSound = FMODUnity.RuntimeManager.CreateInstance("event:/ThrowRock_Spikes");
             attributes = RuntimeUtils.To3DAttributes(gameObject);
             rockHitSound.set3DAttributes(attributes);
             rockHitSound.start();
             rockHitSound.release();
-            Debug.Log("ROCK HIT SPIKE");
         }
 
         if (collision.gameObject.tag == "Water")
@@ -90,7 +84,6 @@ public class Rock_projectile : MonoBehaviour
             rockHitSound.set3DAttributes(attributes);
             rockHitSound.start();
             rockHitSound.release();
-            Debug.Log("ROCK HIT WATER");
             player.rock = null;
             anim.SetBool("Break", true);
         }

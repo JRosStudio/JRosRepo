@@ -119,7 +119,7 @@ public class Player : MonoBehaviour
     [SerializeField]
     private int dañoGolpe;
 
-    [SerializeField] private Rigidbody2D rb;
+    [SerializeField] public Rigidbody2D rb;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private Transform wallCheck;
@@ -137,7 +137,7 @@ public class Player : MonoBehaviour
 
     public bool inWater = false;
     public bool inRope = false;
-    private Vector3 lastRopeRail;
+    public Vector3 lastRopeRail;
     public HashSet<GameObject> ropesHashSet = new HashSet<GameObject>();
     public bool readyToShootArrow;
     public bool ShootArrowBreak = true;
@@ -352,7 +352,7 @@ public class Player : MonoBehaviour
 
             //Player Falling
 
-            if (rb.velocity.y < -1)
+            if (!inRope && !IsWalled() && !IsGrounded() && rb.velocity.y < -1f && alive)
             {
                 fallingTime += Time.deltaTime;
                 lastFallingTime = fallingTime;
@@ -487,7 +487,7 @@ public class Player : MonoBehaviour
             }
 
             //Sprite Climbing
-            if (alive && inRope && !IsGrounded() && !IsWalled() && !isAttacking)
+            if (alive && inRope)
             {
                 coyoteTimeCounter = 0;
                 lastFallingTime = 0;
@@ -671,7 +671,6 @@ public class Player : MonoBehaviour
         // Si está en la cuerda pero sin input vertical → se queda quieto
         if (inRope && Mathf.Abs(vertical) < 0.2f && !isRopeJumping)
         {
-            Debug.Log("QUIETO!");
             rb.velocity = Vector2.zero;
             animation.speed = 0;
         }
@@ -691,13 +690,14 @@ public class Player : MonoBehaviour
             animation.speed = 1;
         }
 
-        if (IsGrounded())
+        if (IsGrounded() || ropesHashSet.Count == 0)
         {
             inRope = false;
         }
 
-        if (!inRope) {
+        if (!inRope ) {
             rb.gravityScale = originalGravityScale;
+
         }
     }
 
