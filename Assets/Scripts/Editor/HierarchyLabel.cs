@@ -24,6 +24,7 @@ public class HierarchyLabel : MonoBehaviour
         HighlightObj(obj, "FLDR_ROCK", selectionRect, Color.red);
         HighlightObj(obj, "DamageDetector", selectionRect, Color.green);
         HighlightObj(obj, "SceneRoot", selectionRect, Color.blue);
+        HighlightObj(obj, "Platforms", selectionRect, Color.blue);
     }
 
     static void HighlightObj(GameObject obj, string objname, Rect selectionRect, Color color)
