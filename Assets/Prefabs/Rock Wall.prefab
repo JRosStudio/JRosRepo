@@ -17,7 +17,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 431353295893672179, guid: 375883f77078e44d1a80661197406d43, type: 3}
       propertyPath: m_TagString
-      value: Rock
+      value: RockWall
       objectReference: {fileID: 0}
     - target: {fileID: 431353295893672184, guid: 375883f77078e44d1a80661197406d43, type: 3}
       propertyPath: m_RootOrder

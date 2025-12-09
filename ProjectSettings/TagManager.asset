@@ -17,6 +17,7 @@ TagManager:
   - Rope_Fly
   - PlayerFeet
   - ThrowRock
+  - RockWall
   layers:
   - Default
   - TransparentFX

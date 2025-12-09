@@ -233,16 +233,20 @@ public class Player : MonoBehaviour
 
     private void isPico(InputAction.CallbackContext obj)
     {
-        if (isAttacking == false && alive)
+        if (!isAttacking && alive)
         {
-            if (!ropeState)
+            if (inRope)
+            {
+                RopeShoot();
+            }
+            else if (ropeState)
+            {
+                RopeShoot();
+            }
+            else
             {
                 Golpe();
             }
-            else {
-                RopeShoot();
-            }
-            
         }
     }
     private void SandwitchPressed(InputAction.CallbackContext obj)
@@ -655,7 +659,7 @@ public class Player : MonoBehaviour
             gameObject.transform.position = new Vector3(lastRopeRail.x, transform.position.y, transform.position.z);
         }
 
-        if (inRope && vertical >= 0.2f && !isRopeJumping)
+        if (inRope && vertical >= 0.2f && !isRopeJumping && !ropeState)
         {
             animation.speed = 1;
             if (stamina.GetCurrentStamina() > 0)
@@ -683,7 +687,7 @@ public class Player : MonoBehaviour
             animation.speed = 0;
         }
 
-        if (inRope && vertical <= -0.2f && !isRopeJumping && ropesHashSet.Count > 0)
+        if (inRope && vertical <= -0.2f && !isRopeJumping && ropesHashSet.Count > 0 && !ropeState)
         {
 
             rb.velocity = new Vector2(0, vertical * speedClimb);
@@ -960,7 +964,7 @@ public class Player : MonoBehaviour
         foreach (Collider2D colisionador in objetos)
         {
 
-            if (colisionador.CompareTag("Enemy") || colisionador.CompareTag("Rock"))
+            if (colisionador.CompareTag("Enemy") || colisionador.CompareTag("Rock") || colisionador.CompareTag("RockWall"))
             {
                 colisionador.transform.GetComponent<Enemigo>().takeDamage(dañoGolpe);
             }
@@ -1112,7 +1116,7 @@ public class Player : MonoBehaviour
             Invoke(nameof(StopRopeJumping), wallJumpingDuration);
         }
 
-        if (isGolpePressed > 0.5 && inRope)
+        if (isGolpePressed > 0.5 && inRope && !ropeState)
         {
             //Debug.Log("CAE");
             inRope = false;
