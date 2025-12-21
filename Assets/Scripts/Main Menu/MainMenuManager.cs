@@ -1,18 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MainMenuManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField]GameObject selectLevelPos;
+    [SerializeField]GameObject mainMenuPos;
+    [SerializeField] GameObject camara;
+    [SerializeField] GameObject mainMenu;
+    [SerializeField] GameObject selectLevelMenu;
+
+    public void Start()
     {
-        
+        camara.transform.position = mainMenuPos.transform.position;
+    }
+    public void LoadGame() {
+        SceneManager.LoadScene("Lvl1");
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+
+    public void selectLevel() {
+        camara.transform.position = selectLevelPos.transform.position;
+        mainMenu.SetActive(false);
+        selectLevelMenu.SetActive(true);
     }
+
 }
