@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
-
+using UnityEngine.UI;
 public class MainMenuManager : MonoBehaviour
 {
     [SerializeField] GameObject selectLevelPos;
@@ -16,8 +16,11 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField] GameObject actors;
     [SerializeField] GameObject keyboardTuto;
     [SerializeField] GameObject controllerTuto;
-    [SerializeField] GameObject textTuto;
-    TextMeshPro TMPro_textTuto;
+    [SerializeField] GameObject textTuto_OBJ;
+    [SerializeField] GameObject Button_Start_OBJ;
+    private Button Button_Start;
+    private TextMeshProUGUI textTuto;
+    
 
 
     Animator cam_Animator;
@@ -28,13 +31,16 @@ public class MainMenuManager : MonoBehaviour
 
     public void Start()
     {
+
         camara.transform.position = mainMenuPos.transform.position;
         cam_Animator = camara.GetComponent<Animator>();
         actors_Animator = actors.GetComponent<Animator>();
         friendsGone = false;
-        TMPro_textTuto = textTuto.GetComponent<TextMeshPro>();
-
+        textTuto = textTuto_OBJ.GetComponent<TextMeshProUGUI>();
+        Button_Start = Button_Start_OBJ.GetComponent<Button>();
+        Button_Start.Select();
     }
+
     public void LoadGame() {
         SceneManager.LoadScene("Lvl1");
     }
@@ -65,15 +71,17 @@ public class MainMenuManager : MonoBehaviour
 
     public void SettingsChangeImage() {
         if (keyboardTuto.activeSelf) {
-            TMPro_textTuto.SetText("Keyboard");
+            textTuto.text = "Watch keyboard";
             controllerTuto.SetActive(true);
-        }else if (controllerTuto.activeSelf)
+            keyboardTuto.SetActive(false);
+        }
+        else if (controllerTuto.activeSelf)
         {
-            TMPro_textTuto.SetText("Controller");
+            textTuto.text = "Watch controller";
             keyboardTuto.SetActive(true);
+            controllerTuto.SetActive(false);
         }
     } 
-
 
     public void toSelectLevel() {
         if (friendsGone) {
@@ -113,5 +121,5 @@ public class MainMenuManager : MonoBehaviour
     public void CloseGame() {
         Application.Quit();
     }
-    
+
 }
