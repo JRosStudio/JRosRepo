@@ -25,7 +25,7 @@ public class ActorsMainMenu : MonoBehaviour
             }
             
         }
-        Debug.Log("RISA_STATE = " + risaState);
+        //Debug.Log("RISA_STATE = " + risaState);
     }
     public void setRisaFalse() {
         animation.SetBool("Risa", false);
