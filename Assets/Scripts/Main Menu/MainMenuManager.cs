@@ -69,7 +69,7 @@ public class MainMenuManager : MonoBehaviour
             }
         }
         resolutionDropdown.AddOptions(resolutionsStringList);
-        resolutionDropdown.value = resolutions169.Count;
+        resolutionDropdown.SetValueWithoutNotify(resolutions169.Count - 1);
         Screen.SetResolution(startingResolution.width, startingResolution.height, Screen.fullScreen);
     }
 
@@ -163,7 +163,7 @@ public class MainMenuManager : MonoBehaviour
     }
 
     public void SetResolution(int resolutionIndex) {
-        Resolution resolution = resolutions169[resolutionIndex - 1];
+        Resolution resolution = resolutions169[resolutionIndex];
         Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
     }
     public void SetFullScreen(bool isFullScreen) {

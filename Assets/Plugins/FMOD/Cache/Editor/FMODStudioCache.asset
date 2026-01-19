@@ -55,6 +55,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 1240
+--- !u!114 &-6775278033417046911
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/MainMenuMusic
+  m_EditorClassIdentifier: 
+  Path: event:/MainMenuMusic
+  Guid:
+    Data1: -1101026338
+    Data2: 1086241795
+    Data3: 606636935
+    Data4: 531239162
+  Banks:
+  - {fileID: 5082051702160264566}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 45333
 --- !u!114 &-5226353260973369366
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -70,10 +97,10 @@ MonoBehaviour:
   Path: Assets/Audio/FMOD/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638771418560000000
+  lastModified: 639043650440000000
   FileSizes:
   - Name: Desktop
-    Value: 1480
+    Value: 1572
   Exists: 1
 --- !u!114 &-3645401037147699703
 MonoBehaviour:
@@ -252,6 +279,7 @@ MonoBehaviour:
   EditorBanks:
   - {fileID: -5226353260973369366}
   - {fileID: 1218904474912716178}
+  - {fileID: 5082051702160264566}
   EditorEvents:
   - {fileID: -2668662905818286763}
   - {fileID: 9036686809595176459}
@@ -268,12 +296,13 @@ MonoBehaviour:
   - {fileID: -938550320726642246}
   - {fileID: -7380164556496809284}
   - {fileID: -8183614126800752523}
+  - {fileID: -6775278033417046911}
   EditorParameters: []
   MasterBanks:
   - {fileID: 1218904474912716178}
   StringsBanks:
   - {fileID: -5226353260973369366}
-  cacheTime: 638771418560000000
+  cacheTime: 639043650440000000
   cacheVersion: 131609
 --- !u!114 &866952101517674170
 MonoBehaviour:
@@ -314,7 +343,7 @@ MonoBehaviour:
   Path: Assets/Audio/FMOD/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638771418560000000
+  lastModified: 639043650440000000
   FileSizes:
   - Name: Desktop
     Value: 6699168
@@ -346,6 +375,26 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 150
   Length: 690
+--- !u!114 &5082051702160264566
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/MainMenu.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/Audio/FMOD/Build/Desktop/MainMenu.bank
+  Name: MainMenu
+  StudioPath: bank:/MainMenu
+  lastModified: 639043650440000000
+  FileSizes:
+  - Name: Desktop
+    Value: 556128
+  Exists: 1
 --- !u!114 &5279523353210268742
 MonoBehaviour:
   m_ObjectHideFlags: 0
