@@ -4,13 +4,16 @@ using UnityEngine;
 
 public class Spikes : MonoBehaviour
 {
-    [SerializeField]
-    public Player pj;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player")) {
-            pj.Death();
+        if (collision.CompareTag("Player"))
+        {
+            Player player = collision.GetComponent<Player>();
+            if (player != null)
+            {
+                player.Death();
+            }
         }
     }
 }

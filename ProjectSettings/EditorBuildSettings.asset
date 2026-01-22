@@ -12,6 +12,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Master.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
-    path: Assets/Scenes/lvl1.unity
+    path: Assets/Scenes/Blueprint.unity
     guid: 090aaa04de0fdc04294ae2c01b8f4041
   m_configObjects: {}
