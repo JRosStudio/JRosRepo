@@ -74,7 +74,7 @@ GameObject:
   - component: {fileID: 3733853685141407851}
   - component: {fileID: 3733853685141407848}
   m_Layer: 2
-  m_Name: RopeHook
+  m_Name: Ray_RopeHook
   m_TagString: Rope
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
