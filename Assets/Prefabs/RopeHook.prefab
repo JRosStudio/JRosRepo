@@ -249,6 +249,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tpPoint: {fileID: 2481104971290362713}
+  groundCheckDistance: 0.2
+  platformMask:
+    serializedVersion: 2
+    m_Bits: 2147483647
+  jumpEnabled: 0
 --- !u!1 &8838990962061350122
 GameObject:
   m_ObjectHideFlags: 0
@@ -258,7 +263,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2481104971290362713}
-  m_Layer: 2
+  m_Layer: 10
   m_Name: TpPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}

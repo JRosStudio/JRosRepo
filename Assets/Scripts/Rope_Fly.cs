@@ -66,6 +66,8 @@ public class Rope_Fly : MonoBehaviour
         if (deploying == false)
         {
             ropeHookInstance = Instantiate(ropeHook, goal, Quaternion.identity);
+            RopeTipJumper jumper = ropeHookInstance.GetComponentInChildren<RopeTipJumper>();
+            jumper.EvaluateAnchorPoint();
             deploying = true;
             lastRopePos = ropeHookInstance.transform.position.y;
             //resourceManager.addRopes(-1);
