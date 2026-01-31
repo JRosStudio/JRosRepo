@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4778077570226339427}
   m_Layer: 9
   m_Name: Falling platform
-  m_TagString: Rock
+  m_TagString: RockWall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

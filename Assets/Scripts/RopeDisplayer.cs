@@ -49,7 +49,7 @@ public class RopeDisplayer : MonoBehaviour
         Debug.DrawRay(transform.position, new Vector2(0, rayDistance), Color.green);
 
         if(player.gamePaused == false) { 
-            if (rayHit && player.ropeState  && rayHit.transform.tag != "Rock" && resourceManager.getCurrentRopes() > 0 && !insideWall)
+            if (rayHit && player.ropeState  && rayHit.transform.tag != "Rock" && rayHit.transform.tag != "FallingPlatform" && resourceManager.getCurrentRopes() > 0 && !insideWall)
             {
             
                 ropeStart.transform.position = rayHit.point;

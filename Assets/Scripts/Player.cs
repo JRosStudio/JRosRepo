@@ -1196,7 +1196,7 @@ public class Player : MonoBehaviour
             Death();
         }
 
-        if (collision.gameObject.tag == "Ground" || collision.gameObject.layer == 3 || collision.gameObject.tag == "OneWayPlatform")
+        if (collision.gameObject.tag == "Ground" || collision.gameObject.tag == "FallingPlatform" ||  collision.gameObject.layer == 3 || collision.gameObject.tag == "OneWayPlatform")
         {
             //Debug.Log(lastFallingTime);
             if (checkFallingDeath())
