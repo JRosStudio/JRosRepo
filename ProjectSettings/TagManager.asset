@@ -19,6 +19,7 @@ TagManager:
   - ThrowRock
   - RockWall
   - FallingPlatform
+  - Wall
   layers:
   - Default
   - TransparentFX

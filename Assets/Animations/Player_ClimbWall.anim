@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Player_Walled
+  m_Name: Player_ClimbWall
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -23,13 +23,13 @@ AnimationClip:
       value: {fileID: -500317460, guid: 1d4f01b8c788afc47a1cb78b6ed9474a, type: 3}
     - time: 0.2
       value: {fileID: 761219173, guid: 1d4f01b8c788afc47a1cb78b6ed9474a, type: 3}
-    - time: 0.46666667
+    - time: 0.5
       value: {fileID: -500317460, guid: 1d4f01b8c788afc47a1cb78b6ed9474a, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
     script: {fileID: 0}
-  m_SampleRate: 15
+  m_SampleRate: 10
   m_WrapMode: 0
   m_Bounds:
     m_Center: {x: 0, y: 0, z: 0}
@@ -52,7 +52,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.53333336
+    m_StopTime: 0.6
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
