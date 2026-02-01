@@ -44,6 +44,10 @@ public class Player : MonoBehaviour
     [SerializeField]
     GameObject CornerTP;
 
+    [SerializeField]
+    public float MaxClimbStaminaTime;
+    [SerializeField]
+    public float CurentClimbStaminaTime;
 
     public bool alive = true;
 
@@ -273,6 +277,7 @@ public class Player : MonoBehaviour
     }
     private void Update()
     {
+        Debug.Log(CurentClimbStaminaTime);
         //Comprobador de marcador de lanzar piedra y desplegar cuerda
         pointA = gameObject.transform.position;
         pointB = projectileThrowMarker.transform.position;
@@ -964,6 +969,10 @@ public class Player : MonoBehaviour
         if (alive)
         {
             alive = false;
+            isClimbing = false;
+            isAttacking = false;
+            ropeState = false;
+            inRope = false;
             PausarTiempo(0.2f);
             Invoke("TransitionOn", 1f);
             Invoke("Respawn", 1.8f);
@@ -1121,6 +1130,15 @@ public class Player : MonoBehaviour
         if (isClimbing && vertical >= 0.2f && !isWallJumping && !ropeState)
         {
             rb.velocity = new Vector2(0, vertical * speedClimbWall);
+
+            if (CurentClimbStaminaTime < MaxClimbStaminaTime)
+            {
+                CurentClimbStaminaTime += Time.deltaTime;
+            }
+            else {
+                stamina.WallJumpStaminaLoss();
+                CurentClimbStaminaTime = 0;
+            }
         }
 
         if (isClimbing && vertical <= -0.2f && !isWallJumping && !ropeState)
@@ -1143,6 +1161,10 @@ public class Player : MonoBehaviour
             rb.gravityScale = originalGravityScale;
         }
 
+        if (IsGrounded()) {
+            CurentClimbStaminaTime = 0;
+        }
+
         LayerMask mask = LayerMask.GetMask("Platform");
         LayerMask maskCorner = LayerMask.GetMask("Wall");
         Vector2 boxSize = new Vector2(0.5f, 0.1f);
@@ -1151,6 +1173,7 @@ public class Player : MonoBehaviour
         if (isClimbing && Physics2D.OverlapBox(PlatformClimber.transform.position, boxSize, 0f, mask)) {
             isClimbing = false;
             gameObject.transform.position = PlatformTP.transform.position;
+            CurentClimbStaminaTime = 0;
         }
 
         if (isClimbing && !Physics2D.OverlapBox(CornerClimber.transform.position, boxSize, 0f, maskCorner))
@@ -1158,6 +1181,7 @@ public class Player : MonoBehaviour
 
            isClimbing = false;
            gameObject.transform.position = CornerTP.transform.position;
+           CurentClimbStaminaTime = 0;
         }
 
     }
