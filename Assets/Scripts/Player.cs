@@ -1119,7 +1119,7 @@ public class Player : MonoBehaviour
     {
         bool pushingToWall = IsWalled() && Mathf.Abs(horizontal) > 0.1f;
 
-        if (stamina.GetCurrentStamina() > 0 && pushingToWall && isWallSliding && !IsGrounded() && !inRope && !isWallJumping && !isClimbing)
+        if (stamina.GetCurrentStamina() > 0 && rb.velocity.y < 0 && pushingToWall && isWallSliding && !IsGrounded() && !inRope && !isWallJumping && !isClimbing)
         {
             isClimbing = true;
             rb.gravityScale = 0;

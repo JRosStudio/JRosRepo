@@ -14,10 +14,15 @@ public class RandoChildrenSelector : MonoBehaviour
 
     void Start()
     {
+        Shuffle();
+    }
+
+    public void Shuffle()
+    {
         activateIndex = new int[numberActivatedItems];
         allChildren = new GameObject[gameObject.transform.childCount];
 
-        for (int i = 0; i< allChildren.Length ; i++)
+        for (int i = 0; i < allChildren.Length; i++)
         {
             allChildren[i] = gameObject.transform.GetChild(i).gameObject;
             allChildren[i].SetActive(false);
@@ -43,10 +48,9 @@ public class RandoChildrenSelector : MonoBehaviour
             availableIndexes.RemoveAt(randomPos); // lo quitamos para no repetir
         }
 
-        foreach (int i in activateIndex) { 
+        foreach (int i in activateIndex)
+        {
             allChildren[i].gameObject.SetActive(true);
         }
-
-
     }
 }
