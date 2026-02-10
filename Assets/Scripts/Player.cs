@@ -106,6 +106,7 @@ public class Player : MonoBehaviour
 
     private bool isWallSliding;
     public float wallSlidingSpeed = 0f;
+    public float waterFaillingSpeed = 5f;
 
     private bool isWallJumping;
     private bool isRopeJumping;
@@ -277,7 +278,6 @@ public class Player : MonoBehaviour
     }
     private void Update()
     {
-        Debug.Log(CurentClimbStaminaTime);
         //Comprobador de marcador de lanzar piedra y desplegar cuerda
         pointA = gameObject.transform.position;
         pointB = projectileThrowMarker.transform.position;
@@ -388,7 +388,7 @@ public class Player : MonoBehaviour
             }
             else
             {
-                rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -wallSlidingSpeed, float.MaxValue));
+                rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -waterFaillingSpeed, float.MaxValue));
                 maxSpeed = speedWater;
                 jumpingPower = jumpingPowerWater;
             }
@@ -695,9 +695,9 @@ public class Player : MonoBehaviour
     {
 
 
-        if (vertical >= 0.5f && ropesHashSet.Count > 0 && !isClimbing && !inRope && !isRopeJumping && !ropeState)
+        if (vertical >= 0.5f && ropesHashSet.Count > 0 && !inRope && !isRopeJumping && !ropeState)
         {
-
+            isClimbing = false;
             inRope = true;
             rb.gravityScale = 0;
             gameObject.transform.position = new Vector3(lastRopeRail.x, transform.position.y, transform.position.z);
@@ -1119,7 +1119,7 @@ public class Player : MonoBehaviour
     {
         bool pushingToWall = IsWalled() && Mathf.Abs(horizontal) > 0.1f;
 
-        if (stamina.GetCurrentStamina() > 0 && rb.velocity.y < 0 && pushingToWall && isWallSliding && !IsGrounded() && !inRope && !isWallJumping && !isClimbing)
+        if (stamina.GetCurrentStamina() > 0 && rb.velocity.y < 0 && pushingToWall && isWallSliding && !IsGrounded() && !inWater && !inRope && !isWallJumping && !isClimbing)
         {
             isClimbing = true;
             rb.gravityScale = 0;
@@ -1170,13 +1170,13 @@ public class Player : MonoBehaviour
         Vector2 boxSize = new Vector2(0.5f, 0.1f);
         Vector2 boxSizeCorner = new Vector2(0.7f, 0.1f);
 
-        if (isClimbing && Physics2D.OverlapBox(PlatformClimber.transform.position, boxSize, 0f, mask)) {
+        if (isClimbing && vertical >= 0.5f && Physics2D.OverlapBox(PlatformClimber.transform.position, boxSize, 0f, mask)) {
             isClimbing = false;
             gameObject.transform.position = PlatformTP.transform.position;
             CurentClimbStaminaTime = 0;
         }
 
-        if (isClimbing && !Physics2D.OverlapBox(CornerClimber.transform.position, boxSize, 0f, maskCorner))
+        if (isClimbing && vertical >= 0.5f && !Physics2D.OverlapBox(CornerClimber.transform.position, boxSize, 0f, maskCorner))
         {
 
            isClimbing = false;
@@ -1283,7 +1283,7 @@ public class Player : MonoBehaviour
             wallJumpingCounter = 0f;
             if (horizontal != 0)
             {
-                Debug.Log("HORIZONTA != 0");
+               
                 speed = maxSpeed;
             }
 

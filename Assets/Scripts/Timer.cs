@@ -34,13 +34,17 @@ public class Timer : MonoBehaviour
         if (player.horizontal != 0) {
             timeRunning = true;
         }
-        /*else
-        {
-            timeRunning = false;
-        }*/
 
-       
+    /*else
+    {
+        timeRunning = false;
+    }*/
+
+
+}
+    public float GetCurrentTime()
+    {
+        return currentTime;
     }
-
 
 }

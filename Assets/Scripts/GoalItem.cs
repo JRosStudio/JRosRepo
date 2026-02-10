@@ -14,14 +14,14 @@ public class GoalItem : MonoBehaviour
 
 
     /*types:
-    1- Food
-    2- Person
+    1- Familia
+    2- Amigos
     */
 
     /*subtypes:
-    1- Paella Carne | Familia
-    2- Paella pescado | Amigo
-    3- Paella verduras | Compañero de trabajo
+    1- Madre | Raul
+    2- Padre | Marga
+    3- Hermano | Miguel
     */
 
     public void setGoalItem(string id, int type, int subtype) {

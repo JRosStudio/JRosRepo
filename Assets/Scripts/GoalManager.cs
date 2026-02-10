@@ -7,6 +7,13 @@ public class GoalManager : MonoBehaviour
 
     public List<GoalItem> listaIngredientes = new List<GoalItem>();
     public List<GoalItem> listaPersonas = new List<GoalItem>();
+    public int numberOfGoals;
+    public float goldTimeGoal;
+    public float silverTimeGoal;
+    public float cooperTimeGoal;
+    public Timer timer;
+    public float finishTime;
+
     private bool paellaCarne = false;
     private bool paellaMarisco = false;
     private bool paellaVerdura = false;
@@ -46,7 +53,20 @@ public class GoalManager : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.transform.CompareTag("Player") && !countDone && listaIngredientes.Count == 3) {
+
+
+        if (collision.transform.CompareTag("Player") && !countDone && listaPersonas.Count == numberOfGoals) {
+            finishTime = timer.GetCurrentTime();
+            if (finishTime <= goldTimeGoal) {
+                Debug.Log("ORO!" + finishTime);
+            } else if (finishTime <= silverTimeGoal && finishTime >= goldTimeGoal) {
+                Debug.Log("PLATA!: " + finishTime);
+            } else if (finishTime >= cooperTimeGoal) {
+                Debug.Log("BRONCE!: " + finishTime);
+            }
+        }
+
+       /* if (collision.transform.CompareTag("Player") && !countDone && listaIngredientes.Count == 3) {
 
             foreach (GoalItem g in listaIngredientes) {
                 //Debug.Log( "ITEM: " + g.getID() + " - Type: " + g.getType() + "- Subtype: " + g.getSubtype());
@@ -203,9 +223,9 @@ public class GoalManager : MonoBehaviour
                 }
                 countDone = true;
             }
-        }
+        }*/
 
-            
+
         }
     }
 
