@@ -30,7 +30,7 @@ public class ReverbControll : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            Debug.Log("REVERB ON");
+            //Debug.Log("REVERB ON");
             ActivateReverb();
         }
     }
@@ -39,7 +39,7 @@ public class ReverbControll : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            Debug.Log("REVERB OFF");
+            //Debug.Log("REVERB OFF");
             DeactivateReverb();
         }
     }

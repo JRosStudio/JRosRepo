@@ -7,13 +7,68 @@
 [LOG] OutputWASAPI::init                       : Output buffer size: 4096 samples, latency: 0.00ms, period: 10.00ms, DSP buffer: 1024 * 4
 [LOG] Thread::initThread                       : Init FMOD stream thread. Affinity: 0x4000000000000003, Priority: 0xFFFF7FFB, Stack Size: 98304, Semaphore: No, Sleep Time: 10, Looping: Yes.
 [LOG] Thread::initThread                       : Init FMOD mixer thread. Affinity: 0x4000000000000001, Priority: 0xFFFF7FFA, Stack Size: 81920, Semaphore: No, Sleep Time: 0, Looping: Yes.
-[LOG] AsyncManager::init                       : manager 0000024B6E8E4608 isAsync 0 updatePeriod 0.02
+[LOG] AsyncManager::init                       : manager 00000226D7DD9F48 isAsync 0 updatePeriod 0.02
 [LOG] AsyncManager::init                       : done
 [LOG] PlaybackSystem::init                     : 
 [LOG] Thread::initThread                       : Init FMOD Studio sample load thread. Affinity: 0x4000000000000003, Priority: 0xFFFF7FFD, Stack Size: 98304, Semaphore: No, Sleep Time: 1, Looping: No.
 [LOG] PlaybackSystem::init                     : done
 [LOG] Thread::initThread                       : Init FMOD Studio bank load thread. Affinity: 0x4000000000000003, Priority: 0xFFFF7FFD, Stack Size: 98304, Semaphore: No, Sleep Time: 1, Looping: No.
 [LOG] Manager::init                            : done.
+[LOG] Manager::readBank                        : fileversion = 141, compatVersion = 140 (oldest = 44, newest = 142)
+[LOG] Manager::readBank                        : fileversion = 141, compatVersion = 140 (oldest = 44, newest = 142)
+[LOG] Manager::readBank                        : fileversion = 141, compatVersion = 140 (oldest = 44, newest = 142)
+[LOG] PlaybackSystem::acquireMasterBus         : Setting master channel group format to 6
+[LOG] Manager::readBank                        : fileversion = 141, compatVersion = 140 (oldest = 44, newest = 142)
+[LOG] AsyncThread::add                         : add sound to async queue : soundi = 00000225BF047118, queue head = 00000225C3FFCB88, queue count = 0
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 00000225BF047118
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 00000225BF047118
+[LOG] SoundI::release                          : Water, Waterfall, Strong Flow, Forest, Lower Waterfall, People Chatter, Evening, Zenny Fall, Telluride SND69832 (000002258E6E50C8)
+[LOG] SoundI::release                          :     Water, Waterfall, Strong Flow, Forest, Lower Waterfall, People Chatter, Evening, Zenny Fall, Telluride SND69832 (00000225BFBF9FB8)
+[LOG] SoundI::release                          :     Water, Waterfall, Strong Flow, Forest, Lower Waterfall, People Chatter, Evening, Zenny Fall, Telluride SND69832 (00000225BF047118)
+[LOG] SoundI::release                          :  (00000226BF6EDC78)
+[LOG] SoundI::release                          :     Tools, Garden, Pickaxe, Hitting Ground, Soil, Rock, Birds, Garden, Near Town SND90698 (00000226C80C0898)
+[LOG] SoundI::release                          :  (00000226BF6EE7F8)
+[LOG] SoundI::release                          :     Rocks, Break, Small Stone Slabs Shattering SND75273 (00000226C9E2AC78)
+[LOG] SoundI::release                          :  (00000226BF6EE518)
+[LOG] SoundI::release                          :     Rocks, Impact, Bricks, Small, Drop On Rock And Stone Paving SND69561 (00000226C80C0218)
+[LOG] SoundI::release                          :  (00000226D6111608)
+[LOG] SoundI::release                          :     Rocks, Crash & Debris, Throw, Smashing Impact SND42685 1 (00000226C9E2A938)
+[LOG] SoundI::release                          :  (0000022694E614D8)
+[LOG] SoundI::release                          :     Rocks, Impact, Single Rock, Throw, Short Debris SND42678 (000002258DD88328)
+[LOG] SoundI::release                          :  (00000226BF6EDB08)
+[LOG] SoundI::release                          :     Water, Splash, Hand Splash, Small, Singular 01 SND92887 (00000226D6685AC8)
+[LOG] SoundI::release                          :  (00000226BF6EDDE8)
+[LOG] SoundI::release                          :     STEP_HEEL (00000226D6686488)
+[LOG] SoundI::release                          :  (00000226BF6EE0C8)
+[LOG] SoundI::release                          :     STEP_GRASS_1 (00000226D66862E8)
+[LOG] SoundI::release                          :  (00000226BF6EE688)
+[LOG] SoundI::release                          :     STEP_GRASS_2 (00000226C80C0D78)
+[LOG] SoundI::release                          :  (00000226BF6EE238)
+[LOG] SoundI::release                          :     STEP_GRASS_3 (00000226D6685E08)
+[LOG] SoundI::release                          :  (0000022694E61A98)
+[LOG] SoundI::release                          :     Cartoon, Vocal, Cartoon Character, Gulp, Swallow SND15130 (00000226C9E2CBC8)
+[LOG] SoundI::release                          :  (0000022694E61648)
+[LOG] SoundI::release                          :     Wood, Impact, Planks, Drop On Floor Together 02 SND30353 (00000226C9E2D0A8)
+[LOG] SoundI::release                          :  (0000022694E617B8)
+[LOG] SoundI::release                          :     Weapons, Sword, Sword Sheath, Draw, Put Back, Ultrasonic, Variation A SND69268 (00000226C9E2D3E8)
+[LOG] SoundI::release                          :  (0000022694E61928)
+[LOG] SoundI::release                          :     Vegetation, Leaves, Rustle, Dry, Small Movements SND4177 (00000226C9E2D728)
+[LOG] SoundI::release                          :  (00000226BF6EDF58)
+[LOG] SoundI::release                          :     Metal, Friction, Spike, Small, Scratch On Rusty Metal, Trailer Panel 03 SND38946 (00000226C80C0A38)
+[LOG] SoundI::release                          :  (00000226BF6EE3A8)
+[LOG] SoundI::release                          :     Rocks, Crash & Debris, Throw, Smashing Impact SND42685 (00000226C80C0558)
+[LOG] SoundI::release                          :  (000002258DDC0A28)
+[LOG] SoundI::release                          :     Cartoon, Boing, Jump SND5946 (00000226C9E2CD68)
+[LOG] Thread::callback                         : FMOD Studio update thread finished.
+[LOG] Thread::callback                         : FMOD Studio bank load thread finished.
+[LOG] Profile::disconnectAll                   : Profiler disconnecting all clients
+[LOG] Thread::callback                         : FMOD Studio sample load thread finished.
+[LOG] LiveUpdate::release                      : 
+[LOG] LiveUpdate::reset                        : Reset connection (reason Disconnected)
+[LOG] Thread::callback                         : FMOD stream thread finished.
+[LOG] Thread::callback                         : FMOD mixer thread finished.
+[LOG] Profile::disconnectAll                   : Profiler disconnecting all clients
+[LOG] SystemI::close                           : Closed.
 [LOG] Thread::callback                         : FMOD Studio bank load thread finished.
 [LOG] Thread::callback                         : FMOD Studio sample load thread finished.
 [LOG] LiveUpdate::release                      : 
@@ -21,3 +76,5 @@
 [LOG] Thread::callback                         : FMOD stream thread finished.
 [LOG] Thread::callback                         : FMOD mixer thread finished.
 [LOG] SystemI::close                           : Closed.
+[LOG] Thread::callback                         : FMOD nonblocking thread (0) finished.
+[LOG] Thread::callback                         : FMOD file thread finished.
