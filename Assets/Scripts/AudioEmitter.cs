@@ -20,23 +20,23 @@ public class AudioEmitter : MonoBehaviour
     private void Start()
     {
         if (emitter != null)
-        {
-            // Aquí la instancia ya debería existir porque el evento se reproduce en Start
-            eventInstance = emitter.EventInstance;
-        }
+            StartCoroutine(WaitForInstance());
 
         if (AudioManager.audioManager != null)
             AudioManager.audioManager.RegisterEmitter(this);
     }
 
+    private IEnumerator WaitForInstance()
+    {
+        // Espera hasta que FMOD haya creado la instancia
+        yield return new WaitUntil(() => emitter.EventInstance.isValid());
+        eventInstance = emitter.EventInstance;
+    }
+
     private void Awake()
     {
         emitter = GetComponent<StudioEventEmitter>();
-        if (emitter != null)
-        {
-            // Consigue la instancia interna del emitter
-            eventInstance = emitter.EventInstance;
-        }
+
     }
 
     /*private void Update()
@@ -57,6 +57,10 @@ public class AudioEmitter : MonoBehaviour
     // Se llama desde el AudioManager cada frame para actualizar suavemente
     public void UpdateOcclusion(float lerpSpeed)
     {
+        // Intentar obtener la instancia si aún no es válida
+        if (!eventInstance.isValid() && emitter != null)
+            eventInstance = emitter.EventInstance;
+
         if (!eventInstance.isValid())
             return;
 

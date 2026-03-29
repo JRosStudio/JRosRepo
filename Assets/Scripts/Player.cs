@@ -1166,7 +1166,7 @@ public class Player : MonoBehaviour
         }
 
         LayerMask mask = LayerMask.GetMask("Platform");
-        LayerMask maskCorner = LayerMask.GetMask("Wall");
+        LayerMask maskCorner = LayerMask.GetMask("Wall" , "Room Wall");
         Vector2 boxSize = new Vector2(0.5f, 0.1f);
         Vector2 boxSizeCorner = new Vector2(0.7f, 0.1f);
 
