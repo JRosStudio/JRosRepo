@@ -73,8 +73,8 @@ public class MainMenuManager : MonoBehaviour
         Screen.SetResolution(startingResolution.width, startingResolution.height, Screen.fullScreen);
     }
 
-    public void LoadGame() {
-        SceneManager.LoadScene("Lvl1");
+    public void LoadGame(string lvl) {
+        SceneManager.LoadScene(lvl);
     }
 
     public void toSelectLevel() {

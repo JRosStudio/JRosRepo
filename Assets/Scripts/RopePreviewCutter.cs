@@ -14,7 +14,6 @@ public class RopePreviewCutter : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.transform.CompareTag("Ground") || collision.transform.CompareTag("Rope")) {
- 
             ropeDisp.RopeCutter(gameObject);
         }
     }

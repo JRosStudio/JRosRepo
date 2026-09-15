@@ -16,6 +16,9 @@ public class RopeDisplayer : MonoBehaviour
     [SerializeField]
     public TMP_Text ropesUsed_Txt;
 
+    [SerializeField]
+    public GameObject ropesUsed_Sprt;
+
     public Vector3 hitPosition;
 
     public int ropeLength;
@@ -63,11 +66,13 @@ public class RopeDisplayer : MonoBehaviour
                 ropeStart.SetActive(false);
 
                 ropesUsed_Txt.enabled = false;
+                ropesUsed_Sprt.SetActive(false);
             }
             if (player.ropeState)
             {
                 RopeBodyLenght();
                 ropesUsed_Txt.enabled = true;
+                ropesUsed_Sprt.SetActive(true);
 
             }
 
@@ -133,9 +138,9 @@ public class RopeDisplayer : MonoBehaviour
      
     }
 
-    public void RopeCutter(GameObject obj) {
+    public void RopeCutter(GameObject obj){
 
-       ropeLength = ropeBody.IndexOf(obj);
+        ropeLength = ropeBody.IndexOf(obj);
 
     }
 
