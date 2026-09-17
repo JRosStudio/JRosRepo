@@ -23,6 +23,11 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField] GameObject Settings_Tutorial;
     public TMPro.TMP_Dropdown resolutionDropdown;
     private Button Button_Start;
+    [SerializeField] Button BTN_Options;
+    [SerializeField] Button BTN_lvl1;
+    [SerializeField] Button BTN_Start;
+    [SerializeField] Button BTN_Cancel;
+
     private TextMeshProUGUI textTuto;
 
     Resolution[] resolutions;
@@ -44,7 +49,6 @@ public class MainMenuManager : MonoBehaviour
         friendsGone = false;
         textTuto = textTuto_OBJ.GetComponent<TextMeshProUGUI>();
         Button_Start = Button_Start_OBJ.GetComponent<Button>();
-        Button_Start.Select();
 
         //Resolution dropdown
         resolutions = Screen.resolutions;
@@ -86,8 +90,10 @@ public class MainMenuManager : MonoBehaviour
             actors_Animator.SetTrigger("InterruptScene");
             friendsGone = true;
             animationDone = true;
+
         }
         friendsGone = true;
+        
     } 
 
     public void selectLevel() {
