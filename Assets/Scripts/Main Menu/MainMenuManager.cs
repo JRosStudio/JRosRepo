@@ -21,6 +21,7 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField] GameObject Settings_Options;
     [SerializeField] GameObject Settings_Controls;
     [SerializeField] GameObject Settings_Tutorial;
+    [SerializeField] Toggle fullScreenEnabled;
     public TMPro.TMP_Dropdown resolutionDropdown;
     private Button Button_Start;
     [SerializeField] Button BTN_Options;

@@ -5,65 +5,90 @@ using UnityEngine;
 public class GoalManager : MonoBehaviour
 {
 
-    public List<GoalItem> listaIngredientes = new List<GoalItem>();
-    public List<GoalItem> listaPersonas = new List<GoalItem>();
-    public int numberOfGoals;
-    public float goldTimeGoal;
-    public float silverTimeGoal;
-    public float cooperTimeGoal;
+    public bool [] secretObjective;
+    public bool [] objectives;
+    public string medal;
+    public string lvlID;
+    [SerializeField] public GameManager gameManager;
+    [SerializeField] public LvL_Info lvlInfo;
+    private float goldTimeGoal;
+    private float silverTimeGoal;
+    private float cooperTimeGoal;
     public Timer timer;
     public float finishTime;
 
-    private bool paellaCarne = false;
-    private bool paellaMarisco = false;
-    private bool paellaVerdura = false;
     private bool countDone = false;
 
-    private int familia;
-    private int amigos;
-    private int compasTrabajo;
 
-
-
-    public void addIngrediente(string ID, int type,int subtype) {
-        if (listaIngredientes.Count < 3) {
-            GoalItem gi = new GoalItem();
-            gi.setGoalItem(ID,type,subtype);
-            listaIngredientes.Add(gi);
-            
-        }
-    }  
-    public void addPersona(string ID, int type,int subtype) {
-        if (listaPersonas.Count < 3) {
-            GoalItem gi = new GoalItem();
-            gi.setGoalItem(ID,type,subtype);
-            listaPersonas.Add(gi);
-        }
-    }
-
-    public int getIngredientCount() {
-
-        return listaIngredientes.Count;
-    }
-    public int getPersonasCount()
+    private void Start()
     {
+        objectives = new bool[lvlInfo.totalObjectives];
+        secretObjective = new bool[lvlInfo.totalSecretObjectives];
 
-        return listaPersonas.Count;
+        for (int i = 0; i < objectives.Length; i++){
+            objectives[i] = false;
+        }
+        
+        for (int i = 0; i < secretObjective.Length; i++){
+            secretObjective[i] = false;
+        }
+
+        goldTimeGoal = lvlInfo.goldTime;
+        lvlID = lvlInfo.levelId;
+        silverTimeGoal = lvlInfo.silverTime;
+        cooperTimeGoal = lvlInfo.bronzeTime;
+    }
+
+    public void CollectObjetive( string ID, bool isSecret, int arrayPositon) {
+        if (arrayPositon <= objectives.Length && arrayPositon >= 1)
+        {
+            if (!isSecret)
+            {
+                GoalItem goal = new GoalItem();
+                goal.setGoalItem(ID, isSecret, arrayPositon);
+                objectives[arrayPositon - 1] = true;
+            }
+            else
+            {
+                GoalItem sGoal = new GoalItem();
+                sGoal.setGoalItem(ID, isSecret, arrayPositon);
+                secretObjective[arrayPositon - 1] = true;
+            }
+        }
+        else { 
+            Debug.Log("El arrayPositon del objetivo está fuera de rango" + "arrayPositon: " + arrayPositon + "objectives.Length: " + objectives.Length);
+        }
+
+    }
+
+    public bool isObjectivesArrayEmpty() {
+        bool empty = true;
+        for (int i = 0; i< objectives.Length; i++) {
+            if (objectives[i] != false) {
+                empty = false;
+            }
+        }
+        return empty;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (collision.transform.CompareTag("Player") && !countDone && !isObjectivesArrayEmpty()) {
 
-
-        if (collision.transform.CompareTag("Player") && !countDone && listaPersonas.Count == numberOfGoals) {
+            
             finishTime = timer.GetCurrentTime();
             if (finishTime <= goldTimeGoal) {
                 Debug.Log("ORO!" + finishTime);
+                medal = "gold";
             } else if (finishTime <= silverTimeGoal && finishTime >= goldTimeGoal) {
                 Debug.Log("PLATA!: " + finishTime);
+                medal = "silver";
             } else if (finishTime >= cooperTimeGoal) {
                 Debug.Log("BRONCE!: " + finishTime);
+                medal = "bronze";
             }
+
+            gameManager.SaveGame(lvlID, objectives, secretObjective, finishTime, medal);
         }
 
        /* if (collision.transform.CompareTag("Player") && !countDone && listaIngredientes.Count == 3) {

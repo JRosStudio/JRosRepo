@@ -5,29 +5,13 @@ using UnityEngine;
 public class GoalItem : MonoBehaviour
 {
     public  string ID;
-    public  int Type;
-    public  int Subtype;
+    public  bool isSecret;
+    public  int arrayPositon;
 
-    /*ID:
-     Name of ITEM
-    */
-
-
-    /*types:
-    1- Familia
-    2- Amigos
-    */
-
-    /*subtypes:
-    1- Madre | Raul
-    2- Padre | Marga
-    3- Hermano | Miguel
-    */
-
-    public void setGoalItem(string id, int type, int subtype) {
+    public void setGoalItem(string id, bool secret, int arrayPos) {
         ID = id;
-        Type = type;
-        Subtype = subtype;
+        secret = isSecret;
+        arrayPos = arrayPositon;
     }
 
     public string getID()
@@ -36,15 +20,15 @@ public class GoalItem : MonoBehaviour
 
     }
 
-    public int getType()
+    public bool GetIsSecret()
     {
-        return Type;
+        return isSecret;
 
     }
 
-    public int getSubtype()
+    public int GetArrayPosition()
     {
-        return Subtype;
+        return arrayPositon;
 
     }
 
@@ -52,15 +36,8 @@ public class GoalItem : MonoBehaviour
     {
         GoalManager goalManager = GameObject.Find("GoalManager").GetComponent<GoalManager>();
         if (collision.transform.CompareTag("Player")) {
-            if (goalManager.getIngredientCount() < 3 && Type == 1) {
-                goalManager.addIngrediente(ID, Type, Subtype);
+                goalManager.CollectObjetive(ID, isSecret, arrayPositon);
                 Destroy(gameObject);
-            }
-            if (goalManager.getPersonasCount() < 3 && Type == 2)
-            {
-                goalManager.addPersona(ID, Type, Subtype);
-                Destroy(gameObject);
-            }
         }   
     }
 

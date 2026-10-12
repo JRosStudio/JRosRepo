@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using UnityEngine.SceneManagement;
 public class MenuManager : MonoBehaviour
 {
 
@@ -23,6 +23,8 @@ public class MenuManager : MonoBehaviour
     GameObject secondButton;
     [SerializeField]
     GameObject thirdButton;
+    [SerializeField]
+    GameObject fourthButton;
 
     [SerializeField]
     GameObject OptionPanel;
@@ -30,6 +32,7 @@ public class MenuManager : MonoBehaviour
     GameObject TutorialPanel;
     [SerializeField]
     GameObject ControlsPanel;
+
 
     [SerializeField]
     GameObject keyboardIMG;
@@ -40,12 +43,16 @@ public class MenuManager : MonoBehaviour
     Button options;
     Button tutorial;
     Button controls;
+    Button exit;
 
     public bool optionPanelState;
     public bool tutorialPanelState;
     public bool controlPanelState;
 
-
+    Resolution[] resolutions;
+    Resolution startingResolution;
+    List<Resolution> resolutions169;
+    public TMPro.TMP_Dropdown resolutionDropdown;
 
     private void Start()
     {
@@ -53,6 +60,34 @@ public class MenuManager : MonoBehaviour
         options = firstButton.GetComponent<Button>();
         tutorial = secondButton.GetComponent<Button>();
         controls = thirdButton.GetComponent<Button>();
+        exit = fourthButton.GetComponent<Button>();
+
+        //Resolution dropdown
+        resolutions = Screen.resolutions;
+        resolutionDropdown.ClearOptions();
+
+        List<string> resolutionsStringList = new List<string>();
+        resolutions169 = new List<Resolution>();
+        const float targetAspect = 16f / 9f;
+        const float tolerance = 0.01f;
+
+        for (int i = 0; i < resolutions.Length; i++)
+        {
+            float aspect = (float)resolutions[i].width / resolutions[i].height;
+
+            if (Mathf.Abs(aspect - targetAspect) < tolerance)
+            {
+
+                resolutions169.Add(resolutions[i]);
+                string res = resolutions[i].width + " x " + resolutions[i].height;
+                resolutionsStringList.Add(res);
+                startingResolution = resolutions[i];
+            }
+        }
+        resolutionDropdown.AddOptions(resolutionsStringList);
+        resolutionDropdown.SetValueWithoutNotify(resolutions169.Count - 1);
+        Screen.SetResolution(startingResolution.width, startingResolution.height, Screen.fullScreen);
+
     }
 
     public void pauseMenuHidden()
@@ -71,21 +106,19 @@ public class MenuManager : MonoBehaviour
         options.interactable = true;
         tutorial.interactable = true;
         controls.interactable = true;
+        exit.interactable = true;
         animation.SetInteger("PauseMenuState", 1);
     }
 
     public void freezeGame()
     {
-
         Time.timeScale = 0;
         animationBlackScreen.SetInteger("Transition", 4);
         player.gamePaused = true;
     }
     public void pauseMenuStay()
     {
-
         animation.SetInteger("PauseMenuState", 2);
-
     }
     public void pauseMenuBack()
     {
@@ -204,4 +237,20 @@ public class MenuManager : MonoBehaviour
         controllerIMG.SetActive(!nextState);
 
     }
+
+    public void SetResolution(int resolutionIndex)
+    {
+        Resolution resolution = resolutions169[resolutionIndex];
+        Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
+    }
+    public void SetFullScreen(bool isFullScreen)
+    {
+        Screen.fullScreen = isFullScreen;
+    }
+
+    public void ToMainMenu()
+    {
+        SceneManager.LoadScene("Main Menu");
+    }
+
 }
