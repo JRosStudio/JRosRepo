@@ -38,16 +38,19 @@ public class MainMenuManager : MonoBehaviour
     Animator cam_Animator;
     Animator actors_Animator;
 
-    public bool friendsGone;
-    public bool animationDone;
+    //public bool friendsGone;
+    //public bool animationDone;
+
+    public MenuFlagHolder flagHolder;
 
     public void Start()
     {
 
+        flagHolder = GameObject.Find("MenuFlagHolder").GetComponent<MenuFlagHolder>();
+
         camara.transform.position = mainMenuPos.transform.position;
         cam_Animator = camara.GetComponent<Animator>();
         actors_Animator = actors.GetComponent<Animator>();
-        friendsGone = false;
         textTuto = textTuto_OBJ.GetComponent<TextMeshProUGUI>();
         Button_Start = Button_Start_OBJ.GetComponent<Button>();
 
@@ -83,34 +86,34 @@ public class MainMenuManager : MonoBehaviour
     }
 
     public void toSelectLevel() {
-        if (friendsGone) {
+        if (flagHolder.friendsGone) {
             //camara.transform.position = selectLevelPos.transform.position;
             mainMenu.SetActive(false);
             selectLevelMenu.SetActive(true);
             cam_Animator.SetTrigger("ToSelectLevel");
             actors_Animator.SetTrigger("InterruptScene");
-            friendsGone = true;
-            animationDone = true;
+            flagHolder.friendsGone = true;
+            flagHolder.animationDone = true;
 
         }
-        friendsGone = true;
+        flagHolder.friendsGone = true;
         
     } 
 
     public void selectLevel() {
-        if (friendsGone == false && animationDone == false)
+        if (flagHolder.friendsGone == false && flagHolder.animationDone == false)
         {
             //camara.transform.position = selectLevelPos.transform.position;
             mainMenu.SetActive(false);
             selectLevelMenu.SetActive(true);
             cam_Animator.SetTrigger("ToSelectLevel");
-            friendsGone = true;
-            animationDone = true;
+            flagHolder.friendsGone = true;
+            flagHolder.animationDone = true;
         }
     }
     
     public void AnimationDone() {
-        animationDone = true;
+        flagHolder.animationDone = true;
     }
 
     public void ToMainMenu() {
